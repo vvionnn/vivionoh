@@ -1,37 +1,34 @@
-// Mobile Menu
-const menuBtn = document.getElementById("menuBtn");
-const navLinks = document.getElementById("navLinks");
+// year
+const year = document.getElementById("year");
+if (year) year.textContent = new Date().getFullYear();
 
-menuBtn.addEventListener("click", () => {
-  navLinks.classList.toggle("active");
-});
+// Zoom modal
+const zoomModal = document.getElementById("zoomModal");
+const zoomImg = document.getElementById("zoomImg");
+const zoomClose = document.getElementById("zoomClose");
 
-// Draggable Flowers
-function makeDraggable(element) {
-  let isDragging = false;
-  let offsetX, offsetY;
-
-  element.addEventListener("mousedown", (e) => {
-    isDragging = true;
-    offsetX = e.clientX - element.offsetLeft;
-    offsetY = e.clientY - element.offsetTop;
-    element.style.cursor = "grabbing";
-  });
-
-  document.addEventListener("mousemove", (e) => {
-    if (isDragging) {
-      element.style.left = e.clientX - offsetX + "px";
-      element.style.top = e.clientY - offsetY + "px";
-      element.style.right = "auto";
-    }
-  });
-
-  document.addEventListener("mouseup", () => {
-    isDragging = false;
-    element.style.cursor = "grab";
-  });
+function openZoom(src, alt){
+  zoomModal.classList.add("open");
+  zoomImg.src = src;
+  zoomImg.alt = alt || "Zoomed preview";
+  document.body.style.overflow = "hidden";
 }
 
-makeDraggable(document.getElementById("flowerLeft"));
-makeDraggable(document.getElementById("flowerRight"));
+function closeZoom(){
+  zoomModal.classList.remove("open");
+  zoomImg.src = "";
+  document.body.style.overflow = "";
+}
 
+zoomClose?.addEventListener("click", closeZoom);
+zoomModal?.addEventListener("click", (e) => {
+  if (e.target === zoomModal) closeZoom();
+});
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") closeZoom();
+});
+
+document.querySelectorAll(".zoomable").forEach(img => {
+  img.addEventListener("click", () => openZoom(img.src, img.alt));
+});
