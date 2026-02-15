@@ -1,8 +1,8 @@
-// main.js (FULL)
+// footer year
 const year = document.getElementById("year");
 if (year) year.textContent = new Date().getFullYear();
 
-// ===== Image Zoom Modal =====
+// image zoom modal
 const zoomModal = document.getElementById("zoomModal");
 const zoomClose = document.getElementById("zoomClose");
 const zoomImg = document.getElementById("zoomImg");
