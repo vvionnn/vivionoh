@@ -298,21 +298,23 @@
     </div>
   </section>
 
-  <!-- ZOOM MODAL -->
-  <div id="zoomModal" class="zoomModal">
-      <div id="zoomClose" class="zoomClose">×</div>
+ <!-- ZOOM MODAL -->
+<div id="zoomModal" class="zoomModal" aria-hidden="true">
+  <button id="zoomClose" class="zoomClose" aria-label="Close">×</button>
 
-      <div class="zoomInner">
+  <div class="zoomInner">
+    <div class="zoomHeader">
+      <h3 id="zoomTitle"></h3>
+    </div>
 
-          <div id="zoomHeader" class="zoomHeader">
-              <h3 id="zoomTitle"></h3>
-          </div>
+    <img id="zoomImg" class="zoomImg" src="" alt="">
 
-          <img id="zoomImg" class="zoomImg" src="" alt="">
-          <div class="zoomContent">
-  <h3 id="zoomTitle"></h3>
-  <ul id="zoomDesc"></ul>
+    <div class="zoomContent">
+      <ul id="zoomDesc"></ul>
+    </div>
+  </div>
 </div>
+
 
           <div id="zoomFooter" class="zoomFooter">
               <p id="zoomDesc"></p>
