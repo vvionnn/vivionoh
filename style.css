@@ -10,6 +10,136 @@
   --acc2:#b9b2ff;
 }
 
+/* NAVBAR */
+.navbar{
+  position:fixed;
+  top:0; left:0; right:0;
+  z-index:999;
+  padding:18px 22px;
+  background:rgba(0,0,0,.12);
+  backdrop-filter: blur(14px);
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.navInner{
+  max-width:1200px;
+  margin:0 auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight:900;
+  letter-spacing:.2px;
+}
+
+.brandDot{
+  width:12px;height:12px;border-radius:50%;
+  background: var(--acc);
+  box-shadow: 0 0 30px rgba(109,92,255,.55);
+}
+.brandText{font-size:16px;color:rgba(243,244,255,.92);}
+
+.navPanel{
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+
+.navLinks{
+  display:flex;
+  gap:22px;
+  align-items:center;
+}
+
+.navLink{
+  font-weight:800;
+  color:rgba(243,244,255,.72);
+  transition: .15s ease;
+}
+.navLink:hover{color:rgba(243,244,255,.95);}
+
+.navCta{
+  padding:10px 14px;
+  border-radius:999px;
+  font-weight:900;
+  background: linear-gradient(135deg, rgba(109,92,255,.95), rgba(185,178,255,.75));
+  color:#0b0b14;
+  border:none;
+}
+
+/* ✅ Burger default hidden on desktop */
+.navToggle{
+  display:none;
+  width:44px;
+  height:44px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+  backdrop-filter: blur(10px);
+  cursor:pointer;
+  align-items:center;
+  justify-content:center;
+  gap:5px;
+}
+.navToggle .bar{
+  display:block;
+  width:18px;
+  height:2px;
+  background: rgba(243,244,255,.92);
+  border-radius:999px;
+}
+
+/* ✅ Mobile behavior */
+@media (max-width:720px){
+  .navToggle{ display:flex; }
+
+  /* hide panel by default */
+  .navPanel{
+    display:none;
+    width:100%;
+    margin-top:12px;
+
+    flex-direction:column;
+    align-items:stretch;
+    gap:12px;
+
+    padding:12px;
+    border-radius:18px;
+    border:1px solid rgba(255,255,255,.10);
+    background: rgba(0,0,0,.22);
+    backdrop-filter: blur(14px);
+  }
+
+  /* open state */
+  .navPanel.open{ display:flex; }
+
+  .navLinks{
+    width:100%;
+    flex-direction:column;
+    align-items:stretch;
+    gap:10px;
+  }
+
+  .navLink{
+    padding:12px 12px;
+    border-radius:14px;
+    background: rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.08);
+  }
+
+  .navCta{
+    width:100%;
+    text-align:center;
+    padding:12px 14px;
+  }
+}
+
 *{box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{
