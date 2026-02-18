@@ -102,10 +102,14 @@
 
         <!-- ✅ 4 images in one row -->
         <div class="shots">
-          <img class="shot zoomable" src="images/legacygarden1.png" alt="Legacy Garden 1">
-          <img class="shot zoomable" src="images/legacygarden3.png" alt="Legacy Garden 2">
-          <img class="shot zoomable" src="images/legacygarden2.png" alt="Legacy Garden 3">
-          <img class="shot zoomable" src="images/legacygarden4.png" alt="Legacy Garden 4">
+          <img class="shot zoomable" src="images/legacygarden1.png" alt="Legacy Garden 1" data-title="Homepage Dashboard" 
+       data-desc="The main hub where users can see community stories and their gardening progress.">
+          <img class="shot zoomable" src="images/legacygarden3.png" alt="Legacy Garden 2" data-title="Homepage Dashboard" 
+       data-desc="The main hub where users can see community stories and their gardening progress.">
+          <img class="shot zoomable" src="images/legacygarden2.png" alt="Legacy Garden 3" data-title="Homepage Dashboard" 
+       data-desc="The main hub where users can see community stories and their gardening progress.">
+          <img class="shot zoomable" src="images/legacygarden4.png" alt="Legacy Garden 4" data-title="Homepage Dashboard" 
+       data-desc="The main hub where users can see community stories and their gardening progress.">
         </div>
 
         <!-- ✅ Demo link only -->
@@ -264,11 +268,22 @@
   </section>
 
   <!-- ZOOM MODAL -->
-  <div class="zoomModal" id="zoomModal" aria-hidden="true">
-    <button class="zoomClose" id="zoomClose" aria-label="Close">×</button>
-    <div class="zoomInner">
-      <img id="zoomImg" class="zoomImg" alt="Zoomed preview"/>
-    </div>
+  <div id="zoomModal" class="zoomModal">
+      <div id="zoomClose" class="zoomClose">×</div>
+
+      <div class="zoomInner">
+
+          <div id="zoomHeader" class="zoomHeader">
+              <h3 id="zoomTitle"></h3>
+          </div>
+
+          <img id="zoomImg" class="zoomImg" src="" alt="">
+
+          <div id="zoomFooter" class="zoomFooter">
+              <p id="zoomDesc"></p>
+          </div>
+
+      </div>
   </div>
 
   <script src="main.js"></script>
