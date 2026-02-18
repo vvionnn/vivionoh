@@ -61,3 +61,7 @@ document.querySelectorAll(".zoomable").forEach(img => {
     );
   });
 });
+zoomDesc.innerHTML = desc
+  .split("\n")
+  .map(line => `<li>${line.trim()}</li>`)
+  .join("");
