@@ -198,15 +198,15 @@
     .visual-panel { min-height: 260px; border-radius: 18px; border: 1px solid var(--ink); display: grid; place-items: center; background: var(--paper); position: relative; overflow: hidden; }
     .visual-panel::before { content: ""; width: 170px; aspect-ratio: 1; border-radius: 50%; background: var(--accent-color, var(--orange)); box-shadow: 80px 20px 0 var(--blue), -80px 35px 0 var(--acid); }
     .visual-panel span { position: absolute; font: 10px DM Mono, monospace; text-transform: uppercase; }
-    .image-gallery { margin-top: 40px; display: grid; grid-template-columns: 1.55fr repeat(2, minmax(145px,.72fr)); grid-auto-flow: dense; gap: 12px; align-items: start; }
-    .gallery-item { aspect-ratio: 9 / 16; min-height: 0; position: relative; overflow: hidden; border: 1px solid var(--ink); border-radius: 15px; background: #f8f7f2; }
-    .gallery-item:first-child { grid-row: span 2; aspect-ratio: 4 / 5; }
+    .image-gallery { margin-top: 40px; display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 12px; }
+    .gallery-item { aspect-ratio: 16 / 9; min-height: 190px; position: relative; overflow: hidden; border: 1px solid var(--ink); border-radius: 15px; background: #f8f7f2; }
+    .gallery-item:first-child { grid-column: span 2; grid-row: span 2; aspect-ratio: auto; }
     .gallery-item img { width: 100%; height: 100%; min-height: 0; display: block; object-fit: cover; object-position: top center; transition: transform .4s; }
     .gallery-item.contain img { object-fit: contain; object-position: center; }
     .gallery-item:hover img { transform: scale(1.025); }
     .gallery-item::after { content: "View ↗"; position: absolute; right: 10px; bottom: 10px; padding: 6px 8px; border-radius: 999px; color: var(--paper); background: rgba(23,23,20,.85); font: 8px DM Mono, monospace; text-transform: uppercase; }
     .image-gallery.collapsed .gallery-item:nth-child(n+6) { display: none; }
-    .gallery-more { aspect-ratio: 9 / 16; min-height: 0; border: 1px solid var(--ink); border-radius: 15px; color: var(--paper); background: var(--ink); font: 500 clamp(28px, 4vw, 58px) Manrope, sans-serif; letter-spacing: -.05em; }
+    .gallery-more { aspect-ratio: 16 / 9; min-height: 190px; border: 1px solid var(--ink); border-radius: 15px; color: var(--paper); background: var(--ink); font: 500 clamp(28px, 4vw, 58px) Manrope, sans-serif; letter-spacing: -.05em; }
     .gallery-more small { display: block; margin-top: 6px; font: 8px DM Mono, monospace; text-transform: uppercase; letter-spacing: .08em; }
     .lightbox { position: fixed; inset: 0; z-index: 200; display: none; grid-template-columns: minmax(0,2fr) minmax(270px,.7fr); gap: 30px; align-items: center; padding: 50px 80px; background: rgba(16,16,14,.97); }
     .lightbox.open { display: grid; }
@@ -228,9 +228,16 @@
     .section-label { margin: 0; font: 11px DM Mono, monospace; text-transform: uppercase; letter-spacing: .08em; }
     .section-label strong { display: block; margin-top: 18px; font: 500 clamp(42px, 6vw, 90px) Manrope, sans-serif; line-height: .88; letter-spacing: -.07em; text-transform: uppercase; }
     .entries { border-top: 1px solid var(--ink); }
-    .entry { display: grid; grid-template-columns: 120px 88px 1fr; gap: 24px; padding: 26px 0 38px; border-bottom: 1px solid var(--ink); }
-    .entry.no-logo { grid-template-columns: 120px 1fr; }
-    .entry-logo { width: 88px; height: 72px; object-fit: contain; align-self: start; border-radius: 10px; background: white; }
+    .entry, .entry.no-logo { display: grid; grid-template-columns: 120px 1fr; gap: 24px; padding: 26px 0 38px; border-bottom: 1px solid var(--ink); }
+    .entry-group { padding: 27px 0 12px; border-bottom: 1px solid var(--ink); }
+    .entry-group-title { margin: 0 0 8px 192px; font: 10px DM Mono, monospace; text-transform: uppercase; letter-spacing: .06em; }
+    .role-timeline { position: relative; }
+    .role-timeline::before { content: ""; position: absolute; top: 28px; bottom: 42px; left: 180px; width: 1px; background: var(--ink); }
+    .role-timeline .entry { position: relative; grid-template-columns: 120px 1fr; border-bottom: 0; padding: 22px 0 30px 48px; }
+    .role-timeline .entry::before { content: ""; position: absolute; top: 29px; left: 174px; width: 11px; height: 11px; border: 1px solid var(--ink); border-radius: 50%; background: #e8e5de; }
+    .role-timeline .entry + .entry { padding-top: 30px; }
+    .role-timeline .entry + .entry::before { top: 37px; }
+    .role-timeline .entry h3 { margin-top: 0; }
     .entry-date, .entry-kicker { font: 10px DM Mono, monospace; text-transform: uppercase; letter-spacing: .06em; }
     .entry h3 { margin: 6px 0 10px; font-size: clamp(25px, 3vw, 44px); line-height: 1; letter-spacing: -.045em; }
     .entry p { max-width: 690px; margin: 0; font-size: 14px; line-height: 1.6; }
@@ -282,14 +289,17 @@
       .project-preview { display: none; }
       .case-top, .case-details, .case-media { grid-template-columns: 1fr; }
       .image-gallery { grid-template-columns: 1fr 1fr; }
-      .gallery-item:first-child { grid-column: span 2; grid-row: auto; aspect-ratio: 4 / 3; }
+      .gallery-item:first-child { grid-column: span 2; grid-row: auto; aspect-ratio: 16 / 9; }
       .lightbox { grid-template-columns: 1fr; padding: 65px 15px 20px; overflow-y: auto; }
       .lightbox-info { border-left: 0; border-top: 1px solid rgba(255,255,255,.25); padding: 22px 5px; }
       .case-date { justify-self: start; }
       .case-media .media-note { min-height: 210px; }
       .experience-grid { grid-template-columns: 1fr; }
       .entry, .entry.no-logo { grid-template-columns: 1fr; gap: 10px; }
-      .entry-logo { width: 96px; height: 64px; }
+      .entry-group-title { margin-left: 28px; }
+      .role-timeline::before { left: 5px; top: 24px; bottom: 35px; }
+      .role-timeline .entry { grid-template-columns: 1fr; padding: 18px 0 26px 28px; }
+      .role-timeline .entry::before, .role-timeline .entry + .entry::before { left: 0; top: 23px; }
       .about { grid-template-columns: 1fr; }
       .about-copy, .skills { grid-column: 1; }
       footer { min-height: 70vh; }
@@ -349,10 +359,10 @@
       <div class="experience-grid">
         <h2 class="section-label" data-reveal>( 02 / Experience )<strong>Relevant<br>experience</strong></h2>
         <div class="entries" data-reveal>
-          <article class="entry"><span class="entry-date">Mar 2026 — Present</span><img class="entry-logo" src="assets/logo-nanyang.svg" alt="Nanyang Educational Consultancy logo"><div><span class="entry-kicker">Nanyang Educational Consultancy</span><h3>Administrative Executive</h3><p>Support daily operations for 150+ active students, including enrolment, scheduling, invoicing and attendance. Reconcile over S$100,000 in monthly tuition revenue, coordinate tutor schedules and administer payroll for 30+ employees.</p><div class="entry-skills"><span>Administration</span><span>Microsoft Excel</span><span>Google Workspace</span><span>Payroll</span><span>Scheduling</span><span>Data management</span></div></div></article>
-          <article class="entry"><span class="entry-date">Sep 2025 — Present</span><img class="entry-logo" src="assets/logo-highhouse.svg" alt="HighHouse logo"><div><span class="entry-kicker">HighHouse · Part-time</span><h3>Food Service Associate</h3><p>Support front-of-house operations by delivering food accurately and on time, maintaining smooth guest flow during peak periods, and completing service preparation and glass-polishing duties.</p><div class="entry-skills"><span>Food delivery</span><span>Food service operations</span><span>Customer service</span><span>Teamwork</span><span>Time management</span></div></div></article>
-          <article class="entry"><span class="entry-date">Sep 2025 — Present</span><img class="entry-logo" src="assets/logo-leclair.svg" alt="L'éclair Patisserie logo"><div><span class="entry-kicker">L'éclair Patisserie · Part-time</span><h3>Service Associate</h3><p>Prepare high-quality coffee, beverages and food according to standard recipes, practise basic latte art, maintain product consistency and assist customers with attentive front-of-house service.</p><div class="entry-skills"><span>Latte art</span><span>Food service</span><span>Barista skills</span><span>Customer relations</span><span>Quality control</span></div></div></article>
-          <article class="entry"><span class="entry-date">Sep 2024 — Mar 2025</span><img class="entry-logo" src="assets/logo-smoke-mirrors.svg" alt="Smoke and Mirrors logo"><div><span class="entry-kicker">Smoke & Mirrors Bar · Part-time</span><h3>F&amp;B Associate</h3><p>Managed seating, table coordination and customer enquiries, handled service stations independently during peak periods, and supported accurate billing and smooth service operations.</p><div class="entry-skills"><span>Guest relations</span><span>Food & beverage operations</span><span>Service coordination</span><span>Billing</span><span>Problem solving</span></div></div></article>
+          <article class="entry"><span class="entry-date">Mar 2026 — Present</span><div><span class="entry-kicker">Nanyang Educational Consultancy</span><h3>Administrative Executive</h3><p>Support daily operations for 150+ active students, including enrolment, scheduling, invoicing and attendance. Reconcile over S$100,000 in monthly tuition revenue, coordinate tutor schedules and administer payroll for 30+ employees.</p><div class="entry-skills"><span>Administration</span><span>Microsoft Excel</span><span>Google Workspace</span><span>Payroll</span><span>Scheduling</span><span>Data management</span></div></div></article>
+          <article class="entry"><span class="entry-date">Sep 2025 — Present</span><div><span class="entry-kicker">HighHouse · Part-time</span><h3>Food Service Associate</h3><p>Support front-of-house operations by delivering food accurately and on time, maintaining smooth guest flow during peak periods, and completing service preparation and glass-polishing duties.</p><div class="entry-skills"><span>Food delivery</span><span>Food service operations</span><span>Customer service</span><span>Teamwork</span><span>Time management</span></div></div></article>
+          <article class="entry"><span class="entry-date">Sep 2025 — Present</span><div><span class="entry-kicker">L'éclair Patisserie · Part-time</span><h3>Service Associate</h3><p>Prepare high-quality coffee, beverages and food according to standard recipes, practise basic latte art, maintain product consistency and assist customers with attentive front-of-house service.</p><div class="entry-skills"><span>Latte art</span><span>Food service</span><span>Barista skills</span><span>Customer relations</span><span>Quality control</span></div></div></article>
+          <article class="entry"><span class="entry-date">Sep 2024 — Mar 2025</span><div><span class="entry-kicker">Smoke & Mirrors Bar · Part-time</span><h3>F&amp;B Associate</h3><p>Managed seating, table coordination and customer enquiries, handled service stations independently during peak periods, and supported accurate billing and smooth service operations.</p><div class="entry-skills"><span>Guest relations</span><span>Food & beverage operations</span><span>Service coordination</span><span>Billing</span><span>Problem solving</span></div></div></article>
         </div>
       </div>
     </section>
@@ -361,13 +371,12 @@
       <div class="section-head" data-reveal><h2>Relevant<br>projects</h2><p>( 03 / Projects ) · 2024—2026</p></div>
       <div class="project-cards">
         <article class="case-card echo" data-reveal>
-          <div class="case-top"><div><span class="case-award">SCDF × Dell Lifesavers’ Innovation Challenge 2026 · Top 5 Finalist</span><h3>EchoSync</h3><span class="case-role">Project Lead · Software Developer</span></div><span class="case-date">Mar 2026 — Jul 2026</span></div>
+          <div class="case-top"><div><span class="case-award">SCDF × Dell Lifesavers’ Innovation Challenge 2026 · Top 5 Finalist</span><h3>EchoSync</h3><span class="case-role">Project Lead | Business Analysis | Digital Marketing | Front-end Development</span></div><span class="case-date">Mar 2026 — Jul 2026</span></div>
           <p class="case-summary">An AI-assisted pre-arrival intelligence and first-response ecosystem designed to detect unwitnessed home emergencies for seniors living alone. EchoSync uses privacy-first ambient sensors, Edge AI and voice check-ins to assess distress before routing alerts to caregivers or responders.</p>
           <div class="case-tags"><span>Artificial Intelligence</span><span>IoT</span><span>Edge AI</span><span>Raspberry Pi</span><span>Sensor Fusion</span><span>Voice Recognition</span><span>Dashboard Integration</span></div>
           <div class="case-details"><div><h4>Project Highlights</h4><ul><li>Top 5 Finalist out of 81 teams from 17 institutions in the SCDF and Dell Lifesavers’ Innovation Challenge 2026.</li><li>Built a privacy-first flow without CCTV or facial recognition.</li><li>Combined sound, motion, distance and load signals with explainable risk scoring.</li><li>Created caregiver verification, SCDF dashboard and myResponder-style escalation flows.</li></ul></div><div><h4>My Role & Contributions</h4><ul><li>Supported software development, sensor logic and alert-flow architecture.</li><li>Conducted Raspberry Pi hardware testing and multi-sensor calibration.</li><li>Integrated dashboard alerts and prepared the OpenShift competition demo.</li><li>Contributed to UI design, pitch preparation and the Grand Finale presentation.</li></ul></div></div>
           <div class="image-gallery collapsed" aria-label="EchoSync project gallery">
             <a class="gallery-item" href="assets/echosync-gallery/screen-01.png" data-title="Triage Operations Dashboard" data-description="A central operations view that helps dispatchers understand active incidents, urgency, location and responder activity without searching across multiple systems."><img src="assets/echosync-gallery/screen-01.png" alt="EchoSync triage operations dashboard"></a>
-            <a class="gallery-item contain" href="assets/echosync-poster.png" data-title="Solution Overview" data-description="The competition poster summarises the emergency-response gap, EchoSync’s privacy-first architecture, its sensing-to-response workflow and the roles of caregivers, community responders and SCDF."><img src="assets/echosync-poster.png" alt="EchoSync solution overview poster"></a>
             <a class="gallery-item contain" href="assets/echosync.png" data-title="Emergency Detection Flow" data-description="The end-to-end EchoSync journey: ambient sensing detects a possible fall, a multilingual voice check-in verifies the resident’s condition, and urgent cases are escalated for human response."><img src="assets/echosync.png" alt="EchoSync fall detection, voice check-in and escalation process"></a>
             <a class="gallery-item" href="assets/echosync-gallery/screen-02.png" data-title="Incident Intelligence" data-description="An incident-focused screen combines sensor evidence, confidence level and location context so a human operator can make a faster, better-informed decision."><img src="assets/echosync-gallery/screen-02.png" alt="EchoSync incident intelligence screen"></a>
             <a class="gallery-item" href="assets/echosync-gallery/screen-03.png" data-title="Caregiver Verification" data-description="Lower and medium-risk alerts can be verified by a caregiver first, reducing unnecessary escalation while keeping urgent cases moving quickly toward responders."><img src="assets/echosync-gallery/screen-03.png" alt="EchoSync caregiver verification screen"></a>
@@ -385,7 +394,7 @@
             <a class="gallery-item" href="assets/echosync-gallery/screen-15.png"><img src="assets/echosync-gallery/screen-15.png" alt="EchoSync prototype screen 15"></a>
             <a class="gallery-item" href="assets/echosync-gallery/screen-16.png"><img src="assets/echosync-gallery/screen-16.png" alt="EchoSync prototype screen 16"></a>
             <a class="gallery-item" href="assets/echosync-gallery/screen-17.png"><img src="assets/echosync-gallery/screen-17.png" alt="EchoSync prototype screen 17"></a>
-            <button class="gallery-more" type="button" data-gallery-more data-count="+14">+14<small>View all prototype screens</small></button>
+            <button class="gallery-more" type="button" data-gallery-more data-count="+13">+13<small>View all prototype screens</small></button>
           </div>
         </article>
 
@@ -440,8 +449,13 @@
       <div class="experience-grid">
         <h2 class="section-label" data-reveal>( 04 / Growth )<strong>CCA &<br>leadership</strong></h2>
         <div class="entries" data-reveal>
-          <article class="entry no-logo"><span class="entry-date">Apr 2026 — Present</span><div><span class="entry-kicker">Peer Supporter Club · Nanyang Polytechnic</span><h3>HR &amp; Admin Executive Assistant</h3><p>Support committee administration, people coordination and internal communications while helping the club organise peer-support initiatives and maintain a welcoming, dependable team culture.</p></div></article>
-          <article class="entry no-logo"><span class="entry-date">Apr 2025 — Apr 2026</span><div><span class="entry-kicker">Peer Supporter Club · Nanyang Polytechnic</span><h3>Vice-President</h3><p>Led peer-support initiatives, workshops and student engagement events; reviewed project proposals, coordinated external outreach and helped turn wellbeing ideas into practical programmes for students.</p></div></article>
+          <div class="entry-group">
+            <p class="entry-group-title">Peer Supporter Club · Nanyang Polytechnic</p>
+            <div class="role-timeline">
+              <article class="entry"><span class="entry-date">Apr 2026 — Present</span><div><h3>HR &amp; Admin Executive Assistant</h3><p>Support committee administration, people coordination and internal communications while helping the club organise peer-support initiatives and maintain a welcoming, dependable team culture.</p></div></article>
+              <article class="entry"><span class="entry-date">Apr 2025 — Apr 2026</span><div><h3>Vice-President</h3><p>Led peer-support initiatives, workshops and student engagement events; reviewed project proposals, coordinated external outreach and helped turn wellbeing ideas into practical programmes for students.</p></div></article>
+            </div>
+          </div>
           <article class="entry no-logo"><span class="entry-date">Apr 2025 — Present</span><div><span class="entry-kicker">School of Information Technology Club</span><h3>Sub-committee Member</h3><p>Support the planning and execution of school-wide events, student engagement activities and on-the-ground operations with the wider committee.</p></div></article>
           <article class="entry no-logo"><span class="entry-date">Apr 2025 — Present</span><div><span class="entry-kicker">Ladies in Tech Interest Group</span><h3>Sub-committee Member</h3><p>Support community and secondary-school outreach, event delivery and publicity content that encourages more students to explore technology.</p></div></article>
           <article class="entry no-logo"><span class="entry-date">Jan 2022 — Dec 2023</span><div><span class="entry-kicker">Table Tennis · Evergreen Secondary School</span><h3>Vice-Captain</h3><p>Led warm-ups, supported team training, coordinated activities and served as a liaison between teammates and coaches.</p></div></article>

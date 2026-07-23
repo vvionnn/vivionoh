@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 90">
-  <rect width="160" height="90" rx="12" fill="#fff"/>
-  <circle cx="35" cy="45" r="24" fill="#173f78"/>
-  <path d="M22 56V32h8l12 14V32h8v24h-8L30 42v14z" fill="#fff"/>
-  <text x="67" y="39" font-family="Arial,sans-serif" font-size="12" font-weight="700" fill="#173f78">NANYANG</text>
-  <text x="67" y="55" font-family="Arial,sans-serif" font-size="9" fill="#333">EDUCATIONAL</text>
-  <text x="67" y="68" font-family="Arial,sans-serif" font-size="9" fill="#333">CONSULTANCY</text>
-</svg>
