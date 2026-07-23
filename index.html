@@ -47,8 +47,8 @@
     .loader small { position: absolute; top: 32px; right: 40px; font: 12px DM Mono, monospace; }
 
     nav {
-      position: absolute;
-      z-index: 10;
+      position: fixed;
+      z-index: 80;
       top: 0;
       left: 0;
       width: 100%;
@@ -59,7 +59,12 @@
       font: 11px DM Mono, monospace;
       text-transform: uppercase;
       letter-spacing: .08em;
+      background: rgba(241,238,231,.88);
+      border-bottom: 1px solid transparent;
+      backdrop-filter: blur(14px);
+      transition: border-color .25s;
     }
+    nav.scrolled { border-color: var(--line); }
     .brand { font: 700 18px Manrope, sans-serif; letter-spacing: -.05em; text-decoration: none; }
     .nav-links { display: flex; gap: 26px; }
     .nav-links a { text-decoration: none; }
@@ -98,19 +103,27 @@
     .hero-bottom { display: grid; grid-template-columns: 1fr 1fr 1fr; align-items: end; gap: 24px; }
     .hero-copy { max-width: 400px; font-size: 14px; line-height: 1.5; }
     .scroll { justify-self: center; font: 10px DM Mono, monospace; text-transform: uppercase; }
-    .shape {
+    .hero-camera {
       position: absolute;
-      right: 7vw;
-      top: clamp(110px, 16vh, 165px);
-      width: clamp(110px, 15vw, 235px);
-      aspect-ratio: 1;
+      right: clamp(20px, 5vw, 80px);
+      top: clamp(105px, 14vh, 145px);
+      width: clamp(180px, 21vw, 330px);
+      padding: 12px;
       border: 1px solid var(--ink);
-      border-radius: 50%;
-      z-index: -1;
-      animation: float 6s ease-in-out infinite;
+      border-radius: 24px;
+      background: var(--ink);
+      color: var(--paper);
+      z-index: 2;
+      transform: rotate(2deg);
     }
-    .shape::before, .shape::after { content: ""; position: absolute; inset: 18%; border: 1px solid var(--ink); transform: rotate(45deg); }
-    .shape::after { background: var(--acid); mix-blend-mode: multiply; transform: rotate(15deg); }
+    .camera-top { display: flex; justify-content: space-between; align-items: center; padding: 2px 2px 10px; font: 8px DM Mono, monospace; text-transform: uppercase; }
+    .camera-dot { width: 8px; height: 8px; border-radius: 50%; background: #d96855; }
+    .camera-screen { display: flex; gap: 7px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; border-radius: 14px; }
+    .camera-screen::-webkit-scrollbar { display: none; }
+    .camera-screen img { flex: 0 0 100%; width: 100%; aspect-ratio: 4/3; object-fit: cover; object-position: top center; scroll-snap-align: start; background: white; }
+    .camera-bottom { display: flex; justify-content: space-between; align-items: center; padding: 10px 3px 1px; font: 8px DM Mono, monospace; text-transform: uppercase; }
+    .camera-controls { display: flex; gap: 5px; }
+    .camera-controls button { width: 24px; height: 24px; border: 1px solid rgba(255,255,255,.5); border-radius: 50%; color: white; background: transparent; font-size: 11px; }
 
     .marquee { overflow: hidden; padding: 16px 0; background: var(--ink); color: var(--paper); }
     .marquee-track { display: flex; width: max-content; animation: marquee 20s linear infinite; }
@@ -165,8 +178,8 @@
     .case-card { padding: clamp(24px, 4vw, 58px); border: 1px solid var(--ink); border-radius: 28px; background: rgba(255,255,255,.34); overflow: hidden; }
     .case-top { display: grid; grid-template-columns: minmax(0,1.6fr) minmax(230px,.7fr); gap: 5vw; align-items: start; }
     .case-card h3 { margin: 0; font-size: clamp(38px, 5.6vw, 82px); line-height: .9; letter-spacing: -.065em; }
-    .case-award { display: inline-block; margin-bottom: 18px; padding: 8px 11px; border: 1px solid var(--ink); background: var(--acid); font: 500 9px DM Mono, monospace; text-transform: uppercase; letter-spacing: .06em; }
-    .case-role { display: block; margin-top: 12px; font: 500 11px DM Mono, monospace; text-transform: uppercase; letter-spacing: .07em; }
+    .case-award { display: block; max-width: 900px; margin-bottom: 30px; padding: 0 0 18px; border-bottom: 1px solid var(--ink); color: #536743; font: 600 clamp(18px, 2.3vw, 34px) Manrope, sans-serif; line-height: 1.05; text-transform: uppercase; letter-spacing: -.035em; }
+    .case-role { display: block; margin-top: 22px; font: 500 11px DM Mono, monospace; text-transform: uppercase; letter-spacing: .07em; }
     .case-date { justify-self: end; font: 10px DM Mono, monospace; text-transform: uppercase; }
     .case-summary { max-width: 1050px; margin: 30px 0 0; font-size: clamp(16px, 1.5vw, 21px); line-height: 1.55; }
     .case-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 25px; }
@@ -191,6 +204,9 @@
     .gallery-item img { width: 100%; height: 100%; min-height: 190px; display: block; object-fit: cover; object-position: top center; transition: transform .4s; }
     .gallery-item:hover img { transform: scale(1.025); }
     .gallery-item::after { content: "View ↗"; position: absolute; right: 10px; bottom: 10px; padding: 6px 8px; border-radius: 999px; color: var(--paper); background: rgba(23,23,20,.85); font: 8px DM Mono, monospace; text-transform: uppercase; }
+    .image-gallery.collapsed .gallery-item:nth-child(n+5) { display: none; }
+    .gallery-more { min-height: 190px; border: 1px solid var(--ink); border-radius: 15px; color: var(--paper); background: var(--ink); font: 500 clamp(28px, 4vw, 58px) Manrope, sans-serif; letter-spacing: -.05em; }
+    .gallery-more small { display: block; margin-top: 6px; font: 8px DM Mono, monospace; text-transform: uppercase; letter-spacing: .08em; }
     .lightbox { position: fixed; inset: 0; z-index: 200; display: none; place-items: center; padding: 40px 80px; background: rgba(16,16,14,.94); }
     .lightbox.open { display: grid; }
     .lightbox img { max-width: 100%; max-height: 88vh; object-fit: contain; }
@@ -251,7 +267,8 @@
       .hero-bottom { grid-template-columns: 1fr; gap: 20px; }
       .hero-bottom .eyebrow { justify-self: start !important; }
       .scroll { justify-self: start; }
-      .shape { top: 145px; right: 22px; width: 105px; }
+      .hero-camera { position: relative; inset: auto; width: 100%; max-width: 390px; justify-self: end; margin-top: -18px; transform: rotate(1deg); }
+      .hero-title { padding-top: 0; }
       .project { grid-template-columns: 34px 1fr; }
       .project-meta { display: none; }
       .project-preview { display: none; }
@@ -272,7 +289,7 @@
     @media (min-width: 721px) and (max-height: 760px) {
       .hero { gap: 24px; padding-top: 100px; padding-bottom: 24px; }
       .hero-title { font-size: min(9.5vw, 130px); }
-      .shape { top: 105px; width: 130px; }
+      .hero-camera { top: 90px; width: 190px; }
     }
   </style>
 </head>
@@ -282,17 +299,24 @@
   <nav>
     <a class="brand" href="#">VIVION®</a>
     <div class="nav-links"><a href="#experience">Experience</a><a href="#work">Projects</a><a href="#leadership">Leadership</a><a href="#volunteer">Volunteer</a><a href="#about">About</a></div>
-    <div class="availability">Available for projects</div>
+    <div class="availability">Available for projects & work</div>
   </nav>
 
   <main>
     <section class="hero">
-      <div class="eyebrow">( Student portfolio / Experiences & growth )</div>
       <h1 class="hero-title">
         <span class="line"><span>Welcome to</span></span>
         <span class="line"><span><i class="accent">Vivion's</i> world.</span></span>
       </h1>
-      <div class="shape"></div>
+      <div class="hero-camera" aria-label="Scrollable project preview camera">
+        <div class="camera-top"><span>Vivion / Selected frames</span><i class="camera-dot"></i></div>
+        <div class="camera-screen">
+          <img src="assets/echosync-gallery/screen-01.png" alt="EchoSync dashboard preview">
+          <img src="assets/legacy-garden.png" alt="Legacy Garden preview">
+          <img src="assets/echosync-gallery/screen-06.png" alt="EchoSync mobile responder preview">
+        </div>
+        <div class="camera-bottom"><span>Swipe / scroll</span><div class="camera-controls"><button type="button" data-camera="-1" aria-label="Previous image">←</button><button type="button" data-camera="1" aria-label="Next image">→</button></div></div>
+      </div>
       <div class="hero-bottom">
         <p class="hero-copy">A growing collection of the work, projects, leadership and service experiences that have shaped who I am.</p>
         <span class="scroll">Scroll to explore ↓</span>
@@ -325,7 +349,7 @@
           <p class="case-summary">An AI-assisted pre-arrival intelligence and first-response ecosystem designed to detect unwitnessed home emergencies for seniors living alone. EchoSync uses privacy-first ambient sensors, Edge AI and voice check-ins to assess distress before routing alerts to caregivers or responders.</p>
           <div class="case-tags"><span>Artificial Intelligence</span><span>IoT</span><span>Edge AI</span><span>Raspberry Pi</span><span>Sensor Fusion</span><span>Voice Recognition</span><span>Dashboard Integration</span></div>
           <div class="case-details"><div><h4>Project Highlights</h4><ul><li>Top 5 Finalist out of 81 teams from 17 institutions in the SCDF and Dell Lifesavers’ Innovation Challenge 2026.</li><li>Built a privacy-first flow without CCTV or facial recognition.</li><li>Combined sound, motion, distance and load signals with explainable risk scoring.</li><li>Created caregiver verification, SCDF dashboard and myResponder-style escalation flows.</li></ul></div><div><h4>My Role & Contributions</h4><ul><li>Supported software development, sensor logic and alert-flow architecture.</li><li>Conducted Raspberry Pi hardware testing and multi-sensor calibration.</li><li>Integrated dashboard alerts and prepared the OpenShift competition demo.</li><li>Contributed to UI design, pitch preparation and the Grand Finale presentation.</li></ul></div></div>
-          <div class="image-gallery" aria-label="EchoSync project gallery">
+          <div class="image-gallery collapsed" aria-label="EchoSync project gallery">
             <a class="gallery-item" href="assets/echosync.png"><img src="assets/echosync.png" alt="EchoSync fall detection, voice check-in and escalation process"></a>
             <a class="gallery-item" href="assets/echosync-gallery/screen-01.png"><img src="assets/echosync-gallery/screen-01.png" alt="EchoSync prototype screen 1"></a>
             <a class="gallery-item" href="assets/echosync-gallery/screen-02.png"><img src="assets/echosync-gallery/screen-02.png" alt="EchoSync prototype screen 2"></a>
@@ -344,6 +368,7 @@
             <a class="gallery-item" href="assets/echosync-gallery/screen-15.png"><img src="assets/echosync-gallery/screen-15.png" alt="EchoSync prototype screen 15"></a>
             <a class="gallery-item" href="assets/echosync-gallery/screen-16.png"><img src="assets/echosync-gallery/screen-16.png" alt="EchoSync prototype screen 16"></a>
             <a class="gallery-item" href="assets/echosync-gallery/screen-17.png"><img src="assets/echosync-gallery/screen-17.png" alt="EchoSync prototype screen 17"></a>
+            <button class="gallery-more" type="button" data-gallery-more>+14<small>View all prototype screens</small></button>
           </div>
         </article>
 
@@ -354,10 +379,6 @@
           <div class="case-details"><div><h4>Project Highlights</h4><ul><li>Developed story creation, drafts, community discovery and messaging features.</li><li>Connected user activity to a reward-based garden progression system.</li><li>Integrated validation and content moderation for safer user-generated content.</li><li>Designed an accessible experience for users across different age groups.</li></ul></div><div><h4>My Role & Contributions</h4><ul><li>Led full-stack development of story creation and management workflows.</li><li>Implemented database-backed CRUD operations and validation logic.</li><li>Built engagement logic connecting stories to garden rewards.</li><li>Contributed to UX structure, documentation and product narrative.</li></ul></div></div>
           <div class="image-gallery" aria-label="Legacy Garden project gallery">
             <a class="gallery-item" href="assets/legacy-garden.png"><img src="assets/legacy-garden.png" alt="Legacy Garden community storytelling interface"></a>
-            <a class="gallery-item" href="assets/legacy-gallery/screen-01.png"><img src="assets/legacy-gallery/screen-01.png" alt="Legacy Garden project visual 1"></a>
-            <a class="gallery-item" href="assets/legacy-gallery/screen-02.png"><img src="assets/legacy-gallery/screen-02.png" alt="Legacy Garden project visual 2"></a>
-            <a class="gallery-item" href="assets/legacy-gallery/screen-03.png"><img src="assets/legacy-gallery/screen-03.png" alt="Legacy Garden project visual 3"></a>
-            <a class="gallery-item" href="assets/legacy-gallery/screen-04.png"><img src="assets/legacy-gallery/screen-04.png" alt="Legacy Garden project visual 4"></a>
           </div>
         </article>
 
@@ -444,6 +465,12 @@
       if (entry.isIntersecting) entry.target.classList.add('visible');
     }), { threshold: .15 });
     document.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
+    addEventListener('scroll', () => document.querySelector('nav').classList.toggle('scrolled', scrollY > 20), { passive: true });
+
+    const cameraScreen = document.querySelector('.camera-screen');
+    document.querySelectorAll('[data-camera]').forEach(button => button.addEventListener('click', () => {
+      cameraScreen.scrollBy({ left: cameraScreen.clientWidth * Number(button.dataset.camera), behavior: 'smooth' });
+    }));
 
     const galleryLinks = [...document.querySelectorAll('.gallery-item')];
     const lightbox = document.querySelector('.lightbox');
@@ -464,6 +491,13 @@
     galleryLinks.forEach((link, index) => link.addEventListener('click', event => {
       event.preventDefault();
       showImage(index);
+    }));
+    document.querySelectorAll('[data-gallery-more]').forEach(button => button.addEventListener('click', () => {
+      const gallery = button.closest('.image-gallery');
+      const firstHidden = [...gallery.querySelectorAll('.gallery-item')].find(item => getComputedStyle(item).display === 'none');
+      gallery.classList.remove('collapsed');
+      button.remove();
+      firstHidden?.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }));
     lightbox.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
     lightbox.querySelector('.lightbox-prev').addEventListener('click', () => showImage(currentImage - 1));
