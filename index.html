@@ -24,28 +24,11 @@
       color: var(--ink);
       background: var(--paper);
       font-family: Manrope, sans-serif;
-      cursor: none;
       overflow-x: hidden;
     }
 
-    a, button { color: inherit; cursor: none; }
+    a, button { color: inherit; }
     ::selection { color: var(--ink); background: var(--acid); }
-
-    .cursor, .cursor-dot {
-      position: fixed;
-      z-index: 100;
-      pointer-events: none;
-      border-radius: 50%;
-      transform: translate(-50%, -50%);
-    }
-    .cursor {
-      width: 38px;
-      height: 38px;
-      border: 1px solid var(--ink);
-      transition: width .2s, height .2s, background .2s;
-    }
-    .cursor-dot { width: 5px; height: 5px; background: var(--ink); }
-    .cursor.active { width: 62px; height: 62px; background: rgba(217,255,67,.55); }
 
     .loader {
       position: fixed;
@@ -59,7 +42,8 @@
       transition: transform .9s cubic-bezier(.77,0,.18,1);
     }
     .loader.done { transform: translateY(-101%); }
-    .loader span { font-size: clamp(72px, 17vw, 250px); line-height: .7; letter-spacing: -.09em; }
+    .loader-title { max-width: 1400px; font-size: clamp(50px, 11vw, 170px); line-height: .78; letter-spacing: -.085em; text-transform: uppercase; }
+    .loader-title em { color: var(--acid); font-family: "Times New Roman", serif; font-weight: 400; text-transform: none; }
     .loader small { position: absolute; top: 32px; right: 40px; font: 12px DM Mono, monospace; }
 
     nav {
@@ -167,6 +151,19 @@
     .project:nth-of-type(2) .preview-art { background: var(--blue); filter: hue-rotate(30deg); }
     .project:nth-of-type(3) .preview-art { background: var(--orange); filter: hue-rotate(90deg); }
 
+    .experience-section { padding: 100px clamp(20px, 3vw, 44px); border-top: 1px solid var(--line); }
+    .experience-section.alt { background: var(--acid); }
+    .experience-section.orange { background: var(--orange); }
+    .experience-grid { display: grid; grid-template-columns: minmax(220px, .8fr) 2fr; gap: 7vw; }
+    .section-label { margin: 0; font: 11px DM Mono, monospace; text-transform: uppercase; letter-spacing: .08em; }
+    .section-label strong { display: block; margin-top: 18px; font: 500 clamp(42px, 6vw, 90px) Manrope, sans-serif; line-height: .88; letter-spacing: -.07em; text-transform: uppercase; }
+    .entries { border-top: 1px solid var(--ink); }
+    .entry { display: grid; grid-template-columns: 120px 1fr; gap: 24px; padding: 26px 0 38px; border-bottom: 1px solid var(--ink); }
+    .entry-date, .entry-kicker { font: 10px DM Mono, monospace; text-transform: uppercase; letter-spacing: .06em; }
+    .entry h3 { margin: 6px 0 10px; font-size: clamp(25px, 3vw, 44px); line-height: 1; letter-spacing: -.045em; }
+    .entry p { max-width: 690px; margin: 0; font-size: 14px; line-height: 1.6; }
+    .placeholder { opacity: .58; }
+
     .about {
       min-height: 95vh;
       padding: 110px clamp(20px, 3vw, 44px);
@@ -195,8 +192,6 @@
     @keyframes pulse { 50% { box-shadow: 0 0 0 6px rgba(88,195,102,0); } }
 
     @media (max-width: 720px) {
-      body { cursor: auto; }
-      .cursor, .cursor-dot { display: none; }
       nav { grid-template-columns: 1fr auto; }
       .nav-links { display: none; }
       .hero { padding-top: 110px; }
@@ -207,6 +202,8 @@
       .project { grid-template-columns: 34px 1fr; }
       .project-meta { display: none; }
       .project-preview { display: none; }
+      .experience-grid { grid-template-columns: 1fr; }
+      .entry { grid-template-columns: 1fr; gap: 10px; }
       .about { grid-template-columns: 1fr; }
       .about-copy, .skills { grid-column: 1; }
       footer { min-height: 70vh; }
@@ -215,25 +212,24 @@
   </style>
 </head>
 <body>
-  <div class="cursor"></div><div class="cursor-dot"></div>
-  <div class="loader"><small>LOADING / <b>0</b>%</small><span>V.</span></div>
+  <div class="loader"><small>BUILDING YOUR STORY / <b>0</b>%</small><div class="loader-title">Vivion's<br><em>digital portfolio.</em></div></div>
 
   <nav>
     <a class="brand" href="#">VIVION®</a>
-    <div class="nav-links"><a href="#work">Work</a><a href="#about">About</a><a href="#contact">Contact</a></div>
+    <div class="nav-links"><a href="#experience">Experience</a><a href="#work">Projects</a><a href="#leadership">Leadership</a><a href="#volunteer">Volunteer</a><a href="#about">About</a></div>
     <div class="availability">Available for projects</div>
   </nav>
 
   <main>
     <section class="hero">
-      <div class="eyebrow">( Digital designer & creative developer )</div>
+      <div class="eyebrow">( Student portfolio / Experiences & growth )</div>
       <h1 class="hero-title">
         <span class="line"><span>Ideas into</span></span>
         <span class="line"><span><i class="accent">digital</i> form.</span></span>
       </h1>
       <div class="shape"></div>
       <div class="hero-bottom">
-        <p class="hero-copy">I create expressive identities and digital experiences for people and brands who care about how things feel.</p>
+        <p class="hero-copy">A growing collection of the work, projects, leadership and service experiences that have shaped who I am.</p>
         <span class="scroll">Scroll to explore ↓</span>
         <span class="eyebrow" style="justify-self:end">Singapore / 01:3521° N</span>
       </div>
@@ -244,17 +240,47 @@
       <span>Brand Identity <i>✦</i> Digital Experiences <i>✦</i> Creative Direction <i>✦</i> Motion & Interaction <i>✦</i>&nbsp;</span>
     </div></div>
 
+    <section class="experience-section" id="experience">
+      <div class="experience-grid">
+        <h2 class="section-label" data-reveal>( 01 / Experience )<strong>Work<br>experience</strong></h2>
+        <div class="entries" data-reveal>
+          <article class="entry"><span class="entry-date">20XX — Present</span><div><span class="entry-kicker">Company / Organisation</span><h3>Your role or internship title</h3><p class="placeholder">Add a concise description of your responsibilities, what you contributed, and one result or skill you gained.</p></div></article>
+          <article class="entry"><span class="entry-date">20XX — 20XX</span><div><span class="entry-kicker">Company / Organisation</span><h3>Previous role or part-time work</h3><p class="placeholder">Explain what you did using action words. Include numbers or outcomes wherever possible.</p></div></article>
+        </div>
+      </div>
+    </section>
+
     <section class="work" id="work">
       <div class="section-head" data-reveal><h2>Selected<br>work</h2><p>2024—2026 / 03 Projects</p></div>
-      <a class="project" href="#" data-reveal><span class="project-num">01</span><h3>Otherworld Studio</h3><span class="project-meta">Identity / Art direction · 2026</span><div class="project-preview"><div class="preview-art"></div></div></a>
-      <a class="project" href="#" data-reveal><span class="project-num">02</span><h3>Good Things Daily</h3><span class="project-meta">Campaign / Social · 2025</span><div class="project-preview"><div class="preview-art"></div></div></a>
-      <a class="project" href="#" data-reveal><span class="project-num">03</span><h3>Soft Power</h3><span class="project-meta">Web design / Development · 2024</span><div class="project-preview"><div class="preview-art"></div></div></a>
+      <a class="project" href="#" data-reveal><span class="project-num">01</span><h3>Featured Project</h3><span class="project-meta">Your role / Category · 2026</span><div class="project-preview"><div class="preview-art"></div></div></a>
+      <a class="project" href="#" data-reveal><span class="project-num">02</span><h3>Relevant Project</h3><span class="project-meta">Your role / Category · 2025</span><div class="project-preview"><div class="preview-art"></div></div></a>
+      <a class="project" href="#" data-reveal><span class="project-num">03</span><h3>Personal Project</h3><span class="project-meta">Your role / Category · 2024</span><div class="project-preview"><div class="preview-art"></div></div></a>
+    </section>
+
+    <section class="experience-section alt" id="leadership">
+      <div class="experience-grid">
+        <h2 class="section-label" data-reveal>( 03 / Growth )<strong>CCA &<br>leadership</strong></h2>
+        <div class="entries" data-reveal>
+          <article class="entry"><span class="entry-date">20XX — Present</span><div><span class="entry-kicker">CCA / School</span><h3>Leadership appointment</h3><p class="placeholder">Describe the team you led, initiatives you started, challenges you handled, and how the experience developed your character.</p></div></article>
+          <article class="entry"><span class="entry-date">20XX</span><div><span class="entry-kicker">Award / Programme</span><h3>Character development milestone</h3><p class="placeholder">Add a course, camp, award, competition, or meaningful learning experience.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="experience-section orange" id="volunteer">
+      <div class="experience-grid">
+        <h2 class="section-label" data-reveal>( 04 / Service )<strong>Volunteer<br>work</strong></h2>
+        <div class="entries" data-reveal>
+          <article class="entry"><span class="entry-date">20XX</span><div><span class="entry-kicker">Beneficiary / Organisation</span><h3>Volunteer initiative</h3><p class="placeholder">Share the cause, your responsibilities, hours contributed, people reached, and what the experience taught you.</p></div></article>
+          <article class="entry"><span class="entry-date">20XX</span><div><span class="entry-kicker">Community / School</span><h3>Community service project</h3><p class="placeholder">Describe how you served and the impact made together with your team.</p></div></article>
+        </div>
+      </div>
     </section>
 
     <section class="about" id="about">
-      <h2 data-reveal>( About me )</h2>
-      <p class="about-copy" data-reveal>I’m Vivion, a multidisciplinary designer making <em>playful, thoughtful</em> work where identity, culture and technology meet.</p>
-      <div class="skills" data-reveal><span>Art direction</span><span>Brand strategy</span><span>UI / UX</span><span>Creative coding</span><span>Motion</span><span>Development</span></div>
+      <h2 data-reveal>( 05 / About me )</h2>
+      <p class="about-copy" data-reveal>I’m Vivion, a curious and driven learner who enjoys <em>turning ideas into meaningful action.</em></p>
+      <div class="skills" data-reveal><span>Communication</span><span>Leadership</span><span>Teamwork</span><span>Problem solving</span><span>Adaptability</span><span>Digital skills</span><span>Add your skill</span></div>
     </section>
   </main>
 
@@ -283,17 +309,6 @@
       }
       count.textContent = progress;
     }, 70);
-
-    const cursor = document.querySelector('.cursor');
-    const dot = document.querySelector('.cursor-dot');
-    addEventListener('mousemove', e => {
-      cursor.style.left = dot.style.left = e.clientX + 'px';
-      cursor.style.top = dot.style.top = e.clientY + 'px';
-    });
-    document.querySelectorAll('a').forEach(a => {
-      a.addEventListener('mouseenter', () => cursor.classList.add('active'));
-      a.addEventListener('mouseleave', () => cursor.classList.remove('active'));
-    });
 
     const observer = new IntersectionObserver(entries => entries.forEach(entry => {
       if (entry.isIntersecting) entry.target.classList.add('visible');
