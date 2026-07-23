@@ -133,8 +133,12 @@
     }
     .project:last-child { border-bottom: 1px solid var(--ink); }
     .project-num, .project-meta { font: 10px DM Mono, monospace; text-transform: uppercase; }
+    .project-main { min-width: 0; }
     .project h3 { margin: 0; font-size: clamp(34px, 5.5vw, 82px); font-weight: 500; letter-spacing: -.065em; line-height: .95; transition: transform .35s; }
     .project:hover h3 { transform: translateX(18px); }
+    .project-copy { max-width: 760px; margin: 14px 0 0; font-size: 13px; line-height: 1.55; letter-spacing: 0; }
+    .project-skills { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+    .project-skills span { padding: 5px 9px; border: 1px solid var(--ink); border-radius: 999px; font: 8px DM Mono, monospace; text-transform: uppercase; letter-spacing: .04em; }
     .project-preview {
       position: fixed;
       z-index: 20;
@@ -156,6 +160,34 @@
     .preview-art img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: top center; }
     .project:nth-of-type(2) .preview-art { background: var(--blue); filter: hue-rotate(30deg); }
     .project:nth-of-type(3) .preview-art { background: var(--orange); filter: hue-rotate(90deg); }
+
+    .project-cards { display: grid; gap: 28px; }
+    .case-card { padding: clamp(24px, 4vw, 58px); border: 1px solid var(--ink); border-radius: 28px; background: rgba(255,255,255,.34); overflow: hidden; }
+    .case-top { display: grid; grid-template-columns: minmax(0,1.6fr) minmax(230px,.7fr); gap: 5vw; align-items: start; }
+    .case-card h3 { margin: 0; font-size: clamp(38px, 5.6vw, 82px); line-height: .9; letter-spacing: -.065em; }
+    .case-award { display: inline-block; margin-bottom: 18px; padding: 8px 11px; border: 1px solid var(--ink); background: var(--acid); font: 500 9px DM Mono, monospace; text-transform: uppercase; letter-spacing: .06em; }
+    .case-role { display: block; margin-top: 12px; font: 500 11px DM Mono, monospace; text-transform: uppercase; letter-spacing: .07em; }
+    .case-date { justify-self: end; font: 10px DM Mono, monospace; text-transform: uppercase; }
+    .case-summary { max-width: 1050px; margin: 30px 0 0; font-size: clamp(16px, 1.5vw, 21px); line-height: 1.55; }
+    .case-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 25px; }
+    .case-tags span { padding: 8px 12px; border: 1px solid var(--ink); border-radius: 999px; font: 9px DM Mono, monospace; text-transform: uppercase; }
+    .case-details { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 5vw, 80px); margin-top: 42px; padding-top: 32px; border-top: 1px solid var(--ink); }
+    .case-details h4 { margin: 0 0 16px; font-size: 21px; letter-spacing: -.03em; }
+    .case-details ul { margin: 0; padding-left: 19px; }
+    .case-details li { margin: 0 0 9px; font-size: 14px; line-height: 1.55; }
+    .case-media { margin-top: 40px; display: grid; grid-template-columns: 1.7fr .8fr; gap: 12px; }
+    .case-media img { width: 100%; height: clamp(230px, 37vw, 560px); display: block; border: 1px solid var(--ink); border-radius: 18px; object-fit: cover; object-position: top center; background: white; }
+    .case-media .media-note { border-radius: 18px; padding: 25px; background: var(--ink); color: var(--paper); display: flex; flex-direction: column; justify-content: space-between; }
+    .media-note span { font: 9px DM Mono, monospace; text-transform: uppercase; }
+    .media-note strong { font-size: clamp(27px, 3vw, 46px); line-height: .95; letter-spacing: -.05em; }
+    .case-card.echo { background: #dfeafa; }
+    .case-card.legacy { background: #e2f1df; }
+    .case-card.dance { background: #ffdace; }
+    .case-card.nirvana { background: #eee5ff; }
+    .case-card.compact .case-media { grid-template-columns: 1fr; }
+    .visual-panel { min-height: 260px; border-radius: 18px; border: 1px solid var(--ink); display: grid; place-items: center; background: var(--paper); position: relative; overflow: hidden; }
+    .visual-panel::before { content: ""; width: 170px; aspect-ratio: 1; border-radius: 50%; background: var(--accent-color, var(--orange)); box-shadow: 80px 20px 0 var(--blue), -80px 35px 0 var(--acid); }
+    .visual-panel span { position: absolute; font: 10px DM Mono, monospace; text-transform: uppercase; }
 
     .experience-section { padding: 100px clamp(20px, 3vw, 44px); border-top: 1px solid var(--line); }
     .experience-section.alt { background: var(--acid); }
@@ -212,6 +244,9 @@
       .project { grid-template-columns: 34px 1fr; }
       .project-meta { display: none; }
       .project-preview { display: none; }
+      .case-top, .case-details, .case-media { grid-template-columns: 1fr; }
+      .case-date { justify-self: start; }
+      .case-media .media-note { min-height: 210px; }
       .experience-grid { grid-template-columns: 1fr; }
       .entry { grid-template-columns: 1fr; gap: 10px; }
       .about { grid-template-columns: 1fr; }
@@ -270,10 +305,39 @@
 
     <section class="work" id="work">
       <div class="section-head" data-reveal><h2>Selected<br>projects</h2><p>2024—2026 / 04 Projects</p></div>
-      <a class="project" href="#" data-reveal><span class="project-num">01</span><h3>Legacy Garden</h3><span class="project-meta">Full-stack development · 2026</span><div class="project-preview"><div class="preview-art has-image"><img src="assets/legacy-garden.png" alt="Legacy Garden community storytelling page"></div></div></a>
-      <a class="project" href="#" data-reveal><span class="project-num">02</span><h3>Dance Revolution</h3><span class="project-meta">Front-end development · 2026</span><div class="project-preview"><div class="preview-art"></div></div></a>
-      <a class="project" href="#" data-reveal><span class="project-num">03</span><h3>Nirvana</h3><span class="project-meta">UI/UX design · 2025</span><div class="project-preview"><div class="preview-art"></div></div></a>
-      <a class="project" href="#" data-reveal><span class="project-num">04</span><h3>Beauty Product Simulation</h3><span class="project-meta">Interaction design / Scratch · 2025</span><div class="project-preview"><div class="preview-art"></div></div></a>
+      <div class="project-cards">
+        <article class="case-card echo" data-reveal>
+          <div class="case-top"><div><span class="case-award">SCDF × Dell Lifesavers’ Innovation Challenge 2026 · Top 5 Finalist</span><h3>EchoSync</h3><span class="case-role">Project Lead · Software Developer</span></div><span class="case-date">Mar 2026 — Jul 2026</span></div>
+          <p class="case-summary">An AI-assisted pre-arrival intelligence and first-response ecosystem designed to detect unwitnessed home emergencies for seniors living alone. EchoSync uses privacy-first ambient sensors, Edge AI and voice check-ins to assess distress before routing alerts to caregivers or responders.</p>
+          <div class="case-tags"><span>Artificial Intelligence</span><span>IoT</span><span>Edge AI</span><span>Raspberry Pi</span><span>Sensor Fusion</span><span>Voice Recognition</span><span>Dashboard Integration</span></div>
+          <div class="case-details"><div><h4>Project Highlights</h4><ul><li>Top 5 Finalist out of 81 teams from 17 institutions in the SCDF and Dell Lifesavers’ Innovation Challenge 2026.</li><li>Built a privacy-first flow without CCTV or facial recognition.</li><li>Combined sound, motion, distance and load signals with explainable risk scoring.</li><li>Created caregiver verification, SCDF dashboard and myResponder-style escalation flows.</li></ul></div><div><h4>My Role & Contributions</h4><ul><li>Supported software development, sensor logic and alert-flow architecture.</li><li>Conducted Raspberry Pi hardware testing and multi-sensor calibration.</li><li>Integrated dashboard alerts and prepared the OpenShift competition demo.</li><li>Contributed to UI design, pitch preparation and the Grand Finale presentation.</li></ul></div></div>
+          <div class="case-media"><img src="assets/echosync.png" alt="EchoSync fall detection, voice check-in and escalation process"><div class="media-note"><span>SCDF × Dell Lifesavers’ Innovation Challenge</span><strong>Top 5<br>of 81 teams.</strong><span>AI should support responders, not replace them.</span></div></div>
+        </article>
+
+        <article class="case-card legacy" data-reveal>
+          <div class="case-top"><div><span class="case-award">Dell Innovate Dash 2026 · Finalist</span><h3>Legacy Garden</h3><span class="case-role">Project Lead · Full-Stack Developer</span></div><span class="case-date">Oct 2025 — Feb 2026</span></div>
+          <p class="case-summary">A reflective digital-storytelling platform connecting seniors and youths. Structured story creation, community discovery, moderation and a gamified garden progression system encourage safe, meaningful interaction and sustained participation.</p>
+          <div class="case-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Python</span><span>Flask</span><span>Jinja2</span><span>Content Moderation</span><span>Speech Recognition</span></div>
+          <div class="case-details"><div><h4>Project Highlights</h4><ul><li>Developed story creation, drafts, community discovery and messaging features.</li><li>Connected user activity to a reward-based garden progression system.</li><li>Integrated validation and content moderation for safer user-generated content.</li><li>Designed an accessible experience for users across different age groups.</li></ul></div><div><h4>My Role & Contributions</h4><ul><li>Led full-stack development of story creation and management workflows.</li><li>Implemented database-backed CRUD operations and validation logic.</li><li>Built engagement logic connecting stories to garden rewards.</li><li>Contributed to UX structure, documentation and product narrative.</li></ul></div></div>
+          <div class="case-media"><img src="assets/legacy-garden.png" alt="Legacy Garden community storytelling interface"><div class="media-note"><span>Web Application</span><strong>Stories that<br>grow together.</strong><span>Seniors × Youth digital storytelling</span></div></div>
+        </article>
+
+        <article class="case-card dance compact" data-reveal>
+          <div class="case-top"><div><h3>Dance Revolution</h3><span class="case-role">Front-End Web Developer</span></div><span class="case-date">Oct 2025 — Feb 2026</span></div>
+          <p class="case-summary">A responsive, multi-page CCA promotion website designed to help prospective members explore events, achievements and participation opportunities through a clear and energetic digital experience.</p>
+          <div class="case-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Responsive Design</span><span>Accessibility</span><span>Form Design</span></div>
+          <div class="case-details"><div><h4>Project Highlights</h4><ul><li>Created consistent navigation across event, achievement and sign-up pages.</li><li>Implemented event filtering and a multi-step registration flow.</li><li>Applied responsive, accessible and usability-focused design principles.</li></ul></div><div><h4>My Role & Contributions</h4><ul><li>Developed reusable page structures and interactive front-end features.</li><li>Optimised layouts across desktop and mobile screen sizes.</li><li>Tested navigation, forms and content hierarchy for clarity.</li></ul></div></div>
+          <div class="case-media"><div class="visual-panel" style="--accent-color:#ff5c35"><span>Project imagery coming soon</span></div></div>
+        </article>
+
+        <article class="case-card nirvana compact" data-reveal>
+          <div class="case-top"><div><h3>Nirvana</h3><span class="case-role">UI/UX Designer</span></div><span class="case-date">Apr 2025 — Aug 2025</span></div>
+          <p class="case-summary">A user-centred mobile app prototype shaped by research into usability needs and emotional pain points. The design uses an iterative process to simplify key journeys and create a calmer, more intuitive experience.</p>
+          <div class="case-tags"><span>Figma</span><span>User Research</span><span>UI Design</span><span>UX Design</span><span>Prototyping</span><span>Usability Testing</span></div>
+          <div class="case-details"><div><h4>Project Highlights</h4><ul><li>Collected and analysed user data to identify needs and pain points.</li><li>Translated findings into refined user flows and interface decisions.</li><li>Produced an interactive, user-centred mobile prototype in Figma.</li></ul></div><div><h4>My Role & Contributions</h4><ul><li>Planned research and synthesised user insights.</li><li>Developed wireframes, interface components and interactive flows.</li><li>Iterated on the prototype using feedback and usability principles.</li></ul></div></div>
+          <div class="case-media"><div class="visual-panel" style="--accent-color:#9d74ff"><span>Project imagery coming soon</span></div></div>
+        </article>
+      </div>
     </section>
 
     <section class="experience-section alt" id="leadership">
@@ -336,16 +400,6 @@
     }), { threshold: .15 });
     document.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
 
-    document.querySelectorAll('.project').forEach(project => {
-      const preview = project.querySelector('.project-preview');
-      project.addEventListener('mousemove', e => {
-        preview.style.left = e.clientX + 'px';
-        preview.style.top = e.clientY + 'px';
-      });
-      project.addEventListener('mouseenter', () => preview.classList.add('show'));
-      project.addEventListener('mouseleave', () => preview.classList.remove('show'));
-      project.addEventListener('click', e => e.preventDefault());
-    });
   </script>
 </body>
 </html>
