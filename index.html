@@ -204,12 +204,16 @@
     .gallery-item img { width: 100%; height: 100%; min-height: 190px; display: block; object-fit: cover; object-position: top center; transition: transform .4s; }
     .gallery-item:hover img { transform: scale(1.025); }
     .gallery-item::after { content: "View ↗"; position: absolute; right: 10px; bottom: 10px; padding: 6px 8px; border-radius: 999px; color: var(--paper); background: rgba(23,23,20,.85); font: 8px DM Mono, monospace; text-transform: uppercase; }
-    .image-gallery.collapsed .gallery-item:nth-child(n+5) { display: none; }
+    .image-gallery.collapsed .gallery-item:nth-child(n+6) { display: none; }
     .gallery-more { min-height: 190px; border: 1px solid var(--ink); border-radius: 15px; color: var(--paper); background: var(--ink); font: 500 clamp(28px, 4vw, 58px) Manrope, sans-serif; letter-spacing: -.05em; }
     .gallery-more small { display: block; margin-top: 6px; font: 8px DM Mono, monospace; text-transform: uppercase; letter-spacing: .08em; }
-    .lightbox { position: fixed; inset: 0; z-index: 200; display: none; place-items: center; padding: 40px 80px; background: rgba(16,16,14,.94); }
+    .lightbox { position: fixed; inset: 0; z-index: 200; display: none; grid-template-columns: minmax(0,2fr) minmax(270px,.7fr); gap: 30px; align-items: center; padding: 50px 80px; background: rgba(16,16,14,.97); }
     .lightbox.open { display: grid; }
     .lightbox img { max-width: 100%; max-height: 88vh; object-fit: contain; }
+    .lightbox-info { color: var(--paper); padding: 26px; border-left: 1px solid rgba(255,255,255,.25); }
+    .lightbox-info span { font: 9px DM Mono, monospace; text-transform: uppercase; letter-spacing: .08em; color: var(--acid); }
+    .lightbox-info h3 { margin: 12px 0 16px; font-size: clamp(26px, 3vw, 46px); line-height: .95; letter-spacing: -.05em; }
+    .lightbox-info p { margin: 0; font-size: 14px; line-height: 1.65; color: rgba(241,238,231,.76); }
     .lightbox button { position: absolute; border: 1px solid rgba(255,255,255,.5); border-radius: 999px; color: white; background: rgba(0,0,0,.35); font: 11px DM Mono, monospace; }
     .lightbox-close { top: 20px; right: 20px; padding: 10px 14px; }
     .lightbox-prev, .lightbox-next { top: 50%; width: 44px; height: 44px; }
@@ -241,7 +245,7 @@
     }
     .about h2 { margin: 0; font: 11px DM Mono, monospace; text-transform: uppercase; }
     .about-copy { margin: 0; font-size: clamp(38px, 5.7vw, 88px); line-height: .98; letter-spacing: -.065em; }
-    .about-copy em { font-family: "Times New Roman", serif; font-weight: 400; color: var(--paper); }
+    .about-copy em { font-family: "Times New Roman", serif; font-weight: 400; color: #536743; }
     .skills { grid-column: 2; display: flex; flex-wrap: wrap; gap: 8px; align-self: end; margin-top: 80px; }
     .skills span { border: 1px solid var(--ink); border-radius: 999px; padding: 10px 15px; font: 10px DM Mono, monospace; text-transform: uppercase; }
 
@@ -249,8 +253,9 @@
     footer h2 { margin: 0; font-size: clamp(70px, 14vw, 210px); font-weight: 500; line-height: .78; letter-spacing: -.09em; text-transform: uppercase; }
     footer h2 em { color: var(--acid); font-family: "Times New Roman", serif; font-weight: 400; }
     .footer-row { display: flex; justify-content: space-between; gap: 24px; align-items: end; border-top: 1px solid rgba(255,255,255,.25); padding-top: 18px; font: 10px DM Mono, monospace; text-transform: uppercase; }
-    .socials { display: flex; gap: 24px; }
-    .socials a { text-decoration: none; }
+    .socials { display: flex; flex-wrap: wrap; gap: 9px; }
+    .socials a { padding: 11px 15px; border: 1px solid rgba(255,255,255,.45); border-radius: 999px; text-decoration: none; transition: background .2s, color .2s; }
+    .socials a:hover { color: var(--ink); background: var(--acid); }
 
     [data-reveal] { opacity: 0; transform: translateY(45px); transition: opacity .8s, transform .8s cubic-bezier(.16,1,.3,1); }
     [data-reveal].visible { opacity: 1; transform: none; }
@@ -275,7 +280,8 @@
       .case-top, .case-details, .case-media { grid-template-columns: 1fr; }
       .image-gallery { grid-template-columns: 1fr 1fr; }
       .gallery-item:first-child { grid-column: span 2; grid-row: auto; }
-      .lightbox { padding: 55px 15px; }
+      .lightbox { grid-template-columns: 1fr; padding: 65px 15px 20px; overflow-y: auto; }
+      .lightbox-info { border-left: 0; border-top: 1px solid rgba(255,255,255,.25); padding: 22px 5px; }
       .case-date { justify-self: start; }
       .case-media .media-note { min-height: 210px; }
       .experience-grid { grid-template-columns: 1fr; }
@@ -298,7 +304,7 @@
 
   <nav>
     <a class="brand" href="#">VIVION®</a>
-    <div class="nav-links"><a href="#experience">Experience</a><a href="#work">Projects</a><a href="#leadership">Leadership</a><a href="#volunteer">Volunteer</a><a href="#about">About</a></div>
+    <div class="nav-links"><a href="#about">About</a><a href="#experience">Experience</a><a href="#work">Projects</a><a href="#leadership">Leadership</a><a href="#volunteer">Volunteer</a></div>
     <div class="availability">Available for projects & work</div>
   </nav>
 
@@ -325,13 +331,19 @@
     </section>
 
     <div class="marquee" aria-hidden="true"><div class="marquee-track">
-      <span>Brand Identity <i>✦</i> Digital Experiences <i>✦</i> Creative Direction <i>✦</i> Motion & Interaction <i>✦</i>&nbsp;</span>
-      <span>Brand Identity <i>✦</i> Digital Experiences <i>✦</i> Creative Direction <i>✦</i> Motion & Interaction <i>✦</i>&nbsp;</span>
+      <span>Python <i>✦</i> C# <i>✦</i> HTML <i>✦</i> CSS <i>✦</i> JavaScript <i>✦</i> Power BI <i>✦</i> Microsoft Excel <i>✦</i> Google Sheets <i>✦</i> Microsoft 365 <i>✦</i> Flask <i>✦</i> Figma <i>✦</i>&nbsp;</span>
+      <span>Python <i>✦</i> C# <i>✦</i> HTML <i>✦</i> CSS <i>✦</i> JavaScript <i>✦</i> Power BI <i>✦</i> Microsoft Excel <i>✦</i> Google Sheets <i>✦</i> Microsoft 365 <i>✦</i> Flask <i>✦</i> Figma <i>✦</i>&nbsp;</span>
     </div></div>
+
+    <section class="about" id="about">
+      <h2 data-reveal>( 01 / About me )</h2>
+      <p class="about-copy" data-reveal>I’m Vivion, a Business & Financial Technology student who enjoys <em>building useful, human-centred digital experiences.</em></p>
+      <div class="skills" data-reveal><span>Python</span><span>C#</span><span>Flask</span><span>HTML / CSS</span><span>JavaScript</span><span>Power BI</span><span>Figma</span><span>UI / UX</span><span>Microsoft Excel</span><span>Google Sheets</span><span>Microsoft 365</span><span>Leadership</span><span>Communication</span></div>
+    </section>
 
     <section class="experience-section" id="experience">
       <div class="experience-grid">
-        <h2 class="section-label" data-reveal>( 01 / Experience )<strong>Work<br>experience</strong></h2>
+        <h2 class="section-label" data-reveal>( 02 / Experience )<strong>Relevant<br>experience</strong></h2>
         <div class="entries" data-reveal>
           <article class="entry"><span class="entry-date">Mar 2026 — Present</span><div><span class="entry-kicker">Nanyang Educational Consultancy</span><h3>Admin Assistant</h3><p>Support daily operations for 150+ active students, including enrolment, scheduling, invoicing and attendance. Reconcile over S$100,000 in monthly tuition revenue, coordinate tutor schedules and administer payroll for 30+ employees.</p><div class="entry-skills"><span>Administration</span><span>Microsoft Excel</span><span>Google Sheets</span><span>Payroll</span><span>Scheduling</span><span>Data management</span></div></div></article>
           <article class="entry"><span class="entry-date">Sep 2025 — Present</span><div><span class="entry-kicker">Highhouse</span><h3>Waitress</h3><p>Support front-of-house operations by delivering food accurately and on time, maintaining smooth guest flow during peak periods, and completing service preparation and glass-polishing duties.</p><div class="entry-skills"><span>Customer service</span><span>Teamwork</span><span>Time management</span><span>Attention to detail</span></div></div></article>
@@ -342,7 +354,7 @@
     </section>
 
     <section class="work" id="work">
-      <div class="section-head" data-reveal><h2>Selected<br>projects</h2><p>2024—2026 / 04 Projects</p></div>
+      <div class="section-head" data-reveal><h2>Relevant<br>projects</h2><p>( 03 / Projects ) · 2024—2026</p></div>
       <div class="project-cards">
         <article class="case-card echo" data-reveal>
           <div class="case-top"><div><span class="case-award">SCDF × Dell Lifesavers’ Innovation Challenge 2026 · Top 5 Finalist</span><h3>EchoSync</h3><span class="case-role">Project Lead · Software Developer</span></div><span class="case-date">Mar 2026 — Jul 2026</span></div>
@@ -350,10 +362,11 @@
           <div class="case-tags"><span>Artificial Intelligence</span><span>IoT</span><span>Edge AI</span><span>Raspberry Pi</span><span>Sensor Fusion</span><span>Voice Recognition</span><span>Dashboard Integration</span></div>
           <div class="case-details"><div><h4>Project Highlights</h4><ul><li>Top 5 Finalist out of 81 teams from 17 institutions in the SCDF and Dell Lifesavers’ Innovation Challenge 2026.</li><li>Built a privacy-first flow without CCTV or facial recognition.</li><li>Combined sound, motion, distance and load signals with explainable risk scoring.</li><li>Created caregiver verification, SCDF dashboard and myResponder-style escalation flows.</li></ul></div><div><h4>My Role & Contributions</h4><ul><li>Supported software development, sensor logic and alert-flow architecture.</li><li>Conducted Raspberry Pi hardware testing and multi-sensor calibration.</li><li>Integrated dashboard alerts and prepared the OpenShift competition demo.</li><li>Contributed to UI design, pitch preparation and the Grand Finale presentation.</li></ul></div></div>
           <div class="image-gallery collapsed" aria-label="EchoSync project gallery">
-            <a class="gallery-item" href="assets/echosync.png"><img src="assets/echosync.png" alt="EchoSync fall detection, voice check-in and escalation process"></a>
-            <a class="gallery-item" href="assets/echosync-gallery/screen-01.png"><img src="assets/echosync-gallery/screen-01.png" alt="EchoSync prototype screen 1"></a>
-            <a class="gallery-item" href="assets/echosync-gallery/screen-02.png"><img src="assets/echosync-gallery/screen-02.png" alt="EchoSync prototype screen 2"></a>
-            <a class="gallery-item" href="assets/echosync-gallery/screen-03.png"><img src="assets/echosync-gallery/screen-03.png" alt="EchoSync prototype screen 3"></a>
+            <a class="gallery-item" href="assets/echosync.png" data-title="Emergency Detection Flow" data-description="The end-to-end EchoSync journey: ambient sensing detects a possible fall, a multilingual voice check-in verifies the resident’s condition, and urgent cases are escalated for human response."><img src="assets/echosync.png" alt="EchoSync fall detection, voice check-in and escalation process"></a>
+            <a class="gallery-item" href="assets/echosync-poster.png" data-title="Solution Overview" data-description="The competition poster summarises the emergency-response gap, EchoSync’s privacy-first architecture, its sensing-to-response workflow and the roles of caregivers, community responders and SCDF."><img src="assets/echosync-poster.png" alt="EchoSync solution overview poster"></a>
+            <a class="gallery-item" href="assets/echosync-gallery/screen-01.png" data-title="Triage Operations Dashboard" data-description="A central operations view that helps dispatchers understand active incidents, urgency, location and responder activity without searching across multiple systems."><img src="assets/echosync-gallery/screen-01.png" alt="EchoSync triage operations dashboard"></a>
+            <a class="gallery-item" href="assets/echosync-gallery/screen-02.png" data-title="Incident Intelligence" data-description="An incident-focused screen combines sensor evidence, confidence level and location context so a human operator can make a faster, better-informed decision."><img src="assets/echosync-gallery/screen-02.png" alt="EchoSync incident intelligence screen"></a>
+            <a class="gallery-item" href="assets/echosync-gallery/screen-03.png" data-title="Caregiver Verification" data-description="Lower and medium-risk alerts can be verified by a caregiver first, reducing unnecessary escalation while keeping urgent cases moving quickly toward responders."><img src="assets/echosync-gallery/screen-03.png" alt="EchoSync caregiver verification screen"></a>
             <a class="gallery-item" href="assets/echosync-gallery/screen-04.png"><img src="assets/echosync-gallery/screen-04.png" alt="EchoSync prototype screen 4"></a>
             <a class="gallery-item" href="assets/echosync-gallery/screen-05.png"><img src="assets/echosync-gallery/screen-05.png" alt="EchoSync prototype screen 5"></a>
             <a class="gallery-item" href="assets/echosync-gallery/screen-06.png"><img src="assets/echosync-gallery/screen-06.png" alt="EchoSync prototype screen 6"></a>
@@ -368,7 +381,7 @@
             <a class="gallery-item" href="assets/echosync-gallery/screen-15.png"><img src="assets/echosync-gallery/screen-15.png" alt="EchoSync prototype screen 15"></a>
             <a class="gallery-item" href="assets/echosync-gallery/screen-16.png"><img src="assets/echosync-gallery/screen-16.png" alt="EchoSync prototype screen 16"></a>
             <a class="gallery-item" href="assets/echosync-gallery/screen-17.png"><img src="assets/echosync-gallery/screen-17.png" alt="EchoSync prototype screen 17"></a>
-            <button class="gallery-more" type="button" data-gallery-more>+14<small>View all prototype screens</small></button>
+            <button class="gallery-more" type="button" data-gallery-more data-count="+14">+14<small>View all prototype screens</small></button>
           </div>
         </article>
 
@@ -377,8 +390,27 @@
           <p class="case-summary">A reflective digital-storytelling platform connecting seniors and youths. Structured story creation, community discovery, moderation and a gamified garden progression system encourage safe, meaningful interaction and sustained participation.</p>
           <div class="case-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Python</span><span>Flask</span><span>Jinja2</span><span>Content Moderation</span><span>Speech Recognition</span></div>
           <div class="case-details"><div><h4>Project Highlights</h4><ul><li>Developed story creation, drafts, community discovery and messaging features.</li><li>Connected user activity to a reward-based garden progression system.</li><li>Integrated validation and content moderation for safer user-generated content.</li><li>Designed an accessible experience for users across different age groups.</li></ul></div><div><h4>My Role & Contributions</h4><ul><li>Led full-stack development of story creation and management workflows.</li><li>Implemented database-backed CRUD operations and validation logic.</li><li>Built engagement logic connecting stories to garden rewards.</li><li>Contributed to UX structure, documentation and product narrative.</li></ul></div></div>
-          <div class="image-gallery" aria-label="Legacy Garden project gallery">
-            <a class="gallery-item" href="assets/legacy-garden.png"><img src="assets/legacy-garden.png" alt="Legacy Garden community storytelling interface"></a>
+          <div class="image-gallery collapsed" aria-label="Legacy Garden project gallery">
+            <a class="gallery-item" href="assets/legacy-garden.png" data-title="Community Story Discovery" data-description="The central community feed helps seniors and youths discover stories by topic, search content and engage through comments and reactions in a calm, accessible interface."><img src="assets/legacy-garden.png" alt="Legacy Garden community storytelling interface"></a>
+            <a class="gallery-item" href="assets/legacy-gallery/screen-01.jpg" data-title="Growing Together" data-description="The public landing page introduces the intergenerational purpose, explains the three-step participation model and uses clear calls to action suitable for both senior and youth audiences."><img src="assets/legacy-gallery/screen-01.jpg" alt="Legacy Garden public landing page"></a>
+            <a class="gallery-item" href="assets/legacy-gallery/screen-02.jpg" data-title="Accessible Account Creation" data-description="Registration supports different profile types and regions while keeping optional contact details flexible—important for users with different comfort levels and digital experience."><img src="assets/legacy-gallery/screen-02.jpg" alt="Legacy Garden account registration"></a>
+            <a class="gallery-item" href="assets/legacy-gallery/screen-03.jpg" data-title="Flexible Sign-In" data-description="Users can sign in with a conventional account or Google. The restrained form layout reduces friction and keeps authentication familiar for less confident digital users."><img src="assets/legacy-gallery/screen-03.jpg" alt="Legacy Garden login screen"></a>
+            <a class="gallery-item" href="assets/legacy-gallery/screen-04.jpg" data-title="Guided Help & FAQ" data-description="Plain-language answers explain rewards, activities, community trees, privacy and partner participation so users can learn independently without feeling overwhelmed."><img src="assets/legacy-gallery/screen-04.jpg" alt="Legacy Garden frequently asked questions"></a>
+            <a class="gallery-item" href="assets/legacy-gallery/screen-05.jpg" data-title="Mission & Accessibility" data-description="The About page explains why the platform matters and documents accessibility choices such as large text, simple navigation, friendly icons and low-complexity controls."><img src="assets/legacy-gallery/screen-05.jpg" alt="Legacy Garden about and accessibility page"></a>
+            <a class="gallery-item" href="assets/legacy-gallery/screen-06.jpg"><img src="assets/legacy-gallery/screen-06.jpg" alt="Legacy Garden community story feed"></a>
+            <a class="gallery-item" href="assets/legacy-gallery/screen-07.jpg"><img src="assets/legacy-gallery/screen-07.jpg" alt="Legacy Garden story creation form"></a>
+            <a class="gallery-item" href="assets/legacy-gallery/screen-08.jpg"><img src="assets/legacy-gallery/screen-08.jpg" alt="Legacy Garden story accessibility controls"></a>
+            <a class="gallery-item" href="assets/legacy-gallery/screen-09.jpg"><img src="assets/legacy-gallery/screen-09.jpg" alt="Legacy Garden garden progression and rewards"></a>
+            <a class="gallery-item" href="assets/legacy-gallery/screen-10.jpg"><img src="assets/legacy-gallery/screen-10.jpg" alt="Legacy Garden events and cooperative games"></a>
+            <a class="gallery-item" href="assets/legacy-gallery/screen-11.jpg"><img src="assets/legacy-gallery/screen-11.jpg" alt="Legacy Garden regional community tree"></a>
+            <a class="gallery-item" href="assets/legacy-gallery/screen-12.jpg"><img src="assets/legacy-gallery/screen-12.jpg" alt="Legacy Garden tree history"></a>
+            <a class="gallery-item" href="assets/legacy-gallery/screen-13.jpg"><img src="assets/legacy-gallery/screen-13.jpg" alt="Legacy Garden member profile"></a>
+            <a class="gallery-item" href="assets/legacy-gallery/screen-14.jpg"><img src="assets/legacy-gallery/screen-14.jpg" alt="Legacy Garden private messaging"></a>
+            <a class="gallery-item" href="assets/legacy-gallery/screen-15.jpg"><img src="assets/legacy-gallery/screen-15.jpg" alt="Legacy Garden memory album"></a>
+            <a class="gallery-item" href="assets/legacy-gallery/screen-16.jpg"><img src="assets/legacy-gallery/screen-16.jpg" alt="Legacy Garden privacy settings"></a>
+            <a class="gallery-item" href="assets/legacy-gallery/screen-17.jpg"><img src="assets/legacy-gallery/screen-17.jpg" alt="Legacy Garden edit profile"></a>
+            <a class="gallery-item" href="assets/legacy-gallery/screen-18.jpg"><img src="assets/legacy-gallery/screen-18.jpg" alt="Legacy Garden account settings"></a>
+            <button class="gallery-more" type="button" data-gallery-more data-count="+14">+14<small>View all product screens</small></button>
           </div>
         </article>
 
@@ -402,7 +434,7 @@
 
     <section class="experience-section alt" id="leadership">
       <div class="experience-grid">
-        <h2 class="section-label" data-reveal>( 03 / Growth )<strong>CCA &<br>leadership</strong></h2>
+        <h2 class="section-label" data-reveal>( 04 / Growth )<strong>CCA &<br>leadership</strong></h2>
         <div class="entries" data-reveal>
           <article class="entry"><span class="entry-date">Mar 2025 — Apr 2026</span><div><span class="entry-kicker">Peer Supporter Club · Nanyang Polytechnic</span><h3>Vice-President</h3><p>Led peer-support initiatives, workshops and student engagement events; reviewed project proposals and coordinated outreach with external organisations. Helped deliver mental-wellness initiatives reaching more than 400 students.</p></div></article>
           <article class="entry"><span class="entry-date">Apr 2025 — Apr 2026</span><div><span class="entry-kicker">School of Information Technology Club</span><h3>Sub-committee Member</h3><p>Supported the planning and execution of school-wide events and student engagement activities.</p></div></article>
@@ -414,7 +446,7 @@
 
     <section class="experience-section orange" id="volunteer">
       <div class="experience-grid">
-        <h2 class="section-label" data-reveal>( 04 / Service )<strong>Volunteer<br>work</strong></h2>
+        <h2 class="section-label" data-reveal>( 05 / Service )<strong>Volunteer<br>work</strong></h2>
         <div class="entries" data-reveal>
           <article class="entry"><span class="entry-date">2025 — 2026</span><div><span class="entry-kicker">Peer Supporter Club</span><h3>Mental Wellness Outreach</h3><p>Facilitated campus-wide wellness and outreach activities that reached more than 400 students, helping create a more supportive and connected school community.</p></div></article>
           <article class="entry"><span class="entry-date">2025 — 2026</span><div><span class="entry-kicker">Boys' Town YouthReach & Care Corner</span><h3>Community Collaborations</h3><p>Worked with external organisations through peer-support initiatives and collaborative programmes, strengthening communication, empathy and community engagement.</p></div></article>
@@ -422,18 +454,13 @@
       </div>
     </section>
 
-    <section class="about" id="about">
-      <h2 data-reveal>( 05 / About me )</h2>
-      <p class="about-copy" data-reveal>I’m Vivion, a Business & Financial Technology student who enjoys <em>building useful, human-centred digital experiences.</em></p>
-      <div class="skills" data-reveal><span>Python</span><span>Flask</span><span>HTML / CSS</span><span>JavaScript</span><span>Figma</span><span>UI / UX</span><span>Microsoft Excel</span><span>Google Sheets</span><span>Leadership</span><span>Communication</span></div>
-    </section>
   </main>
 
   <footer id="contact">
     <h2>Have an idea?<br><em>Let's talk.</em></h2>
     <div class="footer-row">
       <span>© 2026 Vivion Oh — Singapore</span>
-      <div class="socials"><a href="mailto:VivionOh@gmail.com">Email ↗</a><a href="https://vvionnn.github.io/vivionoh/">GitHub Portfolio ↗</a><a href="https://www.linkedin.com/in/vivion-oh-6b0153307/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></div>
+      <div class="socials"><a href="mailto:VivionOh@gmail.com">Email me ↗</a><a href="https://github.com/vvionnn" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="https://www.linkedin.com/in/vivion-oh-6b0153307/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="assets/Vivion-Oh-Resume.pdf" download>Download résumé ↓</a></div>
       <a href="#">Back to top ↑</a>
     </div>
   </footer>
@@ -441,6 +468,7 @@
     <button class="lightbox-close" type="button">Close ×</button>
     <button class="lightbox-prev" type="button" aria-label="Previous image">←</button>
     <img src="" alt="">
+    <aside class="lightbox-info"><span>Project screen</span><h3>Image title</h3><p>Image description</p></aside>
     <button class="lightbox-next" type="button" aria-label="Next image">→</button>
   </div>
 
@@ -475,12 +503,35 @@
     const galleryLinks = [...document.querySelectorAll('.gallery-item')];
     const lightbox = document.querySelector('.lightbox');
     const lightboxImage = lightbox.querySelector('img');
+    const lightboxTitle = lightbox.querySelector('.lightbox-info h3');
+    const lightboxDescription = lightbox.querySelector('.lightbox-info p');
     let currentImage = 0;
+    function describeScreen(alt) {
+      const text = alt.toLowerCase();
+      const descriptions = [
+        ['community story feed', 'A searchable community feed makes shared memories easy to discover while reactions and comments create gentle, low-pressure ways for different generations to connect.'],
+        ['story creation', 'The structured authoring flow supports topics, drafts, photo uploads, speech recording and multiple languages, lowering barriers for users with different typing and language abilities.'],
+        ['accessibility controls', 'Font-size controls and built-in translation let each person adapt the interface without leaving the current task—an important feature for an intergenerational audience.'],
+        ['garden progression', 'Stories earn water while activities and messages earn seeds. Turning participation into visible garden growth makes engagement understandable and rewarding without competitive pressure.'],
+        ['cooperative games', 'Paired games, streaks and shared events give seniors and youths a reason to return and interact, converting digital activity into ongoing relationships.'],
+        ['regional community tree', 'A map-based regional community turns individual harvested plants into shared progress, showing users that their personal participation contributes to something larger.'],
+        ['tree history', 'The history view makes garden actions transparent and traceable, helping users understand exactly how their contributions affect progression.'],
+        ['member profile', 'Profiles combine identity, region, stories and rewards in one approachable view while allowing users to control how much personal information they share.'],
+        ['private messaging', 'Direct and regional conversations support everyday connection, with messaging streaks reinforcing consistent communication between partners.'],
+        ['memory album', 'The album turns completed activities into collectible memories, giving long-term participation an emotional record rather than only points or statistics.'],
+        ['privacy settings', 'Clear privacy controls let users hide their email, region or phone number and provide direct access to community guidelines and account security.'],
+        ['edit profile', 'The edit flow keeps profile type stable while allowing users to update their region, biography and image through one focused form.'],
+        ['account settings', 'Security, privacy, story management and account controls are grouped by purpose so users can find sensitive settings quickly and confidently.']
+      ];
+      return descriptions.find(([keyword]) => text.includes(keyword))?.[1] || 'A working prototype screen showing how the project translates its core idea into a clear, usable digital experience. This view is part of the tested end-to-end product flow.';
+    }
     function showImage(index) {
       currentImage = (index + galleryLinks.length) % galleryLinks.length;
       const source = galleryLinks[currentImage].querySelector('img');
       lightboxImage.src = galleryLinks[currentImage].href;
       lightboxImage.alt = source.alt;
+      lightboxTitle.textContent = galleryLinks[currentImage].dataset.title || source.alt;
+      lightboxDescription.textContent = galleryLinks[currentImage].dataset.description || describeScreen(source.alt);
       lightbox.classList.add('open');
       document.body.style.overflow = 'hidden';
     }
@@ -494,10 +545,14 @@
     }));
     document.querySelectorAll('[data-gallery-more]').forEach(button => button.addEventListener('click', () => {
       const gallery = button.closest('.image-gallery');
-      const firstHidden = [...gallery.querySelectorAll('.gallery-item')].find(item => getComputedStyle(item).display === 'none');
-      gallery.classList.remove('collapsed');
-      button.remove();
-      firstHidden?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      const isCollapsed = gallery.classList.contains('collapsed');
+      gallery.classList.toggle('collapsed');
+      if (isCollapsed) {
+        button.innerHTML = 'Show less<small>Collapse prototype screens</small>';
+      } else {
+        button.innerHTML = `${button.dataset.count}<small>View all prototype screens</small>`;
+        gallery.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     }));
     lightbox.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
     lightbox.querySelector('.lightbox-prev').addEventListener('click', () => showImage(currentImage - 1));
