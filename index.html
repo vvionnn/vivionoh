@@ -70,10 +70,10 @@
 
     .hero {
       min-height: 100svh;
-      padding: 130px clamp(20px, 3vw, 44px) 34px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      padding: clamp(105px, 12vh, 145px) clamp(20px, 3vw, 44px) clamp(28px, 5vh, 50px);
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      gap: clamp(35px, 6vh, 75px);
       position: relative;
       border-bottom: 1px solid var(--line);
     }
@@ -81,11 +81,14 @@
     .hero-title {
       margin: 0;
       max-width: 1500px;
-      font-size: clamp(66px, 12.4vw, 190px);
+      font-size: clamp(58px, 10.5vw, 168px);
       font-weight: 500;
-      line-height: .78;
+      line-height: .8;
       letter-spacing: -.095em;
       text-transform: uppercase;
+      align-self: center;
+      position: relative;
+      z-index: 1;
     }
     .hero-title .line { display: block; overflow: hidden; }
     .hero-title .line span { display: block; transform: translateY(110%); transition: transform 1s cubic-bezier(.16,1,.3,1); }
@@ -94,12 +97,12 @@
     .accent { font-family: "Times New Roman", serif; font-weight: 400; font-style: italic; text-transform: none; color: var(--orange); }
     .hero-bottom { display: grid; grid-template-columns: 1fr 1fr 1fr; align-items: end; gap: 24px; }
     .hero-copy { max-width: 400px; font-size: 14px; line-height: 1.5; }
-    .scroll { justify-self: center; font: 10px DM Mono, monospace; text-transform: uppercase; writing-mode: vertical-rl; }
+    .scroll { justify-self: center; font: 10px DM Mono, monospace; text-transform: uppercase; }
     .shape {
       position: absolute;
-      right: 8vw;
-      top: 15%;
-      width: clamp(130px, 18vw, 290px);
+      right: 7vw;
+      top: clamp(110px, 16vh, 165px);
+      width: clamp(110px, 15vw, 235px);
       aspect-ratio: 1;
       border: 1px solid var(--ink);
       border-radius: 50%;
@@ -188,17 +191,19 @@
     [data-reveal] { opacity: 0; transform: translateY(45px); transition: opacity .8s, transform .8s cubic-bezier(.16,1,.3,1); }
     [data-reveal].visible { opacity: 1; transform: none; }
     @keyframes marquee { to { transform: translateX(-50%); } }
-    @keyframes float { 50% { transform: translateY(24px) rotate(8deg); } }
+    @keyframes float { 50% { transform: translateY(10px) rotate(5deg); } }
     @keyframes pulse { 50% { box-shadow: 0 0 0 6px rgba(88,195,102,0); } }
 
     @media (max-width: 720px) {
       nav { grid-template-columns: 1fr auto; }
       .nav-links { display: none; }
-      .hero { padding-top: 110px; }
-      .hero-title { font-size: clamp(60px, 20vw, 110px); }
+      .hero { min-height: auto; padding-top: 105px; gap: 44px; }
+      .hero-title { font-size: clamp(52px, 17.5vw, 92px); line-height: .82; padding-top: 75px; }
       .hero-title .line:nth-child(2) span { padding-left: 0; }
-      .hero-bottom { grid-template-columns: 1fr auto; }
-      .scroll { display: none; }
+      .hero-bottom { grid-template-columns: 1fr; gap: 20px; }
+      .hero-bottom .eyebrow { justify-self: start !important; }
+      .scroll { justify-self: start; }
+      .shape { top: 145px; right: 22px; width: 105px; }
       .project { grid-template-columns: 34px 1fr; }
       .project-meta { display: none; }
       .project-preview { display: none; }
@@ -208,6 +213,12 @@
       .about-copy, .skills { grid-column: 1; }
       footer { min-height: 70vh; }
       .footer-row { align-items: start; flex-direction: column; }
+    }
+
+    @media (min-width: 721px) and (max-height: 760px) {
+      .hero { gap: 24px; padding-top: 100px; padding-bottom: 24px; }
+      .hero-title { font-size: min(9.5vw, 130px); }
+      .shape { top: 105px; width: 130px; }
     }
   </style>
 </head>
@@ -244,25 +255,29 @@
       <div class="experience-grid">
         <h2 class="section-label" data-reveal>( 01 / Experience )<strong>Work<br>experience</strong></h2>
         <div class="entries" data-reveal>
-          <article class="entry"><span class="entry-date">20XX — Present</span><div><span class="entry-kicker">Company / Organisation</span><h3>Your role or internship title</h3><p class="placeholder">Add a concise description of your responsibilities, what you contributed, and one result or skill you gained.</p></div></article>
-          <article class="entry"><span class="entry-date">20XX — 20XX</span><div><span class="entry-kicker">Company / Organisation</span><h3>Previous role or part-time work</h3><p class="placeholder">Explain what you did using action words. Include numbers or outcomes wherever possible.</p></div></article>
+          <article class="entry"><span class="entry-date">Mar 2026 — Present</span><div><span class="entry-kicker">Nanyang Educational Consultancy</span><h3>Admin Assistant</h3><p>Support daily operations for 150+ active students, including enrolment, scheduling, invoicing and attendance. Reconcile over S$100,000 in monthly tuition revenue, coordinate tutor schedules and administer payroll for 30+ employees.</p></div></article>
+          <article class="entry"><span class="entry-date">Sep 2025 — Present</span><div><span class="entry-kicker">Highhouse & Leclair Patisserie</span><h3>Waitress & Service Crew</h3><p>Deliver accurate front-of-house service in fast-paced environments, prepare food and beverages, manage guest flow during peak periods and maintain consistent service quality.</p></div></article>
+          <article class="entry"><span class="entry-date">Sep 2024 — Mar 2025</span><div><span class="entry-kicker">Smoke & Mirrors</span><h3>Guest Relations Host / Waitress</h3><p>Managed seating, table coordination and customer enquiries, handled service stations independently during peak periods, and supported accurate billing and smooth service operations.</p></div></article>
         </div>
       </div>
     </section>
 
     <section class="work" id="work">
-      <div class="section-head" data-reveal><h2>Selected<br>work</h2><p>2024—2026 / 03 Projects</p></div>
-      <a class="project" href="#" data-reveal><span class="project-num">01</span><h3>Featured Project</h3><span class="project-meta">Your role / Category · 2026</span><div class="project-preview"><div class="preview-art"></div></div></a>
-      <a class="project" href="#" data-reveal><span class="project-num">02</span><h3>Relevant Project</h3><span class="project-meta">Your role / Category · 2025</span><div class="project-preview"><div class="preview-art"></div></div></a>
-      <a class="project" href="#" data-reveal><span class="project-num">03</span><h3>Personal Project</h3><span class="project-meta">Your role / Category · 2024</span><div class="project-preview"><div class="preview-art"></div></div></a>
+      <div class="section-head" data-reveal><h2>Selected<br>projects</h2><p>2024—2026 / 04 Projects</p></div>
+      <a class="project" href="#" data-reveal><span class="project-num">01</span><h3>Legacy Garden</h3><span class="project-meta">Full-stack development · 2026</span><div class="project-preview"><div class="preview-art"></div></div></a>
+      <a class="project" href="#" data-reveal><span class="project-num">02</span><h3>Dance Revolution</h3><span class="project-meta">Front-end development · 2026</span><div class="project-preview"><div class="preview-art"></div></div></a>
+      <a class="project" href="#" data-reveal><span class="project-num">03</span><h3>Nirvana</h3><span class="project-meta">UI/UX design · 2025</span><div class="project-preview"><div class="preview-art"></div></div></a>
+      <a class="project" href="#" data-reveal><span class="project-num">04</span><h3>Beauty Product Simulation</h3><span class="project-meta">Interaction design / Scratch · 2025</span><div class="project-preview"><div class="preview-art"></div></div></a>
     </section>
 
     <section class="experience-section alt" id="leadership">
       <div class="experience-grid">
         <h2 class="section-label" data-reveal>( 03 / Growth )<strong>CCA &<br>leadership</strong></h2>
         <div class="entries" data-reveal>
-          <article class="entry"><span class="entry-date">20XX — Present</span><div><span class="entry-kicker">CCA / School</span><h3>Leadership appointment</h3><p class="placeholder">Describe the team you led, initiatives you started, challenges you handled, and how the experience developed your character.</p></div></article>
-          <article class="entry"><span class="entry-date">20XX</span><div><span class="entry-kicker">Award / Programme</span><h3>Character development milestone</h3><p class="placeholder">Add a course, camp, award, competition, or meaningful learning experience.</p></div></article>
+          <article class="entry"><span class="entry-date">Mar 2025 — Apr 2026</span><div><span class="entry-kicker">Peer Supporter Club · Nanyang Polytechnic</span><h3>Vice-President</h3><p>Led peer-support initiatives, workshops and student engagement events; reviewed project proposals and coordinated outreach with external organisations. Helped deliver mental-wellness initiatives reaching more than 400 students.</p></div></article>
+          <article class="entry"><span class="entry-date">Apr 2025 — Apr 2026</span><div><span class="entry-kicker">School of Information Technology Club</span><h3>Sub-committee Member</h3><p>Supported the planning and execution of school-wide events and student engagement activities.</p></div></article>
+          <article class="entry"><span class="entry-date">Mar 2025 — Apr 2026</span><div><span class="entry-kicker">Ladies in Tech Interest Group</span><h3>Sub-committee Member</h3><p>Supported community and secondary-school outreach and created publicity content to encourage student participation.</p></div></article>
+          <article class="entry"><span class="entry-date">Jan 2022 — Dec 2023</span><div><span class="entry-kicker">Table Tennis · Evergreen Secondary School</span><h3>Vice-Captain</h3><p>Led warm-ups, supported team training, coordinated activities and served as a liaison between teammates and coaches.</p></div></article>
         </div>
       </div>
     </section>
@@ -271,24 +286,24 @@
       <div class="experience-grid">
         <h2 class="section-label" data-reveal>( 04 / Service )<strong>Volunteer<br>work</strong></h2>
         <div class="entries" data-reveal>
-          <article class="entry"><span class="entry-date">20XX</span><div><span class="entry-kicker">Beneficiary / Organisation</span><h3>Volunteer initiative</h3><p class="placeholder">Share the cause, your responsibilities, hours contributed, people reached, and what the experience taught you.</p></div></article>
-          <article class="entry"><span class="entry-date">20XX</span><div><span class="entry-kicker">Community / School</span><h3>Community service project</h3><p class="placeholder">Describe how you served and the impact made together with your team.</p></div></article>
+          <article class="entry"><span class="entry-date">2025 — 2026</span><div><span class="entry-kicker">Peer Supporter Club</span><h3>Mental Wellness Outreach</h3><p>Facilitated campus-wide wellness and outreach activities that reached more than 400 students, helping create a more supportive and connected school community.</p></div></article>
+          <article class="entry"><span class="entry-date">2025 — 2026</span><div><span class="entry-kicker">Boys' Town YouthReach & Care Corner</span><h3>Community Collaborations</h3><p>Worked with external organisations through peer-support initiatives and collaborative programmes, strengthening communication, empathy and community engagement.</p></div></article>
         </div>
       </div>
     </section>
 
     <section class="about" id="about">
       <h2 data-reveal>( 05 / About me )</h2>
-      <p class="about-copy" data-reveal>I’m Vivion, a curious and driven learner who enjoys <em>turning ideas into meaningful action.</em></p>
-      <div class="skills" data-reveal><span>Communication</span><span>Leadership</span><span>Teamwork</span><span>Problem solving</span><span>Adaptability</span><span>Digital skills</span><span>Add your skill</span></div>
+      <p class="about-copy" data-reveal>I’m Vivion, a Business & Financial Technology student who enjoys <em>building useful, human-centred digital experiences.</em></p>
+      <div class="skills" data-reveal><span>Python</span><span>Flask</span><span>HTML / CSS</span><span>JavaScript</span><span>Figma</span><span>UI / UX</span><span>Microsoft Excel</span><span>Google Sheets</span><span>Leadership</span><span>Communication</span></div>
     </section>
   </main>
 
   <footer id="contact">
     <h2>Have an idea?<br><em>Let's talk.</em></h2>
     <div class="footer-row">
-      <span>© 2026 Vivion — All good things reserved</span>
-      <div class="socials"><a href="mailto:hello@vivion.studio">Email ↗</a><a href="#">Instagram ↗</a><a href="#">LinkedIn ↗</a></div>
+      <span>© 2026 Vivion Oh — Singapore</span>
+      <div class="socials"><a href="mailto:VivionOh@gmail.com">Email ↗</a><a href="https://vvionnn.github.io/vivionoh/">GitHub Portfolio ↗</a><a href="#">LinkedIn ↗</a></div>
       <a href="#">Back to top ↑</a>
     </div>
   </footer>
