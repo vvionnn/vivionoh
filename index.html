@@ -11,9 +11,9 @@
     :root {
       --ink: #171714;
       --paper: #f1eee7;
-      --acid: #d9ff43;
-      --orange: #ff5c35;
-      --blue: #8bb8ff;
+      --acid: #b9c99f;
+      --orange: #8a6654;
+      --blue: #d8ddd3;
       --line: rgba(23, 23, 20, .22);
     }
 
@@ -180,18 +180,29 @@
     .case-media .media-note { border-radius: 18px; padding: 25px; background: var(--ink); color: var(--paper); display: flex; flex-direction: column; justify-content: space-between; }
     .media-note span { font: 9px DM Mono, monospace; text-transform: uppercase; }
     .media-note strong { font-size: clamp(27px, 3vw, 46px); line-height: .95; letter-spacing: -.05em; }
-    .case-card.echo { background: #dfeafa; }
-    .case-card.legacy { background: #e2f1df; }
-    .case-card.dance { background: #ffdace; }
-    .case-card.nirvana { background: #eee5ff; }
+    .case-card.echo, .case-card.legacy, .case-card.dance, .case-card.nirvana { background: #e8e5de; }
     .case-card.compact .case-media { grid-template-columns: 1fr; }
     .visual-panel { min-height: 260px; border-radius: 18px; border: 1px solid var(--ink); display: grid; place-items: center; background: var(--paper); position: relative; overflow: hidden; }
     .visual-panel::before { content: ""; width: 170px; aspect-ratio: 1; border-radius: 50%; background: var(--accent-color, var(--orange)); box-shadow: 80px 20px 0 var(--blue), -80px 35px 0 var(--acid); }
     .visual-panel span { position: absolute; font: 10px DM Mono, monospace; text-transform: uppercase; }
+    .image-gallery { margin-top: 40px; display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 12px; }
+    .gallery-item { min-height: 190px; position: relative; overflow: hidden; border: 1px solid var(--ink); border-radius: 15px; background: white; }
+    .gallery-item:first-child { grid-column: span 2; grid-row: span 2; }
+    .gallery-item img { width: 100%; height: 100%; min-height: 190px; display: block; object-fit: cover; object-position: top center; transition: transform .4s; }
+    .gallery-item:hover img { transform: scale(1.025); }
+    .gallery-item::after { content: "View ↗"; position: absolute; right: 10px; bottom: 10px; padding: 6px 8px; border-radius: 999px; color: var(--paper); background: rgba(23,23,20,.85); font: 8px DM Mono, monospace; text-transform: uppercase; }
+    .lightbox { position: fixed; inset: 0; z-index: 200; display: none; place-items: center; padding: 40px 80px; background: rgba(16,16,14,.94); }
+    .lightbox.open { display: grid; }
+    .lightbox img { max-width: 100%; max-height: 88vh; object-fit: contain; }
+    .lightbox button { position: absolute; border: 1px solid rgba(255,255,255,.5); border-radius: 999px; color: white; background: rgba(0,0,0,.35); font: 11px DM Mono, monospace; }
+    .lightbox-close { top: 20px; right: 20px; padding: 10px 14px; }
+    .lightbox-prev, .lightbox-next { top: 50%; width: 44px; height: 44px; }
+    .lightbox-prev { left: 20px; }
+    .lightbox-next { right: 20px; }
 
     .experience-section { padding: 100px clamp(20px, 3vw, 44px); border-top: 1px solid var(--line); }
-    .experience-section.alt { background: var(--acid); }
-    .experience-section.orange { background: var(--orange); }
+    .experience-section.alt { background: #e8e5de; }
+    .experience-section.orange { background: #dedbd4; }
     .experience-grid { display: grid; grid-template-columns: minmax(220px, .8fr) 2fr; gap: 7vw; }
     .section-label { margin: 0; font: 11px DM Mono, monospace; text-transform: uppercase; letter-spacing: .08em; }
     .section-label strong { display: block; margin-top: 18px; font: 500 clamp(42px, 6vw, 90px) Manrope, sans-serif; line-height: .88; letter-spacing: -.07em; text-transform: uppercase; }
@@ -207,7 +218,7 @@
     .about {
       min-height: 95vh;
       padding: 110px clamp(20px, 3vw, 44px);
-      background: var(--blue);
+      background: #dedbd4;
       display: grid;
       grid-template-columns: 1fr 2.2fr;
       gap: 6vw;
@@ -245,6 +256,9 @@
       .project-meta { display: none; }
       .project-preview { display: none; }
       .case-top, .case-details, .case-media { grid-template-columns: 1fr; }
+      .image-gallery { grid-template-columns: 1fr 1fr; }
+      .gallery-item:first-child { grid-column: span 2; grid-row: auto; }
+      .lightbox { padding: 55px 15px; }
       .case-date { justify-self: start; }
       .case-media .media-note { min-height: 210px; }
       .experience-grid { grid-template-columns: 1fr; }
@@ -311,7 +325,26 @@
           <p class="case-summary">An AI-assisted pre-arrival intelligence and first-response ecosystem designed to detect unwitnessed home emergencies for seniors living alone. EchoSync uses privacy-first ambient sensors, Edge AI and voice check-ins to assess distress before routing alerts to caregivers or responders.</p>
           <div class="case-tags"><span>Artificial Intelligence</span><span>IoT</span><span>Edge AI</span><span>Raspberry Pi</span><span>Sensor Fusion</span><span>Voice Recognition</span><span>Dashboard Integration</span></div>
           <div class="case-details"><div><h4>Project Highlights</h4><ul><li>Top 5 Finalist out of 81 teams from 17 institutions in the SCDF and Dell Lifesavers’ Innovation Challenge 2026.</li><li>Built a privacy-first flow without CCTV or facial recognition.</li><li>Combined sound, motion, distance and load signals with explainable risk scoring.</li><li>Created caregiver verification, SCDF dashboard and myResponder-style escalation flows.</li></ul></div><div><h4>My Role & Contributions</h4><ul><li>Supported software development, sensor logic and alert-flow architecture.</li><li>Conducted Raspberry Pi hardware testing and multi-sensor calibration.</li><li>Integrated dashboard alerts and prepared the OpenShift competition demo.</li><li>Contributed to UI design, pitch preparation and the Grand Finale presentation.</li></ul></div></div>
-          <div class="case-media"><img src="assets/echosync.png" alt="EchoSync fall detection, voice check-in and escalation process"><div class="media-note"><span>SCDF × Dell Lifesavers’ Innovation Challenge</span><strong>Top 5<br>of 81 teams.</strong><span>AI should support responders, not replace them.</span></div></div>
+          <div class="image-gallery" aria-label="EchoSync project gallery">
+            <a class="gallery-item" href="assets/echosync.png"><img src="assets/echosync.png" alt="EchoSync fall detection, voice check-in and escalation process"></a>
+            <a class="gallery-item" href="assets/echosync-gallery/screen-01.png"><img src="assets/echosync-gallery/screen-01.png" alt="EchoSync prototype screen 1"></a>
+            <a class="gallery-item" href="assets/echosync-gallery/screen-02.png"><img src="assets/echosync-gallery/screen-02.png" alt="EchoSync prototype screen 2"></a>
+            <a class="gallery-item" href="assets/echosync-gallery/screen-03.png"><img src="assets/echosync-gallery/screen-03.png" alt="EchoSync prototype screen 3"></a>
+            <a class="gallery-item" href="assets/echosync-gallery/screen-04.png"><img src="assets/echosync-gallery/screen-04.png" alt="EchoSync prototype screen 4"></a>
+            <a class="gallery-item" href="assets/echosync-gallery/screen-05.png"><img src="assets/echosync-gallery/screen-05.png" alt="EchoSync prototype screen 5"></a>
+            <a class="gallery-item" href="assets/echosync-gallery/screen-06.png"><img src="assets/echosync-gallery/screen-06.png" alt="EchoSync prototype screen 6"></a>
+            <a class="gallery-item" href="assets/echosync-gallery/screen-07.png"><img src="assets/echosync-gallery/screen-07.png" alt="EchoSync prototype screen 7"></a>
+            <a class="gallery-item" href="assets/echosync-gallery/screen-08.png"><img src="assets/echosync-gallery/screen-08.png" alt="EchoSync prototype screen 8"></a>
+            <a class="gallery-item" href="assets/echosync-gallery/screen-09.png"><img src="assets/echosync-gallery/screen-09.png" alt="EchoSync prototype screen 9"></a>
+            <a class="gallery-item" href="assets/echosync-gallery/screen-10.png"><img src="assets/echosync-gallery/screen-10.png" alt="EchoSync prototype screen 10"></a>
+            <a class="gallery-item" href="assets/echosync-gallery/screen-11.png"><img src="assets/echosync-gallery/screen-11.png" alt="EchoSync prototype screen 11"></a>
+            <a class="gallery-item" href="assets/echosync-gallery/screen-12.png"><img src="assets/echosync-gallery/screen-12.png" alt="EchoSync prototype screen 12"></a>
+            <a class="gallery-item" href="assets/echosync-gallery/screen-13.png"><img src="assets/echosync-gallery/screen-13.png" alt="EchoSync prototype screen 13"></a>
+            <a class="gallery-item" href="assets/echosync-gallery/screen-14.png"><img src="assets/echosync-gallery/screen-14.png" alt="EchoSync prototype screen 14"></a>
+            <a class="gallery-item" href="assets/echosync-gallery/screen-15.png"><img src="assets/echosync-gallery/screen-15.png" alt="EchoSync prototype screen 15"></a>
+            <a class="gallery-item" href="assets/echosync-gallery/screen-16.png"><img src="assets/echosync-gallery/screen-16.png" alt="EchoSync prototype screen 16"></a>
+            <a class="gallery-item" href="assets/echosync-gallery/screen-17.png"><img src="assets/echosync-gallery/screen-17.png" alt="EchoSync prototype screen 17"></a>
+          </div>
         </article>
 
         <article class="case-card legacy" data-reveal>
@@ -319,7 +352,13 @@
           <p class="case-summary">A reflective digital-storytelling platform connecting seniors and youths. Structured story creation, community discovery, moderation and a gamified garden progression system encourage safe, meaningful interaction and sustained participation.</p>
           <div class="case-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Python</span><span>Flask</span><span>Jinja2</span><span>Content Moderation</span><span>Speech Recognition</span></div>
           <div class="case-details"><div><h4>Project Highlights</h4><ul><li>Developed story creation, drafts, community discovery and messaging features.</li><li>Connected user activity to a reward-based garden progression system.</li><li>Integrated validation and content moderation for safer user-generated content.</li><li>Designed an accessible experience for users across different age groups.</li></ul></div><div><h4>My Role & Contributions</h4><ul><li>Led full-stack development of story creation and management workflows.</li><li>Implemented database-backed CRUD operations and validation logic.</li><li>Built engagement logic connecting stories to garden rewards.</li><li>Contributed to UX structure, documentation and product narrative.</li></ul></div></div>
-          <div class="case-media"><img src="assets/legacy-garden.png" alt="Legacy Garden community storytelling interface"><div class="media-note"><span>Web Application</span><strong>Stories that<br>grow together.</strong><span>Seniors × Youth digital storytelling</span></div></div>
+          <div class="image-gallery" aria-label="Legacy Garden project gallery">
+            <a class="gallery-item" href="assets/legacy-garden.png"><img src="assets/legacy-garden.png" alt="Legacy Garden community storytelling interface"></a>
+            <a class="gallery-item" href="assets/legacy-gallery/screen-01.png"><img src="assets/legacy-gallery/screen-01.png" alt="Legacy Garden project visual 1"></a>
+            <a class="gallery-item" href="assets/legacy-gallery/screen-02.png"><img src="assets/legacy-gallery/screen-02.png" alt="Legacy Garden project visual 2"></a>
+            <a class="gallery-item" href="assets/legacy-gallery/screen-03.png"><img src="assets/legacy-gallery/screen-03.png" alt="Legacy Garden project visual 3"></a>
+            <a class="gallery-item" href="assets/legacy-gallery/screen-04.png"><img src="assets/legacy-gallery/screen-04.png" alt="Legacy Garden project visual 4"></a>
+          </div>
         </article>
 
         <article class="case-card dance compact" data-reveal>
@@ -377,6 +416,12 @@
       <a href="#">Back to top ↑</a>
     </div>
   </footer>
+  <div class="lightbox" role="dialog" aria-modal="true" aria-label="Project image viewer">
+    <button class="lightbox-close" type="button">Close ×</button>
+    <button class="lightbox-prev" type="button" aria-label="Previous image">←</button>
+    <img src="" alt="">
+    <button class="lightbox-next" type="button" aria-label="Next image">→</button>
+  </div>
 
   <script>
     const loader = document.querySelector('.loader');
@@ -399,6 +444,37 @@
       if (entry.isIntersecting) entry.target.classList.add('visible');
     }), { threshold: .15 });
     document.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
+
+    const galleryLinks = [...document.querySelectorAll('.gallery-item')];
+    const lightbox = document.querySelector('.lightbox');
+    const lightboxImage = lightbox.querySelector('img');
+    let currentImage = 0;
+    function showImage(index) {
+      currentImage = (index + galleryLinks.length) % galleryLinks.length;
+      const source = galleryLinks[currentImage].querySelector('img');
+      lightboxImage.src = galleryLinks[currentImage].href;
+      lightboxImage.alt = source.alt;
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    galleryLinks.forEach((link, index) => link.addEventListener('click', event => {
+      event.preventDefault();
+      showImage(index);
+    }));
+    lightbox.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+    lightbox.querySelector('.lightbox-prev').addEventListener('click', () => showImage(currentImage - 1));
+    lightbox.querySelector('.lightbox-next').addEventListener('click', () => showImage(currentImage + 1));
+    lightbox.addEventListener('click', event => { if (event.target === lightbox) closeLightbox(); });
+    addEventListener('keydown', event => {
+      if (!lightbox.classList.contains('open')) return;
+      if (event.key === 'Escape') closeLightbox();
+      if (event.key === 'ArrowLeft') showImage(currentImage - 1);
+      if (event.key === 'ArrowRight') showImage(currentImage + 1);
+    });
 
   </script>
 </body>
