@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 90">
+  <rect width="160" height="90" rx="12" fill="#fff"/>
+  <path d="M65 18c17 0 25 15 16 29-7 11-20 14-32 9 9-2 17-7 20-15 4-10-1-17-4-23z" fill="none" stroke="#777" stroke-width="2"/>
+  <text x="80" y="68" text-anchor="middle" font-family="Georgia,serif" font-size="17" letter-spacing="3" fill="#555">L'ÉCLAIR</text>
+  <text x="80" y="81" text-anchor="middle" font-family="Arial,sans-serif" font-size="6" letter-spacing="2" fill="#777">PÂTISSERIE</text>
+</svg>

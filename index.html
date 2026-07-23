@@ -101,14 +101,14 @@
     .hero-title .line:nth-child(2) span { transition-delay: .12s; padding-left: 12vw; }
     .accent { font-family: "Times New Roman", serif; font-weight: 400; font-style: italic; text-transform: none; color: var(--orange); }
     .hero-bottom { display: grid; grid-template-columns: 1fr 1fr 1fr; align-items: end; gap: 24px; }
-    .hero-copy { max-width: 400px; font-size: 14px; line-height: 1.5; }
+    .hero-copy { max-width: 560px; font-size: clamp(14px, 1.25vw, 18px); line-height: 1.55; }
     .scroll { justify-self: center; font: 10px DM Mono, monospace; text-transform: uppercase; }
     .hero-camera {
       position: absolute;
       right: clamp(20px, 5vw, 80px);
       top: clamp(105px, 14vh, 145px);
-      width: clamp(180px, 21vw, 330px);
-      padding: 12px;
+      width: clamp(260px, 27vw, 440px);
+      padding: 14px;
       border: 1px solid var(--ink);
       border-radius: 24px;
       background: var(--ink);
@@ -116,12 +116,12 @@
       z-index: 2;
       transform: rotate(2deg);
     }
-    .camera-top { display: flex; justify-content: space-between; align-items: center; padding: 2px 2px 10px; font: 8px DM Mono, monospace; text-transform: uppercase; }
+    .camera-top { display: flex; justify-content: space-between; align-items: center; padding: 3px 3px 12px; font: 9px DM Mono, monospace; text-transform: uppercase; }
     .camera-dot { width: 8px; height: 8px; border-radius: 50%; background: #d96855; }
     .camera-screen { display: flex; gap: 7px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; border-radius: 14px; }
     .camera-screen::-webkit-scrollbar { display: none; }
     .camera-screen img { flex: 0 0 100%; width: 100%; aspect-ratio: 4/3; object-fit: cover; object-position: top center; scroll-snap-align: start; background: white; }
-    .camera-bottom { display: flex; justify-content: space-between; align-items: center; padding: 10px 3px 1px; font: 8px DM Mono, monospace; text-transform: uppercase; }
+    .camera-bottom { display: flex; justify-content: space-between; align-items: center; padding: 12px 3px 2px; font: 9px DM Mono, monospace; text-transform: uppercase; }
     .camera-controls { display: flex; gap: 5px; }
     .camera-controls button { width: 24px; height: 24px; border: 1px solid rgba(255,255,255,.5); border-radius: 50%; color: white; background: transparent; font-size: 11px; }
 
@@ -198,14 +198,15 @@
     .visual-panel { min-height: 260px; border-radius: 18px; border: 1px solid var(--ink); display: grid; place-items: center; background: var(--paper); position: relative; overflow: hidden; }
     .visual-panel::before { content: ""; width: 170px; aspect-ratio: 1; border-radius: 50%; background: var(--accent-color, var(--orange)); box-shadow: 80px 20px 0 var(--blue), -80px 35px 0 var(--acid); }
     .visual-panel span { position: absolute; font: 10px DM Mono, monospace; text-transform: uppercase; }
-    .image-gallery { margin-top: 40px; display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 12px; }
-    .gallery-item { min-height: 190px; position: relative; overflow: hidden; border: 1px solid var(--ink); border-radius: 15px; background: white; }
-    .gallery-item:first-child { grid-column: span 2; grid-row: span 2; }
-    .gallery-item img { width: 100%; height: 100%; min-height: 190px; display: block; object-fit: cover; object-position: top center; transition: transform .4s; }
+    .image-gallery { margin-top: 40px; display: grid; grid-template-columns: 1.55fr repeat(2, minmax(145px,.72fr)); grid-auto-flow: dense; gap: 12px; align-items: start; }
+    .gallery-item { aspect-ratio: 9 / 16; min-height: 0; position: relative; overflow: hidden; border: 1px solid var(--ink); border-radius: 15px; background: #f8f7f2; }
+    .gallery-item:first-child { grid-row: span 2; aspect-ratio: 4 / 5; }
+    .gallery-item img { width: 100%; height: 100%; min-height: 0; display: block; object-fit: cover; object-position: top center; transition: transform .4s; }
+    .gallery-item.contain img { object-fit: contain; object-position: center; }
     .gallery-item:hover img { transform: scale(1.025); }
     .gallery-item::after { content: "View ↗"; position: absolute; right: 10px; bottom: 10px; padding: 6px 8px; border-radius: 999px; color: var(--paper); background: rgba(23,23,20,.85); font: 8px DM Mono, monospace; text-transform: uppercase; }
     .image-gallery.collapsed .gallery-item:nth-child(n+6) { display: none; }
-    .gallery-more { min-height: 190px; border: 1px solid var(--ink); border-radius: 15px; color: var(--paper); background: var(--ink); font: 500 clamp(28px, 4vw, 58px) Manrope, sans-serif; letter-spacing: -.05em; }
+    .gallery-more { aspect-ratio: 9 / 16; min-height: 0; border: 1px solid var(--ink); border-radius: 15px; color: var(--paper); background: var(--ink); font: 500 clamp(28px, 4vw, 58px) Manrope, sans-serif; letter-spacing: -.05em; }
     .gallery-more small { display: block; margin-top: 6px; font: 8px DM Mono, monospace; text-transform: uppercase; letter-spacing: .08em; }
     .lightbox { position: fixed; inset: 0; z-index: 200; display: none; grid-template-columns: minmax(0,2fr) minmax(270px,.7fr); gap: 30px; align-items: center; padding: 50px 80px; background: rgba(16,16,14,.97); }
     .lightbox.open { display: grid; }
@@ -227,7 +228,9 @@
     .section-label { margin: 0; font: 11px DM Mono, monospace; text-transform: uppercase; letter-spacing: .08em; }
     .section-label strong { display: block; margin-top: 18px; font: 500 clamp(42px, 6vw, 90px) Manrope, sans-serif; line-height: .88; letter-spacing: -.07em; text-transform: uppercase; }
     .entries { border-top: 1px solid var(--ink); }
-    .entry { display: grid; grid-template-columns: 120px 1fr; gap: 24px; padding: 26px 0 38px; border-bottom: 1px solid var(--ink); }
+    .entry { display: grid; grid-template-columns: 120px 88px 1fr; gap: 24px; padding: 26px 0 38px; border-bottom: 1px solid var(--ink); }
+    .entry.no-logo { grid-template-columns: 120px 1fr; }
+    .entry-logo { width: 88px; height: 72px; object-fit: contain; align-self: start; border-radius: 10px; background: white; }
     .entry-date, .entry-kicker { font: 10px DM Mono, monospace; text-transform: uppercase; letter-spacing: .06em; }
     .entry h3 { margin: 6px 0 10px; font-size: clamp(25px, 3vw, 44px); line-height: 1; letter-spacing: -.045em; }
     .entry p { max-width: 690px; margin: 0; font-size: 14px; line-height: 1.6; }
@@ -279,13 +282,14 @@
       .project-preview { display: none; }
       .case-top, .case-details, .case-media { grid-template-columns: 1fr; }
       .image-gallery { grid-template-columns: 1fr 1fr; }
-      .gallery-item:first-child { grid-column: span 2; grid-row: auto; }
+      .gallery-item:first-child { grid-column: span 2; grid-row: auto; aspect-ratio: 4 / 3; }
       .lightbox { grid-template-columns: 1fr; padding: 65px 15px 20px; overflow-y: auto; }
       .lightbox-info { border-left: 0; border-top: 1px solid rgba(255,255,255,.25); padding: 22px 5px; }
       .case-date { justify-self: start; }
       .case-media .media-note { min-height: 210px; }
       .experience-grid { grid-template-columns: 1fr; }
-      .entry { grid-template-columns: 1fr; gap: 10px; }
+      .entry, .entry.no-logo { grid-template-columns: 1fr; gap: 10px; }
+      .entry-logo { width: 96px; height: 64px; }
       .about { grid-template-columns: 1fr; }
       .about-copy, .skills { grid-column: 1; }
       footer { min-height: 70vh; }
@@ -295,7 +299,7 @@
     @media (min-width: 721px) and (max-height: 760px) {
       .hero { gap: 24px; padding-top: 100px; padding-bottom: 24px; }
       .hero-title { font-size: min(9.5vw, 130px); }
-      .hero-camera { top: 90px; width: 190px; }
+      .hero-camera { top: 90px; width: 250px; }
     }
   </style>
 </head>
@@ -324,31 +328,31 @@
         <div class="camera-bottom"><span>Swipe / scroll</span><div class="camera-controls"><button type="button" data-camera="-1" aria-label="Previous image">←</button><button type="button" data-camera="1" aria-label="Next image">→</button></div></div>
       </div>
       <div class="hero-bottom">
-        <p class="hero-copy">A growing collection of the work, projects, leadership and service experiences that have shaped who I am.</p>
+        <p class="hero-copy">I bridge business, technology and people—building practical digital products, supporting fast-moving operations and leading community initiatives with empathy.</p>
         <span class="scroll">Scroll to explore ↓</span>
         <span class="eyebrow" style="justify-self:end">Singapore / 01:3521° N</span>
       </div>
     </section>
 
     <div class="marquee" aria-hidden="true"><div class="marquee-track">
-      <span>Python <i>✦</i> C# <i>✦</i> HTML <i>✦</i> CSS <i>✦</i> JavaScript <i>✦</i> Power BI <i>✦</i> Microsoft Excel <i>✦</i> Google Sheets <i>✦</i> Microsoft 365 <i>✦</i> Flask <i>✦</i> Figma <i>✦</i>&nbsp;</span>
-      <span>Python <i>✦</i> C# <i>✦</i> HTML <i>✦</i> CSS <i>✦</i> JavaScript <i>✦</i> Power BI <i>✦</i> Microsoft Excel <i>✦</i> Google Sheets <i>✦</i> Microsoft 365 <i>✦</i> Flask <i>✦</i> Figma <i>✦</i>&nbsp;</span>
+      <span>Python <i>✦</i> C# <i>✦</i> HTML <i>✦</i> CSS <i>✦</i> JavaScript <i>✦</i> Power BI <i>✦</i> Microsoft Excel <i>✦</i> Google Workspace <i>✦</i> Microsoft 365 <i>✦</i> Flask <i>✦</i> Figma <i>✦</i>&nbsp;</span>
+      <span>Python <i>✦</i> C# <i>✦</i> HTML <i>✦</i> CSS <i>✦</i> JavaScript <i>✦</i> Power BI <i>✦</i> Microsoft Excel <i>✦</i> Google Workspace <i>✦</i> Microsoft 365 <i>✦</i> Flask <i>✦</i> Figma <i>✦</i>&nbsp;</span>
     </div></div>
 
     <section class="about" id="about">
       <h2 data-reveal>( 01 / About me )</h2>
       <p class="about-copy" data-reveal>I’m Vivion, a Business & Financial Technology student who enjoys <em>building useful, human-centred digital experiences.</em></p>
-      <div class="skills" data-reveal><span>Python</span><span>C#</span><span>Flask</span><span>HTML / CSS</span><span>JavaScript</span><span>Power BI</span><span>Figma</span><span>UI / UX</span><span>Microsoft Excel</span><span>Google Sheets</span><span>Microsoft 365</span><span>Leadership</span><span>Communication</span></div>
+      <div class="skills" data-reveal><span>Python</span><span>C#</span><span>Flask</span><span>HTML / CSS</span><span>JavaScript</span><span>Power BI</span><span>Figma</span><span>UI / UX</span><span>Microsoft Excel</span><span>Google Workspace</span><span>Microsoft 365</span><span>Leadership</span><span>Communication</span></div>
     </section>
 
     <section class="experience-section" id="experience">
       <div class="experience-grid">
         <h2 class="section-label" data-reveal>( 02 / Experience )<strong>Relevant<br>experience</strong></h2>
         <div class="entries" data-reveal>
-          <article class="entry"><span class="entry-date">Mar 2026 — Present</span><div><span class="entry-kicker">Nanyang Educational Consultancy</span><h3>Admin Assistant</h3><p>Support daily operations for 150+ active students, including enrolment, scheduling, invoicing and attendance. Reconcile over S$100,000 in monthly tuition revenue, coordinate tutor schedules and administer payroll for 30+ employees.</p><div class="entry-skills"><span>Administration</span><span>Microsoft Excel</span><span>Google Sheets</span><span>Payroll</span><span>Scheduling</span><span>Data management</span></div></div></article>
-          <article class="entry"><span class="entry-date">Sep 2025 — Present</span><div><span class="entry-kicker">Highhouse</span><h3>Waitress</h3><p>Support front-of-house operations by delivering food accurately and on time, maintaining smooth guest flow during peak periods, and completing service preparation and glass-polishing duties.</p><div class="entry-skills"><span>Customer service</span><span>Teamwork</span><span>Time management</span><span>Attention to detail</span></div></div></article>
-          <article class="entry"><span class="entry-date">Sep 2025 — Present</span><div><span class="entry-kicker">Leclair Patisserie</span><h3>Service Crew</h3><p>Prepare food and beverages according to standard recipes, including coffee drinks and basic latte art, while maintaining product consistency and assisting customers with front-of-house service.</p><div class="entry-skills"><span>Food preparation</span><span>Barista skills</span><span>Customer relations</span><span>Quality control</span></div></div></article>
-          <article class="entry"><span class="entry-date">Sep 2024 — Mar 2025</span><div><span class="entry-kicker">Smoke & Mirrors</span><h3>Guest Relations Host / Waitress</h3><p>Managed seating, table coordination and customer enquiries, handled service stations independently during peak periods, and supported accurate billing and smooth service operations.</p><div class="entry-skills"><span>Guest relations</span><span>Service coordination</span><span>Billing</span><span>Problem solving</span><span>Menu knowledge</span></div></div></article>
+          <article class="entry"><span class="entry-date">Mar 2026 — Present</span><img class="entry-logo" src="assets/logo-nanyang.svg" alt="Nanyang Educational Consultancy logo"><div><span class="entry-kicker">Nanyang Educational Consultancy</span><h3>Administrative Executive</h3><p>Support daily operations for 150+ active students, including enrolment, scheduling, invoicing and attendance. Reconcile over S$100,000 in monthly tuition revenue, coordinate tutor schedules and administer payroll for 30+ employees.</p><div class="entry-skills"><span>Administration</span><span>Microsoft Excel</span><span>Google Workspace</span><span>Payroll</span><span>Scheduling</span><span>Data management</span></div></div></article>
+          <article class="entry"><span class="entry-date">Sep 2025 — Present</span><img class="entry-logo" src="assets/logo-highhouse.svg" alt="HighHouse logo"><div><span class="entry-kicker">HighHouse · Part-time</span><h3>Food Service Associate</h3><p>Support front-of-house operations by delivering food accurately and on time, maintaining smooth guest flow during peak periods, and completing service preparation and glass-polishing duties.</p><div class="entry-skills"><span>Food delivery</span><span>Food service operations</span><span>Customer service</span><span>Teamwork</span><span>Time management</span></div></div></article>
+          <article class="entry"><span class="entry-date">Sep 2025 — Present</span><img class="entry-logo" src="assets/logo-leclair.svg" alt="L'éclair Patisserie logo"><div><span class="entry-kicker">L'éclair Patisserie · Part-time</span><h3>Service Associate</h3><p>Prepare high-quality coffee, beverages and food according to standard recipes, practise basic latte art, maintain product consistency and assist customers with attentive front-of-house service.</p><div class="entry-skills"><span>Latte art</span><span>Food service</span><span>Barista skills</span><span>Customer relations</span><span>Quality control</span></div></div></article>
+          <article class="entry"><span class="entry-date">Sep 2024 — Mar 2025</span><img class="entry-logo" src="assets/logo-smoke-mirrors.svg" alt="Smoke and Mirrors logo"><div><span class="entry-kicker">Smoke & Mirrors Bar · Part-time</span><h3>F&amp;B Associate</h3><p>Managed seating, table coordination and customer enquiries, handled service stations independently during peak periods, and supported accurate billing and smooth service operations.</p><div class="entry-skills"><span>Guest relations</span><span>Food & beverage operations</span><span>Service coordination</span><span>Billing</span><span>Problem solving</span></div></div></article>
         </div>
       </div>
     </section>
@@ -362,9 +366,9 @@
           <div class="case-tags"><span>Artificial Intelligence</span><span>IoT</span><span>Edge AI</span><span>Raspberry Pi</span><span>Sensor Fusion</span><span>Voice Recognition</span><span>Dashboard Integration</span></div>
           <div class="case-details"><div><h4>Project Highlights</h4><ul><li>Top 5 Finalist out of 81 teams from 17 institutions in the SCDF and Dell Lifesavers’ Innovation Challenge 2026.</li><li>Built a privacy-first flow without CCTV or facial recognition.</li><li>Combined sound, motion, distance and load signals with explainable risk scoring.</li><li>Created caregiver verification, SCDF dashboard and myResponder-style escalation flows.</li></ul></div><div><h4>My Role & Contributions</h4><ul><li>Supported software development, sensor logic and alert-flow architecture.</li><li>Conducted Raspberry Pi hardware testing and multi-sensor calibration.</li><li>Integrated dashboard alerts and prepared the OpenShift competition demo.</li><li>Contributed to UI design, pitch preparation and the Grand Finale presentation.</li></ul></div></div>
           <div class="image-gallery collapsed" aria-label="EchoSync project gallery">
-            <a class="gallery-item" href="assets/echosync.png" data-title="Emergency Detection Flow" data-description="The end-to-end EchoSync journey: ambient sensing detects a possible fall, a multilingual voice check-in verifies the resident’s condition, and urgent cases are escalated for human response."><img src="assets/echosync.png" alt="EchoSync fall detection, voice check-in and escalation process"></a>
-            <a class="gallery-item" href="assets/echosync-poster.png" data-title="Solution Overview" data-description="The competition poster summarises the emergency-response gap, EchoSync’s privacy-first architecture, its sensing-to-response workflow and the roles of caregivers, community responders and SCDF."><img src="assets/echosync-poster.png" alt="EchoSync solution overview poster"></a>
             <a class="gallery-item" href="assets/echosync-gallery/screen-01.png" data-title="Triage Operations Dashboard" data-description="A central operations view that helps dispatchers understand active incidents, urgency, location and responder activity without searching across multiple systems."><img src="assets/echosync-gallery/screen-01.png" alt="EchoSync triage operations dashboard"></a>
+            <a class="gallery-item contain" href="assets/echosync-poster.png" data-title="Solution Overview" data-description="The competition poster summarises the emergency-response gap, EchoSync’s privacy-first architecture, its sensing-to-response workflow and the roles of caregivers, community responders and SCDF."><img src="assets/echosync-poster.png" alt="EchoSync solution overview poster"></a>
+            <a class="gallery-item contain" href="assets/echosync.png" data-title="Emergency Detection Flow" data-description="The end-to-end EchoSync journey: ambient sensing detects a possible fall, a multilingual voice check-in verifies the resident’s condition, and urgent cases are escalated for human response."><img src="assets/echosync.png" alt="EchoSync fall detection, voice check-in and escalation process"></a>
             <a class="gallery-item" href="assets/echosync-gallery/screen-02.png" data-title="Incident Intelligence" data-description="An incident-focused screen combines sensor evidence, confidence level and location context so a human operator can make a faster, better-informed decision."><img src="assets/echosync-gallery/screen-02.png" alt="EchoSync incident intelligence screen"></a>
             <a class="gallery-item" href="assets/echosync-gallery/screen-03.png" data-title="Caregiver Verification" data-description="Lower and medium-risk alerts can be verified by a caregiver first, reducing unnecessary escalation while keeping urgent cases moving quickly toward responders."><img src="assets/echosync-gallery/screen-03.png" alt="EchoSync caregiver verification screen"></a>
             <a class="gallery-item" href="assets/echosync-gallery/screen-04.png"><img src="assets/echosync-gallery/screen-04.png" alt="EchoSync prototype screen 4"></a>
@@ -436,10 +440,11 @@
       <div class="experience-grid">
         <h2 class="section-label" data-reveal>( 04 / Growth )<strong>CCA &<br>leadership</strong></h2>
         <div class="entries" data-reveal>
-          <article class="entry"><span class="entry-date">Mar 2025 — Apr 2026</span><div><span class="entry-kicker">Peer Supporter Club · Nanyang Polytechnic</span><h3>Vice-President</h3><p>Led peer-support initiatives, workshops and student engagement events; reviewed project proposals and coordinated outreach with external organisations. Helped deliver mental-wellness initiatives reaching more than 400 students.</p></div></article>
-          <article class="entry"><span class="entry-date">Apr 2025 — Apr 2026</span><div><span class="entry-kicker">School of Information Technology Club</span><h3>Sub-committee Member</h3><p>Supported the planning and execution of school-wide events and student engagement activities.</p></div></article>
-          <article class="entry"><span class="entry-date">Mar 2025 — Apr 2026</span><div><span class="entry-kicker">Ladies in Tech Interest Group</span><h3>Sub-committee Member</h3><p>Supported community and secondary-school outreach and created publicity content to encourage student participation.</p></div></article>
-          <article class="entry"><span class="entry-date">Jan 2022 — Dec 2023</span><div><span class="entry-kicker">Table Tennis · Evergreen Secondary School</span><h3>Vice-Captain</h3><p>Led warm-ups, supported team training, coordinated activities and served as a liaison between teammates and coaches.</p></div></article>
+          <article class="entry no-logo"><span class="entry-date">Apr 2026 — Present</span><div><span class="entry-kicker">Peer Supporter Club · Nanyang Polytechnic</span><h3>HR &amp; Admin Executive Assistant</h3><p>Support committee administration, people coordination and internal communications while helping the club organise peer-support initiatives and maintain a welcoming, dependable team culture.</p></div></article>
+          <article class="entry no-logo"><span class="entry-date">Apr 2025 — Apr 2026</span><div><span class="entry-kicker">Peer Supporter Club · Nanyang Polytechnic</span><h3>Vice-President</h3><p>Led peer-support initiatives, workshops and student engagement events; reviewed project proposals, coordinated external outreach and helped turn wellbeing ideas into practical programmes for students.</p></div></article>
+          <article class="entry no-logo"><span class="entry-date">Apr 2025 — Present</span><div><span class="entry-kicker">School of Information Technology Club</span><h3>Sub-committee Member</h3><p>Support the planning and execution of school-wide events, student engagement activities and on-the-ground operations with the wider committee.</p></div></article>
+          <article class="entry no-logo"><span class="entry-date">Apr 2025 — Present</span><div><span class="entry-kicker">Ladies in Tech Interest Group</span><h3>Sub-committee Member</h3><p>Support community and secondary-school outreach, event delivery and publicity content that encourages more students to explore technology.</p></div></article>
+          <article class="entry no-logo"><span class="entry-date">Jan 2022 — Dec 2023</span><div><span class="entry-kicker">Table Tennis · Evergreen Secondary School</span><h3>Vice-Captain</h3><p>Led warm-ups, supported team training, coordinated activities and served as a liaison between teammates and coaches.</p></div></article>
         </div>
       </div>
     </section>
@@ -448,8 +453,10 @@
       <div class="experience-grid">
         <h2 class="section-label" data-reveal>( 05 / Service )<strong>Volunteer<br>work</strong></h2>
         <div class="entries" data-reveal>
-          <article class="entry"><span class="entry-date">2025 — 2026</span><div><span class="entry-kicker">Peer Supporter Club</span><h3>Mental Wellness Outreach</h3><p>Facilitated campus-wide wellness and outreach activities that reached more than 400 students, helping create a more supportive and connected school community.</p></div></article>
-          <article class="entry"><span class="entry-date">2025 — 2026</span><div><span class="entry-kicker">Boys' Town YouthReach & Care Corner</span><h3>Community Collaborations</h3><p>Worked with external organisations through peer-support initiatives and collaborative programmes, strengthening communication, empathy and community engagement.</p></div></article>
+          <article class="entry no-logo"><span class="entry-date">2025 — 2026</span><div><span class="entry-kicker">Little Hands, Big Hearts · AWWA</span><h3>Inclusive Children’s Programme</h3><p>Co-planned and delivered an inclusive event for children with additional needs. Designed suitable games and activity flows, adapted instructions and practised perspective-taking so every child could participate safely, confidently and meaningfully.</p></div></article>
+          <article class="entry no-logo"><span class="entry-date">2025 — 2026</span><div><span class="entry-kicker">Project Rejuven-Aid · Nanyang Polytechnic</span><h3>Community Service Volunteer</h3><p>Contributed to a community initiative focused on improving living conditions for seniors and lower-income households, supporting practical preparation and service work with care and respect for each resident’s circumstances.</p></div></article>
+          <article class="entry no-logo"><span class="entry-date">2025 — Present</span><div><span class="entry-kicker">Boys’ Town YouthReach · Peer Supporter Club</span><h3>Youth Engagement Activities</h3><p>Helped plan approachable group activities for youths, supporting facilitation and relationship-building through patient communication, teamwork and an emphasis on psychological safety.</p></div></article>
+          <article class="entry no-logo"><span class="entry-date">2025 — Present</span><div><span class="entry-kicker">Care Corner · Peer Supporter Club</span><h3>De-Stress Week &amp; Wellness Outreach</h3><p>Supported recurring wellbeing activities and De-Stress Week engagement, helping prepare interactive stations and create low-pressure opportunities for students to pause, connect and learn practical self-care habits.</p></div></article>
         </div>
       </div>
     </section>
