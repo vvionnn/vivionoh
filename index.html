@@ -148,12 +148,15 @@
     .preview-card p { margin: 0; font-size: 13px; line-height: 1.55; }
     .preview-card .card-link { margin-top: auto; padding-top: 20px; font: 9px DM Mono, monospace; text-transform: uppercase; }
     .project-scroll { position: relative; }
-    .project-scroll .preview-grid { display: flex; gap: 18px; overflow-x: auto; padding: 8px 2px 24px; scroll-snap-type: x mandatory; scrollbar-width: thin; scrollbar-color: var(--ink) transparent; }
-    .project-scroll .preview-grid::-webkit-scrollbar { height: 7px; }
-    .project-scroll .preview-grid::-webkit-scrollbar-track { background: rgba(23,23,20,.12); border-radius: 999px; }
-    .project-scroll .preview-grid::-webkit-scrollbar-thumb { background: var(--ink); border-radius: 999px; }
+    .project-scroll .preview-grid { display: flex; gap: 18px; overflow-x: auto; padding: 8px 2px 18px; scroll-snap-type: x mandatory; scrollbar-width: none; }
+    .project-scroll .preview-grid::-webkit-scrollbar { display: none; }
     .project-scroll .preview-card { flex: 0 0 min(31.5vw, 520px); min-width: 340px; scroll-snap-align: start; }
-    .project-scroll-hint { margin: 14px 0 0; font: 9px DM Mono, monospace; text-transform: uppercase; letter-spacing: .06em; text-align: right; }
+    .carousel-controls { display: grid; grid-template-columns: 40px 1fr 40px; align-items: center; gap: 18px; max-width: 330px; margin: 16px auto 0; }
+    .carousel-arrow { width: 40px; height: 40px; border: 1px solid var(--ink); border-radius: 50%; background: transparent; cursor: pointer; font-size: 18px; transition: color .2s, background .2s; }
+    .carousel-arrow:hover { color: var(--paper); background: var(--ink); }
+    .carousel-dots { display: flex; justify-content: center; gap: 7px; }
+    .carousel-dot { width: 7px; height: 7px; padding: 0; border: 1px solid var(--ink); border-radius: 50%; background: transparent; cursor: pointer; }
+    .carousel-dot.active { background: var(--ink); }
     .project-cover { aspect-ratio: 16/10; display: grid; place-items: center; overflow: hidden; border-bottom: 1px solid var(--ink); position: relative; }
     .project-cover::before, .project-cover::after { content: ""; position: absolute; border: 1px solid var(--ink); border-radius: 50%; }
     .project-cover::before { width: 48%; aspect-ratio: 1; background: var(--acid); transform: translate(-38%, 20%); }
@@ -403,7 +406,11 @@
         <a class="preview-card" href="projects.html#work" data-reveal><div class="project-cover nirvana" aria-hidden="true"><span>Nirvana</span></div><div class="preview-card-body"><span class="card-kicker">UI/UX design &middot; 2025</span><h3>Nirvana</h3><p>A human-centred digital product shaped through research, prototyping and interface design.</p><span class="card-link">View project &rarr;</span></div></a>
         <a class="preview-card" href="projects.html#work" data-reveal><div class="project-cover lovet" aria-hidden="true"><span>Lovet</span></div><div class="preview-card-body"><span class="card-kicker">Digital product</span><h3>Lovet</h3><p>A product design project exploring a thoughtful and engaging user experience.</p><span class="card-link">View project &rarr;</span></div></a>
       </div>
-      <p class="project-scroll-hint" aria-hidden="true">Scroll sideways to explore &rarr;</p>
+      <div class="carousel-controls" aria-label="Project carousel controls">
+        <button class="carousel-arrow" type="button" data-project-direction="-1" aria-label="Previous project">&larr;</button>
+        <div class="carousel-dots" aria-label="Choose a project"></div>
+        <button class="carousel-arrow" type="button" data-project-direction="1" aria-label="Next project">&rarr;</button>
+      </div>
       </div>
     </section>
 
@@ -581,6 +588,40 @@
     document.querySelectorAll('[data-camera]').forEach(button => button.addEventListener('click', () => {
       cameraScreen.scrollBy({ left: cameraScreen.clientWidth * Number(button.dataset.camera), behavior: 'smooth' });
     }));
+
+    const projectCarousel = document.querySelector('.project-scroll');
+    const projectTrack = projectCarousel.querySelector('.preview-grid');
+    const projectCards = [...projectTrack.querySelectorAll('.preview-card')];
+    const projectDots = projectCarousel.querySelector('.carousel-dots');
+    let projectIndex = 0;
+    let projectTimer;
+    projectCards.forEach((card, index) => {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = `carousel-dot${index === 0 ? ' active' : ''}`;
+      dot.setAttribute('aria-label', `Show project ${index + 1}`);
+      dot.addEventListener('click', () => showProject(index));
+      projectDots.append(dot);
+    });
+    const dots = [...projectDots.children];
+    function showProject(index, smooth = true) {
+      projectIndex = (index + projectCards.length) % projectCards.length;
+      projectTrack.scrollTo({ left: projectCards[projectIndex].offsetLeft - projectTrack.offsetLeft, behavior: smooth ? 'smooth' : 'auto' });
+      dots.forEach((dot, dotIndex) => dot.classList.toggle('active', dotIndex === projectIndex));
+    }
+    function restartProjectCarousel() {
+      clearInterval(projectTimer);
+      projectTimer = setInterval(() => showProject(projectIndex + 1), 4500);
+    }
+    projectCarousel.querySelectorAll('[data-project-direction]').forEach(button => button.addEventListener('click', () => {
+      showProject(projectIndex + Number(button.dataset.projectDirection));
+      restartProjectCarousel();
+    }));
+    projectCarousel.addEventListener('mouseenter', () => clearInterval(projectTimer));
+    projectCarousel.addEventListener('mouseleave', restartProjectCarousel);
+    projectCarousel.addEventListener('focusin', () => clearInterval(projectTimer));
+    projectCarousel.addEventListener('focusout', restartProjectCarousel);
+    restartProjectCarousel();
 
     const galleryLinks = [...document.querySelectorAll('.gallery-item')];
     const lightbox = document.querySelector('.lightbox');

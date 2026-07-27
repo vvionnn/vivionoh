@@ -28,6 +28,7 @@
     }
     body.experience-page main { padding-top: 68px; }
     body.experience-page .hero, body.experience-page .marquee, body.experience-page .about, body.experience-page .work { display: none; }
+    body.experience-page #experience { padding-top: 42px; }
 
     a, button { color: inherit; }
     ::selection { color: var(--ink); background: var(--acid); }
@@ -277,6 +278,7 @@
     @keyframes pulse { 50% { box-shadow: 0 0 0 6px rgba(88,195,102,0); } }
 
     @media (max-width: 720px) {
+      body.experience-page #experience { padding-top: 30px; }
       nav { grid-template-columns: 1fr auto; }
       .nav-links { display: flex; gap: 13px; max-width: 66vw; overflow-x: auto; scrollbar-width: none; }
       .nav-links::-webkit-scrollbar { display: none; }
