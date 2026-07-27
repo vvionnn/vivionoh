@@ -147,6 +147,20 @@
     .preview-card h3 { margin: 13px 0 10px; font-size: clamp(25px, 2.5vw, 39px); line-height: .95; letter-spacing: -.05em; }
     .preview-card p { margin: 0; font-size: 13px; line-height: 1.55; }
     .preview-card .card-link { margin-top: auto; padding-top: 20px; font: 9px DM Mono, monospace; text-transform: uppercase; }
+    .project-scroll { position: relative; }
+    .project-scroll .preview-grid { display: flex; gap: 18px; overflow-x: auto; padding: 8px 2px 24px; scroll-snap-type: x mandatory; scrollbar-width: thin; scrollbar-color: var(--ink) transparent; }
+    .project-scroll .preview-grid::-webkit-scrollbar { height: 7px; }
+    .project-scroll .preview-grid::-webkit-scrollbar-track { background: rgba(23,23,20,.12); border-radius: 999px; }
+    .project-scroll .preview-grid::-webkit-scrollbar-thumb { background: var(--ink); border-radius: 999px; }
+    .project-scroll .preview-card { flex: 0 0 min(31.5vw, 520px); min-width: 340px; scroll-snap-align: start; }
+    .project-scroll-hint { margin: 14px 0 0; font: 9px DM Mono, monospace; text-transform: uppercase; letter-spacing: .06em; text-align: right; }
+    .project-cover { aspect-ratio: 16/10; display: grid; place-items: center; overflow: hidden; border-bottom: 1px solid var(--ink); position: relative; }
+    .project-cover::before, .project-cover::after { content: ""; position: absolute; border: 1px solid var(--ink); border-radius: 50%; }
+    .project-cover::before { width: 48%; aspect-ratio: 1; background: var(--acid); transform: translate(-38%, 20%); }
+    .project-cover::after { width: 35%; aspect-ratio: 1; background: var(--blue); transform: translate(65%, -35%); }
+    .project-cover.lovet::before { background: var(--orange); transform: translate(42%, 25%); }
+    .project-cover.lovet::after { background: #f4a7bb; transform: translate(-70%, -28%); }
+    .project-cover span { position: relative; z-index: 1; font-size: clamp(30px, 4vw, 62px); font-weight: 600; letter-spacing: -.07em; }
     .section-head { display: flex; justify-content: space-between; align-items: end; margin-bottom: 35px; }
     .section-head h2 { margin: 0; font-size: clamp(50px, 8vw, 120px); font-weight: 500; line-height: .85; letter-spacing: -.075em; text-transform: uppercase; }
     .section-head p { font: 11px DM Mono, monospace; text-transform: uppercase; }
@@ -309,6 +323,8 @@
       .preview-heading { align-items: start; flex-direction: column; }
       .preview-grid { grid-template-columns: 1fr; }
       .preview-card-body { min-height: 0; }
+      .project-scroll .preview-grid { display: flex; }
+      .project-scroll .preview-card { flex-basis: 84vw; min-width: 280px; }
       .case-top, .case-details, .case-media { grid-template-columns: 1fr; }
       .image-gallery { grid-template-columns: 1fr 1fr; }
       .gallery-item:first-child { grid-column: span 2; grid-row: auto; aspect-ratio: 16 / 9; }
@@ -379,10 +395,15 @@
 
     <section class="home-previews alt" id="highlights">
       <div class="preview-heading" data-reveal><h2>Selected<br>highlights</h2><a class="view-more" href="projects.html">View all projects &rarr;</a></div>
-      <div class="preview-grid">
+      <div class="project-scroll">
+      <div class="preview-grid" aria-label="Scrollable project highlights">
         <a class="preview-card" href="projects.html#work" data-reveal><img src="assets/echosync-gallery/screen-01.png" alt="EchoSync operations dashboard"><div class="preview-card-body"><span class="card-kicker">Project lead &middot; 2026</span><h3>EchoSync</h3><p>AI-assisted emergency detection and response for seniors living alone.</p><span class="card-link">View project &rarr;</span></div></a>
         <a class="preview-card" href="projects.html#work" data-reveal><img src="assets/legacy-garden.png" alt="Legacy Garden community platform"><div class="preview-card-body"><span class="card-kicker">Full-stack development &middot; 2026</span><h3>Legacy Garden</h3><p>An intergenerational storytelling platform that turns participation into a shared garden.</p><span class="card-link">View project &rarr;</span></div></a>
         <a class="preview-card" href="projects.html#work" data-reveal><img src="assets/echosync-gallery/screen-06.png" alt="Digital product interface preview"><div class="preview-card-body"><span class="card-kicker">UI/UX &middot; Development</span><h3>More projects</h3><p>Explore web, mobile and human-centred product work across my portfolio.</p><span class="card-link">View all work &rarr;</span></div></a>
+        <a class="preview-card" href="projects.html#work" data-reveal><div class="project-cover nirvana" aria-hidden="true"><span>Nirvana</span></div><div class="preview-card-body"><span class="card-kicker">UI/UX design &middot; 2025</span><h3>Nirvana</h3><p>A human-centred digital product shaped through research, prototyping and interface design.</p><span class="card-link">View project &rarr;</span></div></a>
+        <a class="preview-card" href="projects.html#work" data-reveal><div class="project-cover lovet" aria-hidden="true"><span>Lovet</span></div><div class="preview-card-body"><span class="card-kicker">Digital product</span><h3>Lovet</h3><p>A product design project exploring a thoughtful and engaging user experience.</p><span class="card-link">View project &rarr;</span></div></a>
+      </div>
+      <p class="project-scroll-hint" aria-hidden="true">Scroll sideways to explore &rarr;</p>
       </div>
     </section>
 
