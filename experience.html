@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Vivion — multidisciplinary digital designer and creative developer.">
-  <title>Vivion — Digital Designer</title>
+  <title>Experience — Vivion</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@400;500;600;700&display=swap');
 
@@ -26,6 +26,8 @@
       font-family: Manrope, sans-serif;
       overflow-x: hidden;
     }
+    body.experience-page main { padding-top: 68px; }
+    body.experience-page .hero, body.experience-page .marquee, body.experience-page .about, body.experience-page .work { display: none; }
 
     a, button { color: inherit; }
     ::selection { color: var(--ink); background: var(--acid); }
@@ -131,22 +133,6 @@
     .marquee i { color: var(--acid); margin: 0 24px; font-style: normal; }
 
     .work { padding: 90px clamp(20px, 3vw, 44px) 130px; }
-    .home-detail { display: none; }
-    .home-previews { padding: 100px clamp(20px, 3vw, 44px) 120px; border-top: 1px solid var(--line); }
-    .home-previews.alt { background: #e8e5de; }
-    .preview-heading { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 38px; }
-    .preview-heading h2 { margin: 0; font-size: clamp(48px, 7vw, 108px); font-weight: 500; line-height: .86; letter-spacing: -.075em; text-transform: uppercase; }
-    .view-more { flex: 0 0 auto; padding: 12px 17px; border: 1px solid var(--ink); border-radius: 999px; font: 10px DM Mono, monospace; text-decoration: none; text-transform: uppercase; transition: background .2s, color .2s; }
-    .view-more:hover { color: var(--paper); background: var(--ink); }
-    .preview-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 18px; }
-    .preview-card { min-width: 0; border: 1px solid var(--ink); border-radius: 20px; overflow: hidden; color: inherit; background: rgba(255,255,255,.34); text-decoration: none; transition: transform .3s, box-shadow .3s; }
-    .preview-card:hover { transform: translateY(-7px); box-shadow: 0 20px 40px rgba(23,23,20,.12); }
-    .preview-card img { width: 100%; aspect-ratio: 16/10; display: block; object-fit: cover; object-position: top center; border-bottom: 1px solid var(--ink); background: white; }
-    .preview-card-body { min-height: 190px; padding: 24px; display: flex; flex-direction: column; }
-    .preview-card .card-kicker { font: 9px DM Mono, monospace; text-transform: uppercase; letter-spacing: .06em; }
-    .preview-card h3 { margin: 13px 0 10px; font-size: clamp(25px, 2.5vw, 39px); line-height: .95; letter-spacing: -.05em; }
-    .preview-card p { margin: 0; font-size: 13px; line-height: 1.55; }
-    .preview-card .card-link { margin-top: auto; padding-top: 20px; font: 9px DM Mono, monospace; text-transform: uppercase; }
     .section-head { display: flex; justify-content: space-between; align-items: end; margin-bottom: 35px; }
     .section-head h2 { margin: 0; font-size: clamp(50px, 8vw, 120px); font-weight: 500; line-height: .85; letter-spacing: -.075em; text-transform: uppercase; }
     .section-head p { font: 11px DM Mono, monospace; text-transform: uppercase; }
@@ -306,9 +292,6 @@
       .project { grid-template-columns: 34px 1fr; }
       .project-meta { display: none; }
       .project-preview { display: none; }
-      .preview-heading { align-items: start; flex-direction: column; }
-      .preview-grid { grid-template-columns: 1fr; }
-      .preview-card-body { min-height: 0; }
       .case-top, .case-details, .case-media { grid-template-columns: 1fr; }
       .image-gallery { grid-template-columns: 1fr 1fr; }
       .gallery-item:first-child { grid-column: span 2; grid-row: auto; aspect-ratio: 16 / 9; }
@@ -335,12 +318,12 @@
     }
   </style>
 </head>
-<body>
+<body class="experience-page">
   <div class="loader"><small>BUILDING YOUR STORY / <b>0</b>%</small><div class="loader-title">Vivion's<br><em>digital portfolio.</em></div></div>
 
   <nav>
     <a class="brand" href="index.html">VIVION®</a>
-    <div class="nav-links"><a href="index.html#about">About</a><a href="experience.html">Experience</a><a href="projects.html">Projects</a><a href="#contact">Contact</a></div>
+    <div class="nav-links"><a href="index.html">Home</a><a href="index.html#about">About</a><a href="#experience">Experience</a><a href="projects.html">Projects</a><a href="#leadership">Leadership</a><a href="#volunteer">Volunteer</a></div>
     <div class="availability">Available for projects & work</div>
   </nav>
 
@@ -377,25 +360,7 @@
       <div class="skills" data-reveal><span>Python</span><span>C#</span><span>Flask</span><span>HTML / CSS</span><span>JavaScript</span><span>Power BI</span><span>Figma</span><span>UI / UX</span><span>Microsoft Excel</span><span>Google Workspace</span><span>Microsoft 365</span><span>Leadership</span><span>Communication</span></div>
     </section>
 
-    <section class="home-previews alt" id="highlights">
-      <div class="preview-heading" data-reveal><h2>Selected<br>highlights</h2><a class="view-more" href="projects.html">View all projects &rarr;</a></div>
-      <div class="preview-grid">
-        <a class="preview-card" href="projects.html#work" data-reveal><img src="assets/echosync-gallery/screen-01.png" alt="EchoSync operations dashboard"><div class="preview-card-body"><span class="card-kicker">Project lead &middot; 2026</span><h3>EchoSync</h3><p>AI-assisted emergency detection and response for seniors living alone.</p><span class="card-link">View project &rarr;</span></div></a>
-        <a class="preview-card" href="projects.html#work" data-reveal><img src="assets/legacy-garden.png" alt="Legacy Garden community platform"><div class="preview-card-body"><span class="card-kicker">Full-stack development &middot; 2026</span><h3>Legacy Garden</h3><p>An intergenerational storytelling platform that turns participation into a shared garden.</p><span class="card-link">View project &rarr;</span></div></a>
-        <a class="preview-card" href="projects.html#work" data-reveal><img src="assets/echosync-gallery/screen-06.png" alt="Digital product interface preview"><div class="preview-card-body"><span class="card-kicker">UI/UX &middot; Development</span><h3>More projects</h3><p>Explore web, mobile and human-centred product work across my portfolio.</p><span class="card-link">View all work &rarr;</span></div></a>
-      </div>
-    </section>
-
-    <section class="home-previews" id="experience-preview">
-      <div class="preview-heading" data-reveal><h2>Experience<br>&amp; growth</h2><a class="view-more" href="experience.html">View full experience &rarr;</a></div>
-      <div class="preview-grid">
-        <a class="preview-card" href="experience.html#experience" data-reveal><div class="preview-card-body"><span class="card-kicker">Mar 2026 &mdash; Present</span><h3>Administrative Executive</h3><p>Supporting daily operations, finance reconciliation, scheduling and data management for an education consultancy.</p><span class="card-link">See experience &rarr;</span></div></a>
-        <a class="preview-card" href="experience.html#leadership" data-reveal><div class="preview-card-body"><span class="card-kicker">Leadership</span><h3>Peer Supporter Club</h3><p>Leading and supporting student wellbeing initiatives, workshops and community engagement.</p><span class="card-link">See leadership &rarr;</span></div></a>
-        <a class="preview-card" href="experience.html#volunteer" data-reveal><div class="preview-card-body"><span class="card-kicker">Community service</span><h3>Volunteer work</h3><p>Designing inclusive activities and supporting youth, children and community wellbeing programmes.</p><span class="card-link">See volunteering &rarr;</span></div></a>
-      </div>
-    </section>
-
-    <section class="experience-section home-detail" id="experience">
+    <section class="experience-section" id="experience">
       <div class="experience-grid">
         <h2 class="section-label" data-reveal>( 02 / Experience )<strong>Relevant<br>experience</strong></h2>
         <div class="entries" data-reveal>
@@ -407,7 +372,7 @@
       </div>
     </section>
 
-    <section class="work home-detail" id="work">
+    <section class="work" id="work">
       <div class="section-head" data-reveal><h2>Relevant<br>projects</h2><p>( 03 / Projects ) · 2024—2026</p></div>
       <div class="project-cards">
         <article class="case-card echo" data-reveal>
@@ -485,7 +450,7 @@
       </div>
     </section>
 
-    <section class="experience-section alt home-detail" id="leadership">
+    <section class="experience-section alt" id="leadership">
       <div class="experience-grid">
         <h2 class="section-label" data-reveal>( 04 / Growth )<strong>CCA &<br>leadership</strong></h2>
         <div class="entries" data-reveal>
@@ -503,7 +468,7 @@
       </div>
     </section>
 
-    <section class="experience-section orange home-detail" id="volunteer">
+    <section class="experience-section orange" id="volunteer">
       <div class="experience-grid">
         <h2 class="section-label" data-reveal>( 05 / Service )<strong>Volunteer<br>work</strong></h2>
         <div class="entries" data-reveal>
