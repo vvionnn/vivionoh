@@ -177,7 +177,7 @@
     .project:nth-of-type(3) .preview-art { background: var(--orange); filter: hue-rotate(90deg); }
 
     .project-cards { display: grid; gap: 28px; }
-    .case-card { padding: clamp(24px, 4vw, 58px); border: 1px solid var(--ink); border-radius: 28px; background: rgba(255,255,255,.34); overflow: hidden; }
+    .case-card { padding: clamp(24px, 4vw, 58px); border: 1px solid var(--ink); border-radius: 28px; background: rgba(255,255,255,.34); overflow: hidden; scroll-margin-top: 88px; }
     .case-top { display: grid; grid-template-columns: minmax(0,1.6fr) minmax(230px,.7fr); gap: 5vw; align-items: start; }
     .case-card h3 { margin: 0; font-size: clamp(38px, 5.6vw, 82px); line-height: .9; letter-spacing: -.065em; }
     .case-award { display: block; max-width: 900px; margin-bottom: 30px; padding: 0 0 18px; border-bottom: 1px solid var(--ink); color: #536743; font: 600 clamp(18px, 2.3vw, 34px) Manrope, sans-serif; line-height: 1.05; text-transform: uppercase; letter-spacing: -.035em; }
@@ -375,7 +375,7 @@
     <section class="work" id="work">
       <div class="section-head" data-reveal><h2>Relevant<br>projects</h2><p>( 03 / Projects ) · 2024—2026</p></div>
       <div class="project-cards">
-        <article class="case-card echo" data-reveal>
+        <article class="case-card echo" id="echosync" data-reveal>
           <div class="case-top"><div><span class="case-award">SCDF × Dell Lifesavers’ Innovation Challenge 2026 · Top 5 Finalist</span><h3>EchoSync</h3><span class="case-role">Project Lead | Business Analysis | Digital Marketing | Front-end Development</span></div><span class="case-date">Mar 2026 — Jul 2026</span></div>
           <p class="case-summary">An AI-assisted pre-arrival intelligence and first-response ecosystem designed to detect unwitnessed home emergencies for seniors living alone. EchoSync uses privacy-first ambient sensors, Edge AI and voice check-ins to assess distress before routing alerts to caregivers or responders.</p>
           <div class="case-tags"><span>Artificial Intelligence</span><span>IoT</span><span>Edge AI</span><span>Raspberry Pi</span><span>Sensor Fusion</span><span>Voice Recognition</span><span>Dashboard Integration</span></div>
@@ -403,7 +403,7 @@
           </div>
         </article>
 
-        <article class="case-card legacy" data-reveal>
+        <article class="case-card legacy" id="legacy-garden" data-reveal>
           <div class="case-top"><div><span class="case-award">Dell Innovate Dash 2026 · Finalist</span><h3>Legacy Garden</h3><span class="case-role">Project Lead · Full-Stack Developer</span></div><span class="case-date">Oct 2025 — Feb 2026</span></div>
           <p class="case-summary">A reflective digital-storytelling platform connecting seniors and youths. Structured story creation, community discovery, moderation and a gamified garden progression system encourage safe, meaningful interaction and sustained participation.</p>
           <div class="case-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Python</span><span>Flask</span><span>Jinja2</span><span>Content Moderation</span><span>Speech Recognition</span></div>
@@ -432,7 +432,7 @@
           </div>
         </article>
 
-        <article class="case-card dance compact" data-reveal>
+        <article class="case-card dance compact" id="dance-revolution" data-reveal>
           <div class="case-top"><div><h3>Dance Revolution</h3><span class="case-role">Front-End Web Developer</span></div><span class="case-date">Oct 2025 — Feb 2026</span></div>
           <p class="case-summary">A responsive, multi-page CCA promotion website designed to help prospective members explore events, achievements and participation opportunities through a clear and energetic digital experience.</p>
           <div class="case-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Responsive Design</span><span>Accessibility</span><span>Form Design</span></div>
@@ -440,7 +440,7 @@
           <div class="case-media"><div class="visual-panel" style="--accent-color:#ff5c35"><span>Project imagery coming soon</span></div></div>
         </article>
 
-        <article class="case-card nirvana compact" data-reveal>
+        <article class="case-card nirvana compact" id="nirvana" data-reveal>
           <div class="case-top"><div><h3>Nirvana</h3><span class="case-role">UI/UX Designer</span></div><span class="case-date">Apr 2025 — Aug 2025</span></div>
           <p class="case-summary">A user-centred mobile app prototype shaped by research into usability needs and emotional pain points. The design uses an iterative process to simplify key journeys and create a calmer, more intuitive experience.</p>
           <div class="case-tags"><span>Figma</span><span>User Research</span><span>UI Design</span><span>UX Design</span><span>Prototyping</span><span>Usability Testing</span></div>
@@ -448,12 +448,12 @@
           <div class="case-media"><div class="visual-panel" style="--accent-color:#9d74ff"><span>Project imagery coming soon</span></div></div>
         </article>
 
-        <article class="case-card lovet compact" data-reveal>
+        <article class="case-card lovet compact" id="lovet" data-reveal>
           <div class="case-top"><div><h3>Lovet Market Expansion</h3><span class="case-role">Business Analyst · Power BI Developer</span></div><span class="case-date">Business Intelligence Project</span></div>
           <p class="case-summary">An interactive Power BI analysis evaluating Lovet’s international expansion opportunities across apparel markets. The dashboard brings market size, growth, sustainability, entry costs, digital readiness and product demand into one decision-making view.</p>
           <div class="case-tags"><span>Power BI</span><span>Business Analysis</span><span>Market Research</span><span>Data Visualisation</span><span>Strategic Analysis</span><span>Dashboard Design</span></div>
           <div class="case-details"><div><h4>Project Highlights</h4><ul><li>Compared apparel market size, growth and sustainability across multiple countries.</li><li>Evaluated tariff exposure, e-commerce revenue and ease-of-entry indicators.</li><li>Analysed product-category demand, consumer spending and expansion potential.</li><li>Translated complex findings into clear market-entry recommendations.</li></ul></div><div><h4>Dashboard Outcomes</h4><ul><li>Identified the United Kingdom as a strong balanced expansion opportunity.</li><li>Highlighted women’s apparel and trousers as leading revenue segments.</li><li>Connected market attractiveness with entry readiness and financial feasibility.</li><li>Created interactive country and year filters for focused comparison.</li></ul></div></div>
-          <div class="case-media"><div class="visual-panel" style="--accent-color:#c88fa3"><span>Lovet dashboard screens coming soon</span></div></div>
+          <div class="case-media"><img src="assets/lovet-gallery/lovet-dashboard-cover.png" alt="Lovet Power BI market attractiveness, entry readiness and business expansion dashboards" style="object-fit:contain"></div>
         </article>
       </div>
     </section>
