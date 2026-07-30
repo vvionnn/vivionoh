@@ -208,14 +208,12 @@
     .gallery-item:hover img { transform: scale(1.025); }
     .gallery-item::after { content: "View ↗"; position: absolute; right: 10px; bottom: 10px; padding: 6px 8px; border-radius: 999px; color: var(--paper); background: rgba(23,23,20,.85); font: 8px DM Mono, monospace; text-transform: uppercase; }
     .dance .gallery-item.contain img { object-fit: cover; object-position: top center; }
-    .lovet-gallery { grid-template-columns: repeat(2, minmax(0,1fr)); }
-    .lovet-gallery .gallery-item:first-child { grid-column: auto; grid-row: auto; aspect-ratio: 16 / 9; }
     .image-gallery.collapsed .gallery-item:nth-child(n+6) { display: none; }
     .gallery-more { aspect-ratio: 16 / 9; min-height: 190px; border: 1px solid var(--ink); border-radius: 15px; color: var(--paper); background: var(--ink); font: 500 clamp(28px, 4vw, 58px) Manrope, sans-serif; letter-spacing: -.05em; }
     .gallery-more small { display: block; margin-top: 6px; font: 8px DM Mono, monospace; text-transform: uppercase; letter-spacing: .08em; }
     .lightbox { position: fixed; inset: 0; z-index: 200; display: none; grid-template-columns: minmax(0,2fr) minmax(270px,.7fr); gap: 30px; align-items: center; padding: 50px 80px; background: rgba(16,16,14,.97); }
     .lightbox.open { display: grid; }
-    .lightbox img { max-width: 100%; max-height: 88vh; object-fit: contain; }
+    .lightbox img { max-width: 100%; max-height: 88vh; object-fit: contain; justify-self: center; }
     .lightbox-info { color: var(--paper); padding: 26px; border-left: 1px solid rgba(255,255,255,.25); }
     .lightbox-info span { font: 9px DM Mono, monospace; text-transform: uppercase; letter-spacing: .08em; color: var(--acid); }
     .lightbox-info h3 { margin: 12px 0 16px; font-size: clamp(26px, 3vw, 46px); line-height: .95; letter-spacing: -.05em; }
@@ -298,7 +296,6 @@
       .case-top, .case-details, .case-media { grid-template-columns: 1fr; }
       .image-gallery { grid-template-columns: 1fr 1fr; }
       .gallery-item:first-child { grid-column: span 2; grid-row: auto; aspect-ratio: 16 / 9; }
-      .lovet-gallery { grid-template-columns: 1fr; }
       .lightbox { grid-template-columns: 1fr; padding: 65px 15px 20px; overflow-y: auto; }
       .lightbox-info { border-left: 0; border-top: 1px solid rgba(255,255,255,.25); padding: 22px 5px; }
       .case-date { justify-self: start; }
@@ -455,7 +452,8 @@
           <div class="case-details"><div><h4>Project Highlights</h4><ul><li>Compared apparel market size, growth and sustainability across multiple countries.</li><li>Evaluated tariff exposure, e-commerce revenue and ease-of-entry indicators.</li><li>Analysed product-category demand, consumer spending and expansion potential.</li><li>Translated complex findings into clear market-entry recommendations.</li></ul></div><div><h4>Dashboard Outcomes</h4><ul><li>Identified the United Kingdom as a strong balanced expansion opportunity.</li><li>Highlighted women’s apparel and trousers as leading revenue segments.</li><li>Connected market attractiveness with entry readiness and financial feasibility.</li><li>Created interactive country and year filters for focused comparison.</li></ul></div></div>
           <div class="image-gallery lovet-gallery" aria-label="Lovet Power BI project gallery">
             <a class="gallery-item contain" href="assets/lovet-gallery/lovet-market-attractiveness.png" data-title="Market Attractiveness Dashboard" data-description="An interactive view comparing apparel market size, growth and sustainability indicators across countries to identify balanced expansion opportunities."><img src="assets/lovet-gallery/lovet-market-attractiveness.png" alt="Lovet market attractiveness Power BI dashboard"></a>
-            <a class="gallery-item contain" href="assets/lovet-gallery/lovet-dashboard-cover.png" data-title="Market Expansion Analysis" data-description="The wider analysis connects market attractiveness, entry readiness, financial feasibility and product-category demand within one strategic decision framework."><img src="assets/lovet-gallery/lovet-dashboard-cover.png" alt="Lovet market entry and business expansion dashboard overview"></a>
+            <a class="gallery-item contain" href="assets/lovet-gallery/lovet-market-entry-readiness.png" data-title="Market Entry Readiness & Financial Feasibility" data-description="This dashboard compares tariff exposure, e-commerce revenue, ease of entry and digital readiness to evaluate the practical cost and feasibility of entering each market."><img src="assets/lovet-gallery/lovet-market-entry-readiness.png" alt="Lovet market entry readiness and financial feasibility Power BI dashboard"></a>
+            <a class="gallery-item contain" href="assets/lovet-gallery/lovet-market-structure.png" data-title="Market Structure & Business Expansion" data-description="Product-category performance, women’s apparel revenue and store-and-workforce growth reveal where demand is concentrated and how expansion can align with it."><img src="assets/lovet-gallery/lovet-market-structure.png" alt="Lovet market structure and business expansion Power BI dashboard"></a>
           </div>
         </article>
       </div>
@@ -465,12 +463,7 @@
       <div class="experience-grid">
         <h2 class="section-label" data-reveal>( 04 / Growth )<strong>CCA &<br>leadership</strong></h2>
         <div class="entries" data-reveal>
-          <div class="entry-group">
-            <p class="entry-group-title">Peer Supporter Club · Nanyang Polytechnic</p>
-            <div class="role-timeline">
-              <article class="entry"><span class="entry-date">Mar 2025 — Apr 2026</span><div><h3>Vice-President</h3><p>Led the planning and execution of peer-support initiatives, workshops and student engagement events. Reviewed project proposals with club advisers, coordinated external outreach, and facilitated campus-wide mental-wellness programmes reaching more than 400 students through collaborations including Boys’ Town Youth Outreach and Care Corner.</p></div></article>
-            </div>
-          </div>
+          <article class="entry no-logo"><span class="entry-date">Mar 2025 — Apr 2026</span><div><span class="entry-kicker">Peer Supporter Club · Nanyang Polytechnic</span><h3>Vice-President</h3><p>Led the planning and execution of peer-support initiatives, workshops and student engagement events. Reviewed project proposals with club advisers, coordinated external outreach, and facilitated campus-wide mental-wellness programmes reaching more than 400 students through collaborations including Boys’ Town Youth Outreach and Care Corner.</p></div></article>
           <article class="entry no-logo"><span class="entry-date">Apr 2025 — Apr 2026</span><div><span class="entry-kicker">School of Information Technology Club · Nanyang Polytechnic</span><h3>Sub-committee Member</h3><p>Supported and facilitated school activities while helping plan and execute campus-wide student engagement events with the wider committee.</p></div></article>
           <article class="entry no-logo"><span class="entry-date">Mar 2025 — Apr 2026</span><div><span class="entry-kicker">Ladies in Tech Interest Group · Nanyang Polytechnic</span><h3>Sub-committee Member</h3><p>Supported community and secondary-school outreach events and created publicity content that encouraged student participation and interest in technology.</p></div></article>
           <article class="entry no-logo"><span class="entry-date">Jan 2022 — Dec 2023</span><div><span class="entry-kicker">Table Tennis · Evergreen Secondary School</span><h3>Vice-Captain</h3><p>Led team warm-ups, supported training sessions, helped organise activities and coordinated communication between teammates and coaches.</p></div></article>
