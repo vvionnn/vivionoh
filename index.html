@@ -139,10 +139,10 @@
     .view-more { flex: 0 0 auto; padding: 14px 20px; border: 1px solid var(--ink); border-radius: 999px; color: var(--paper); background: var(--ink); font: 10px DM Mono, monospace; text-decoration: none; text-transform: uppercase; transition: transform .2s, background .2s, color .2s; }
     .view-more:hover { color: var(--ink); background: var(--acid); transform: translateY(-2px); }
     .preview-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 18px; }
-    .preview-card { min-width: 0; border: 1px solid var(--ink); border-radius: 20px; overflow: hidden; color: inherit; background: rgba(255,255,255,.34); text-decoration: none; transition: transform .3s, box-shadow .3s; }
+    .preview-card { min-width: 0; border: 1px solid var(--ink); border-radius: 20px; overflow: hidden; color: inherit; background: rgba(255,255,255,.34); text-decoration: none; transition: transform .3s, box-shadow .3s; display: flex; flex-direction: column; }
     .preview-card:hover { transform: translateY(-7px); box-shadow: 0 20px 40px rgba(23,23,20,.12); }
     .preview-card img { width: 100%; aspect-ratio: 16/10; display: block; object-fit: cover; object-position: top center; border-bottom: 1px solid var(--ink); background: white; }
-    .preview-card-body { min-height: 190px; padding: 24px; display: flex; flex-direction: column; }
+    .preview-card-body { min-height: 190px; padding: 24px; display: flex; flex: 1; flex-direction: column; }
     .preview-card .card-kicker { font: 9px DM Mono, monospace; text-transform: uppercase; letter-spacing: .06em; }
     .preview-card h3 { margin: 13px 0 10px; font-size: clamp(25px, 2.5vw, 39px); line-height: .95; letter-spacing: -.05em; }
     .preview-card p { margin: 0; font-size: 13px; line-height: 1.55; }
