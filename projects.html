@@ -207,10 +207,7 @@
     .gallery-item.contain img { object-fit: contain; object-position: center; }
     .gallery-item:hover img { transform: scale(1.025); }
     .gallery-item::after { content: "View ↗"; position: absolute; right: 10px; bottom: 10px; padding: 6px 8px; border-radius: 999px; color: var(--paper); background: rgba(23,23,20,.85); font: 8px DM Mono, monospace; text-transform: uppercase; }
-    .dance .image-gallery { grid-template-columns: 1fr; max-width: 920px; margin-left: auto; margin-right: auto; }
-    .dance .gallery-item, .dance .gallery-item:first-child { grid-column: auto; grid-row: auto; aspect-ratio: 16 / 9; min-height: 280px; }
-    .dance .gallery-item img, .dance .gallery-item.contain img { object-fit: cover; object-position: top center; }
-    .dance .gallery-item::after { right: 18px; bottom: 18px; padding: 11px 15px; font-size: 9px; }
+    .dance .gallery-item.contain img { object-fit: cover; object-position: top center; }
     .lovet-gallery { grid-template-columns: repeat(2, minmax(0,1fr)); }
     .lovet-gallery .gallery-item:first-child { grid-column: auto; grid-row: auto; aspect-ratio: 16 / 9; }
     .image-gallery.collapsed .gallery-item:nth-child(n+6) { display: none; }
@@ -301,7 +298,6 @@
       .case-top, .case-details, .case-media { grid-template-columns: 1fr; }
       .image-gallery { grid-template-columns: 1fr 1fr; }
       .gallery-item:first-child { grid-column: span 2; grid-row: auto; aspect-ratio: 16 / 9; }
-      .dance .gallery-item, .dance .gallery-item:first-child { grid-column: auto; min-height: 190px; }
       .lovet-gallery { grid-template-columns: 1fr; }
       .lightbox { grid-template-columns: 1fr; padding: 65px 15px 20px; overflow-y: auto; }
       .lightbox-info { border-left: 0; border-top: 1px solid rgba(255,255,255,.25); padding: 22px 5px; }
