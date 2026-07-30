@@ -136,8 +136,8 @@
     .home-previews.alt { background: #e8e5de; }
     .preview-heading { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 38px; }
     .preview-heading h2 { margin: 0; font-size: clamp(48px, 7vw, 108px); font-weight: 500; line-height: .86; letter-spacing: -.075em; text-transform: uppercase; }
-    .view-more { flex: 0 0 auto; padding: 12px 17px; border: 1px solid var(--ink); border-radius: 999px; font: 10px DM Mono, monospace; text-decoration: none; text-transform: uppercase; transition: background .2s, color .2s; }
-    .view-more:hover { color: var(--paper); background: var(--ink); }
+    .view-more { flex: 0 0 auto; padding: 14px 20px; border: 1px solid var(--ink); border-radius: 999px; color: var(--paper); background: var(--ink); font: 10px DM Mono, monospace; text-decoration: none; text-transform: uppercase; transition: transform .2s, background .2s, color .2s; }
+    .view-more:hover { color: var(--ink); background: var(--acid); transform: translateY(-2px); }
     .preview-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 18px; }
     .preview-card { min-width: 0; border: 1px solid var(--ink); border-radius: 20px; overflow: hidden; color: inherit; background: rgba(255,255,255,.34); text-decoration: none; transition: transform .3s, box-shadow .3s; }
     .preview-card:hover { transform: translateY(-7px); box-shadow: 0 20px 40px rgba(23,23,20,.12); }
@@ -146,7 +146,8 @@
     .preview-card .card-kicker { font: 9px DM Mono, monospace; text-transform: uppercase; letter-spacing: .06em; }
     .preview-card h3 { margin: 13px 0 10px; font-size: clamp(25px, 2.5vw, 39px); line-height: .95; letter-spacing: -.05em; }
     .preview-card p { margin: 0; font-size: 13px; line-height: 1.55; }
-    .preview-card .card-link { margin-top: auto; padding-top: 20px; font: 9px DM Mono, monospace; text-transform: uppercase; }
+    .preview-card .card-link { width: max-content; margin-top: auto; padding: 10px 13px; border-radius: 999px; color: var(--paper); background: var(--ink); font: 9px DM Mono, monospace; text-transform: uppercase; transition: color .2s, background .2s; }
+    .preview-card:hover .card-link { color: var(--ink); background: var(--acid); }
     .project-scroll { position: relative; }
     .project-scroll .preview-grid { display: flex; gap: 18px; overflow-x: auto; padding: 8px 2px 18px; scroll-snap-type: x mandatory; scrollbar-width: none; }
     .project-scroll .preview-grid::-webkit-scrollbar { display: none; }
@@ -280,17 +281,20 @@
     .placeholder { opacity: .58; }
 
     .about {
-      min-height: 95vh;
-      padding: 110px clamp(20px, 3vw, 44px);
+      min-height: 75vh;
+      padding: 100px clamp(20px, 3vw, 44px);
       background: #dedbd4;
       display: grid;
-      grid-template-columns: 1fr 2.2fr;
+      grid-template-columns: minmax(180px, .65fr) 2.2fr;
       gap: 6vw;
     }
     .about h2 { margin: 0; font: 11px DM Mono, monospace; text-transform: uppercase; }
-    .about-copy { margin: 0; font-size: clamp(38px, 5.7vw, 88px); line-height: .98; letter-spacing: -.065em; }
+    .profile-summary { max-width: 1050px; }
+    .profile-kicker { display: block; margin-bottom: 22px; font: 10px DM Mono, monospace; text-transform: uppercase; letter-spacing: .08em; }
+    .about-copy { margin: 0; font-size: clamp(32px, 4.5vw, 68px); line-height: 1.02; letter-spacing: -.055em; }
     .about-copy em { font-family: "Times New Roman", serif; font-weight: 400; color: #536743; }
-    .skills { grid-column: 2; display: flex; flex-wrap: wrap; gap: 8px; align-self: end; margin-top: 80px; }
+    .about-note { max-width: 750px; margin: 28px 0 0; font-size: clamp(15px, 1.4vw, 19px); line-height: 1.65; }
+    .skills { grid-column: 2; display: flex; flex-wrap: wrap; gap: 8px; align-self: end; margin-top: 52px; }
     .skills span { border: 1px solid var(--ink); border-radius: 999px; padding: 10px 15px; font: 10px DM Mono, monospace; text-transform: uppercase; }
 
     footer { min-height: 80vh; padding: 70px clamp(20px, 3vw, 44px) 24px; background: var(--ink); color: var(--paper); display: flex; flex-direction: column; justify-content: space-between; }
@@ -342,7 +346,7 @@
       .role-timeline .entry { grid-template-columns: 1fr; padding: 18px 0 26px 28px; }
       .role-timeline .entry::before, .role-timeline .entry + .entry::before { left: 0; top: 23px; }
       .about { grid-template-columns: 1fr; }
-      .about-copy, .skills { grid-column: 1; }
+      .profile-summary, .skills { grid-column: 1; }
       footer { min-height: 70vh; }
       .footer-row { align-items: start; flex-direction: column; }
     }
@@ -381,7 +385,7 @@
       <div class="hero-bottom">
         <p class="hero-copy">I bridge business, technology and people—building practical digital products, supporting fast-moving operations and leading community initiatives with empathy.</p>
         <span class="scroll">Scroll to explore ↓</span>
-        <span class="eyebrow" style="justify-self:end">Singapore / 01:3521° N</span>
+        <span class="eyebrow" style="justify-self:end">Based in Singapore / GMT+8</span>
       </div>
     </section>
 
@@ -391,20 +395,23 @@
     </div></div>
 
     <section class="about" id="about">
-      <h2 data-reveal>( 01 / About me )</h2>
-      <p class="about-copy" data-reveal>I’m Vivion, a Business & Financial Technology student who enjoys <em>building useful, human-centred digital experiences.</em></p>
+      <h2 data-reveal>( 01 / Profile )</h2>
+      <div class="profile-summary" data-reveal>
+        <span class="profile-kicker">Business &amp; Financial Technology · Product · Operations</span>
+        <p class="about-copy">I turn business needs and human insights into <em>clear, practical digital experiences.</em></p>
+        <p class="about-note">I’m Vivion, a Business &amp; Financial Technology student with experience across product development, business analysis, data visualisation and operations. I enjoy connecting people, technology and strategy—whether I’m building a prototype, uncovering insights or helping a team deliver well.</p>
+      </div>
       <div class="skills" data-reveal><span>Python</span><span>C#</span><span>Flask</span><span>HTML / CSS</span><span>JavaScript</span><span>Power BI</span><span>Figma</span><span>UI / UX</span><span>Microsoft Excel</span><span>Google Workspace</span><span>Microsoft 365</span><span>Leadership</span><span>Communication</span></div>
     </section>
 
     <section class="home-previews alt" id="highlights">
-      <div class="preview-heading" data-reveal><h2>Selected<br>highlights</h2><a class="view-more" href="projects.html">View all projects &rarr;</a></div>
+      <div class="preview-heading" data-reveal><h2>Selected<br>highlights</h2><a class="view-more" href="projects.html">Explore all projects &rarr;</a></div>
       <div class="project-scroll">
       <div class="preview-grid" aria-label="Scrollable project highlights">
-        <a class="preview-card" href="projects.html#work" data-reveal><img src="assets/echosync-gallery/screen-01.png" alt="EchoSync operations dashboard"><div class="preview-card-body"><span class="card-kicker">Project lead &middot; 2026</span><h3>EchoSync</h3><p>AI-assisted emergency detection and response for seniors living alone.</p><span class="card-link">View project &rarr;</span></div></a>
-        <a class="preview-card" href="projects.html#work" data-reveal><img src="assets/legacy-garden.png" alt="Legacy Garden community platform"><div class="preview-card-body"><span class="card-kicker">Full-stack development &middot; 2026</span><h3>Legacy Garden</h3><p>An intergenerational storytelling platform that turns participation into a shared garden.</p><span class="card-link">View project &rarr;</span></div></a>
-        <a class="preview-card" href="projects.html#work" data-reveal><img src="assets/echosync-gallery/screen-06.png" alt="Digital product interface preview"><div class="preview-card-body"><span class="card-kicker">UI/UX &middot; Development</span><h3>More projects</h3><p>Explore web, mobile and human-centred product work across my portfolio.</p><span class="card-link">View all work &rarr;</span></div></a>
-        <a class="preview-card" href="projects.html#work" data-reveal><div class="project-cover nirvana" aria-hidden="true"><span>Nirvana</span></div><div class="preview-card-body"><span class="card-kicker">UI/UX design &middot; 2025</span><h3>Nirvana</h3><p>A human-centred digital product shaped through research, prototyping and interface design.</p><span class="card-link">View project &rarr;</span></div></a>
-        <a class="preview-card" href="projects.html#work" data-reveal><div class="project-cover lovet" aria-hidden="true"><span>Lovet</span></div><div class="preview-card-body"><span class="card-kicker">Digital product</span><h3>Lovet</h3><p>A product design project exploring a thoughtful and engaging user experience.</p><span class="card-link">View project &rarr;</span></div></a>
+        <a class="preview-card" href="projects.html#work" data-reveal><img src="assets/echosync-gallery/screen-01.png" alt="EchoSync operations dashboard"><div class="preview-card-body"><span class="card-kicker">Project lead &middot; 2026</span><h3>EchoSync</h3><p>AI-assisted emergency detection and response for seniors living alone.</p><span class="card-link">Explore EchoSync &rarr;</span></div></a>
+        <a class="preview-card" href="projects.html#work" data-reveal><img src="assets/legacy-garden.png" alt="Legacy Garden community platform"><div class="preview-card-body"><span class="card-kicker">Full-stack development &middot; 2026</span><h3>Legacy Garden</h3><p>An intergenerational storytelling platform that turns participation into a shared garden.</p><span class="card-link">Explore Legacy Garden &rarr;</span></div></a>
+        <a class="preview-card" href="projects.html#work" data-reveal><div class="project-cover nirvana" aria-hidden="true"><span>Nirvana</span></div><div class="preview-card-body"><span class="card-kicker">UI/UX design &middot; 2025</span><h3>Nirvana</h3><p>A human-centred digital product shaped through research, prototyping and interface design.</p><span class="card-link">Explore Nirvana &rarr;</span></div></a>
+        <a class="preview-card" href="projects.html#work" data-reveal><div class="project-cover lovet" aria-hidden="true"><span>Lovet</span></div><div class="preview-card-body"><span class="card-kicker">Power BI · Market analysis</span><h3>Lovet</h3><p>An interactive market-entry dashboard evaluating apparel growth, consumer demand, sustainability and expansion readiness across global markets.</p><span class="card-link">Explore Lovet analysis &rarr;</span></div></a>
       </div>
       <div class="carousel-controls" aria-label="Project carousel controls">
         <button class="carousel-arrow" type="button" data-project-direction="-1" aria-label="Previous project">&larr;</button>
@@ -415,11 +422,11 @@
     </section>
 
     <section class="home-previews" id="experience-preview">
-      <div class="preview-heading" data-reveal><h2>Experience<br>&amp; growth</h2><a class="view-more" href="experience.html">View full experience &rarr;</a></div>
+      <div class="preview-heading" data-reveal><h2>Experience<br>&amp; growth</h2><a class="view-more" href="experience.html">Explore my journey &rarr;</a></div>
       <div class="preview-grid">
-        <a class="preview-card" href="experience.html#experience" data-reveal><div class="preview-card-body"><span class="card-kicker">Mar 2026 &mdash; Present</span><h3>Administrative Executive</h3><p>Supporting daily operations, finance reconciliation, scheduling and data management for an education consultancy.</p><span class="card-link">See experience &rarr;</span></div></a>
-        <a class="preview-card" href="experience.html#leadership" data-reveal><div class="preview-card-body"><span class="card-kicker">Leadership</span><h3>Peer Supporter Club</h3><p>Leading and supporting student wellbeing initiatives, workshops and community engagement.</p><span class="card-link">See leadership &rarr;</span></div></a>
-        <a class="preview-card" href="experience.html#volunteer" data-reveal><div class="preview-card-body"><span class="card-kicker">Community service</span><h3>Volunteer work</h3><p>Designing inclusive activities and supporting youth, children and community wellbeing programmes.</p><span class="card-link">See volunteering &rarr;</span></div></a>
+        <a class="preview-card" href="experience.html#experience" data-reveal><div class="preview-card-body"><span class="card-kicker">Mar 2026 &mdash; Present</span><h3>Administrative Executive</h3><p>Supporting daily operations, finance reconciliation, scheduling and data management for an education consultancy.</p><span class="card-link">Explore professional experience &rarr;</span></div></a>
+        <a class="preview-card" href="experience.html#leadership" data-reveal><div class="preview-card-body"><span class="card-kicker">Leadership</span><h3>Peer Supporter Club</h3><p>Leading and supporting student wellbeing initiatives, workshops and community engagement.</p><span class="card-link">Explore leadership journey &rarr;</span></div></a>
+        <a class="preview-card" href="experience.html#volunteer" data-reveal><div class="preview-card-body"><span class="card-kicker">Community service</span><h3>Volunteer work</h3><p>Designing inclusive activities and supporting youth, children and community wellbeing programmes.</p><span class="card-link">Explore community impact &rarr;</span></div></a>
       </div>
     </section>
 
