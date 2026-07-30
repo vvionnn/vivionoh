@@ -207,6 +207,12 @@
     .gallery-item.contain img { object-fit: contain; object-position: center; }
     .gallery-item:hover img { transform: scale(1.025); }
     .gallery-item::after { content: "View ↗"; position: absolute; right: 10px; bottom: 10px; padding: 6px 8px; border-radius: 999px; color: var(--paper); background: rgba(23,23,20,.85); font: 8px DM Mono, monospace; text-transform: uppercase; }
+    .dance .image-gallery { grid-template-columns: 1fr; max-width: 920px; margin-left: auto; margin-right: auto; }
+    .dance .gallery-item, .dance .gallery-item:first-child { grid-column: auto; grid-row: auto; aspect-ratio: 16 / 9; min-height: 280px; }
+    .dance .gallery-item img, .dance .gallery-item.contain img { object-fit: cover; object-position: top center; }
+    .dance .gallery-item::after { right: 18px; bottom: 18px; padding: 11px 15px; font-size: 9px; }
+    .lovet-gallery { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    .lovet-gallery .gallery-item:first-child { grid-column: auto; grid-row: auto; aspect-ratio: 16 / 9; }
     .image-gallery.collapsed .gallery-item:nth-child(n+6) { display: none; }
     .gallery-more { aspect-ratio: 16 / 9; min-height: 190px; border: 1px solid var(--ink); border-radius: 15px; color: var(--paper); background: var(--ink); font: 500 clamp(28px, 4vw, 58px) Manrope, sans-serif; letter-spacing: -.05em; }
     .gallery-more small { display: block; margin-top: 6px; font: 8px DM Mono, monospace; text-transform: uppercase; letter-spacing: .08em; }
@@ -295,6 +301,8 @@
       .case-top, .case-details, .case-media { grid-template-columns: 1fr; }
       .image-gallery { grid-template-columns: 1fr 1fr; }
       .gallery-item:first-child { grid-column: span 2; grid-row: auto; aspect-ratio: 16 / 9; }
+      .dance .gallery-item, .dance .gallery-item:first-child { grid-column: auto; min-height: 190px; }
+      .lovet-gallery { grid-template-columns: 1fr; }
       .lightbox { grid-template-columns: 1fr; padding: 65px 15px 20px; overflow-y: auto; }
       .lightbox-info { border-left: 0; border-top: 1px solid rgba(255,255,255,.25); padding: 22px 5px; }
       .case-date { justify-self: start; }
@@ -449,7 +457,10 @@
           <p class="case-summary">An interactive Power BI analysis evaluating Lovet’s international expansion opportunities across apparel markets. The dashboard brings market size, growth, sustainability, entry costs, digital readiness and product demand into one decision-making view.</p>
           <div class="case-tags"><span>Power BI</span><span>Business Analysis</span><span>Market Research</span><span>Data Visualisation</span><span>Strategic Analysis</span><span>Dashboard Design</span></div>
           <div class="case-details"><div><h4>Project Highlights</h4><ul><li>Compared apparel market size, growth and sustainability across multiple countries.</li><li>Evaluated tariff exposure, e-commerce revenue and ease-of-entry indicators.</li><li>Analysed product-category demand, consumer spending and expansion potential.</li><li>Translated complex findings into clear market-entry recommendations.</li></ul></div><div><h4>Dashboard Outcomes</h4><ul><li>Identified the United Kingdom as a strong balanced expansion opportunity.</li><li>Highlighted women’s apparel and trousers as leading revenue segments.</li><li>Connected market attractiveness with entry readiness and financial feasibility.</li><li>Created interactive country and year filters for focused comparison.</li></ul></div></div>
-          <div class="case-media"><img src="assets/lovet-gallery/lovet-dashboard-cover.png" alt="Lovet Power BI market attractiveness, entry readiness and business expansion dashboards" style="object-fit:contain"></div>
+          <div class="image-gallery lovet-gallery" aria-label="Lovet Power BI project gallery">
+            <a class="gallery-item contain" href="assets/lovet-gallery/lovet-market-attractiveness.png" data-title="Market Attractiveness Dashboard" data-description="An interactive view comparing apparel market size, growth and sustainability indicators across countries to identify balanced expansion opportunities."><img src="assets/lovet-gallery/lovet-market-attractiveness.png" alt="Lovet market attractiveness Power BI dashboard"></a>
+            <a class="gallery-item contain" href="assets/lovet-gallery/lovet-dashboard-cover.png" data-title="Market Expansion Analysis" data-description="The wider analysis connects market attractiveness, entry readiness, financial feasibility and product-category demand within one strategic decision framework."><img src="assets/lovet-gallery/lovet-dashboard-cover.png" alt="Lovet market entry and business expansion dashboard overview"></a>
+          </div>
         </article>
       </div>
     </section>
@@ -534,6 +545,7 @@
     const lightboxImage = lightbox.querySelector('img');
     const lightboxTitle = lightbox.querySelector('.lightbox-info h3');
     const lightboxDescription = lightbox.querySelector('.lightbox-info p');
+    let activeGalleryLinks = [];
     let currentImage = 0;
     function describeScreen(alt) {
       const text = alt.toLowerCase();
@@ -555,12 +567,14 @@
       return descriptions.find(([keyword]) => text.includes(keyword))?.[1] || 'A working prototype screen showing how the project translates its core idea into a clear, usable digital experience. This view is part of the tested end-to-end product flow.';
     }
     function showImage(index) {
-      currentImage = (index + galleryLinks.length) % galleryLinks.length;
-      const source = galleryLinks[currentImage].querySelector('img');
-      lightboxImage.src = galleryLinks[currentImage].href;
+      if (!activeGalleryLinks.length) return;
+      currentImage = (index + activeGalleryLinks.length) % activeGalleryLinks.length;
+      const activeLink = activeGalleryLinks[currentImage];
+      const source = activeLink.querySelector('img');
+      lightboxImage.src = activeLink.href;
       lightboxImage.alt = source.alt;
-      lightboxTitle.textContent = galleryLinks[currentImage].dataset.title || source.alt;
-      lightboxDescription.textContent = galleryLinks[currentImage].dataset.description || describeScreen(source.alt);
+      lightboxTitle.textContent = activeLink.dataset.title || source.alt;
+      lightboxDescription.textContent = activeLink.dataset.description || describeScreen(source.alt);
       lightbox.classList.add('open');
       document.body.style.overflow = 'hidden';
     }
@@ -568,9 +582,11 @@
       lightbox.classList.remove('open');
       document.body.style.overflow = '';
     }
-    galleryLinks.forEach((link, index) => link.addEventListener('click', event => {
+    galleryLinks.forEach(link => link.addEventListener('click', event => {
       event.preventDefault();
-      showImage(index);
+      const gallery = link.closest('.image-gallery');
+      activeGalleryLinks = [...gallery.querySelectorAll('.gallery-item')];
+      showImage(activeGalleryLinks.indexOf(link));
     }));
     document.querySelectorAll('[data-gallery-more]').forEach(button => button.addEventListener('click', () => {
       const gallery = button.closest('.image-gallery');

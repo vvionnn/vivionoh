@@ -525,6 +525,7 @@
     const lightboxImage = lightbox.querySelector('img');
     const lightboxTitle = lightbox.querySelector('.lightbox-info h3');
     const lightboxDescription = lightbox.querySelector('.lightbox-info p');
+    let activeGalleryLinks = [];
     let currentImage = 0;
     function describeScreen(alt) {
       const text = alt.toLowerCase();
@@ -546,12 +547,14 @@
       return descriptions.find(([keyword]) => text.includes(keyword))?.[1] || 'A working prototype screen showing how the project translates its core idea into a clear, usable digital experience. This view is part of the tested end-to-end product flow.';
     }
     function showImage(index) {
-      currentImage = (index + galleryLinks.length) % galleryLinks.length;
-      const source = galleryLinks[currentImage].querySelector('img');
-      lightboxImage.src = galleryLinks[currentImage].href;
+      if (!activeGalleryLinks.length) return;
+      currentImage = (index + activeGalleryLinks.length) % activeGalleryLinks.length;
+      const activeLink = activeGalleryLinks[currentImage];
+      const source = activeLink.querySelector('img');
+      lightboxImage.src = activeLink.href;
       lightboxImage.alt = source.alt;
-      lightboxTitle.textContent = galleryLinks[currentImage].dataset.title || source.alt;
-      lightboxDescription.textContent = galleryLinks[currentImage].dataset.description || describeScreen(source.alt);
+      lightboxTitle.textContent = activeLink.dataset.title || source.alt;
+      lightboxDescription.textContent = activeLink.dataset.description || describeScreen(source.alt);
       lightbox.classList.add('open');
       document.body.style.overflow = 'hidden';
     }
@@ -559,9 +562,11 @@
       lightbox.classList.remove('open');
       document.body.style.overflow = '';
     }
-    galleryLinks.forEach((link, index) => link.addEventListener('click', event => {
+    galleryLinks.forEach(link => link.addEventListener('click', event => {
       event.preventDefault();
-      showImage(index);
+      const gallery = link.closest('.image-gallery');
+      activeGalleryLinks = [...gallery.querySelectorAll('.gallery-item')];
+      showImage(activeGalleryLinks.indexOf(link));
     }));
     document.querySelectorAll('[data-gallery-more]').forEach(button => button.addEventListener('click', () => {
       const gallery = button.closest('.image-gallery');
