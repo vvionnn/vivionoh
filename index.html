@@ -148,6 +148,7 @@
     .view-more { flex: 0 0 auto; padding: 14px 20px; border: 1px solid var(--ink); border-radius: 999px; color: var(--paper); background: var(--ink); font: 10px DM Mono, monospace; text-decoration: none; text-transform: uppercase; transition: transform .2s, background .2s, color .2s; }
     .view-more:hover { color: var(--ink); background: var(--acid); transform: translateY(-2px); }
     .preview-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 18px; }
+    .preview-grid.two-up { grid-template-columns: repeat(2, minmax(0,1fr)); }
     .preview-card { min-width: 0; border: 1px solid var(--ink); border-radius: 20px; overflow: hidden; color: inherit; background: rgba(255,255,255,.34); text-decoration: none; transition: transform .3s, box-shadow .3s; display: flex; flex-direction: column; }
     .preview-card:hover { transform: translateY(-7px); box-shadow: 0 20px 40px rgba(23,23,20,.12); }
     .preview-card img { width: 100%; aspect-ratio: 16/10; display: block; object-fit: cover; object-position: top center; border-bottom: 1px solid var(--ink); background: white; }
@@ -339,6 +340,7 @@
       .project-preview { display: none; }
       .preview-heading { align-items: start; flex-direction: column; }
       .preview-grid { grid-template-columns: 1fr; }
+      .preview-grid.two-up { grid-template-columns: 1fr; }
       .preview-card-body { min-height: 0; }
       .project-scroll .preview-grid { display: flex; }
       .project-scroll .preview-card { flex-basis: 84vw; min-width: 280px; }
@@ -432,11 +434,19 @@
     </section>
 
     <section class="home-previews" id="experience-preview">
-      <div class="preview-heading" data-reveal><h2>Experience<br>&amp; growth</h2><a class="view-more" href="experience.html">Explore my journey &rarr;</a></div>
+      <div class="preview-heading" data-reveal><h2>Professional<br>experience</h2><a class="view-more" href="experience.html#experience">View all experience &rarr;</a></div>
       <div class="preview-grid">
-        <a class="preview-card" href="experience.html#experience" data-reveal><div class="preview-card-body"><span class="card-kicker">Mar 2026 &mdash; Present</span><h3>Assistant Centre Manager</h3><p>Managing education-centre operations, finance reconciliation, enrolment, scheduling, payroll and administrative support for 150+ students.</p><span class="card-link">Explore professional experience &rarr;</span></div></a>
-        <a class="preview-card" href="experience.html#leadership" data-reveal><div class="preview-card-body"><span class="card-kicker">Leadership &amp; activities</span><h3>Student Leadership</h3><p>Leading peer-support programmes while contributing to technology outreach, campus events and team development across four student organisations.</p><span class="card-link">Explore leadership journey &rarr;</span></div></a>
-        <a class="preview-card" href="experience.html#volunteer" data-reveal><div class="preview-card-body"><span class="card-kicker">Community service</span><h3>Volunteer work</h3><p>Designing inclusive activities and supporting youth, children and community wellbeing programmes.</p><span class="card-link">Explore community impact &rarr;</span></div></a>
+        <a class="preview-card" href="experience.html#nanyang" data-reveal><div class="preview-card-body"><span class="card-kicker">Nanyang Educational Consultancy · Mar 2026 &mdash; Present</span><h3>Assistant Centre Manager</h3><p>Managing education-centre operations, finance reconciliation, enrolment, scheduling, payroll and administrative support for 150+ students.</p><span class="card-link">View role &amp; impact &rarr;</span></div></a>
+        <a class="preview-card" href="experience.html#highhouse" data-reveal><div class="preview-card-body"><span class="card-kicker">HighHouse · Sep 2025 &mdash; Present</span><h3>Food Service Associate</h3><p>Supporting fast-paced front-of-house operations, accurate food delivery, service preparation and a smooth guest experience.</p><span class="card-link">View role &amp; skills &rarr;</span></div></a>
+        <a class="preview-card" href="experience.html#leclair" data-reveal><div class="preview-card-body"><span class="card-kicker">L'éclair Patisserie · Sep 2025 &mdash; Present</span><h3>Service Associate</h3><p>Preparing coffee, beverages and food while maintaining product quality and providing attentive customer service.</p><span class="card-link">View role &amp; skills &rarr;</span></div></a>
+      </div>
+    </section>
+
+    <section class="home-previews alt" id="journey-preview">
+      <div class="preview-heading" data-reveal><h2>My<br>journey</h2><a class="view-more" href="experience.html#leadership">Explore my journey &rarr;</a></div>
+      <div class="preview-grid two-up">
+        <a class="preview-card" href="experience.html#leadership" data-reveal><div class="preview-card-body"><span class="card-kicker">CCA &amp; leadership</span><h3>Student Leadership</h3><p>Leading peer-support programmes while contributing to technology outreach, campus events and team development across four student organisations.</p><span class="card-link">Explore CCA &amp; leadership &rarr;</span></div></a>
+        <a class="preview-card" href="experience.html#volunteer" data-reveal><div class="preview-card-body"><span class="card-kicker">Volunteer &amp; community work</span><h3>Community Impact</h3><p>Designing inclusive activities and supporting youth, children, seniors and community wellbeing programmes.</p><span class="card-link">Explore volunteer work &rarr;</span></div></a>
       </div>
     </section>
 
