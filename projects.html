@@ -27,7 +27,7 @@
       overflow-x: hidden;
     }
     body.projects-page main { padding-top: 68px; }
-    body.projects-page .hero, body.projects-page .marquee, body.projects-page .about, body.projects-page .experience-section { display: none; }
+    body.projects-page .hero, body.projects-page .marquee, body.projects-page .about, body.projects-page .experience-section, body.projects-page .loader { display: none; }
 
     a, button { color: inherit; }
     ::selection { color: var(--ink); background: var(--acid); }
@@ -503,20 +503,8 @@
 
   <script>
     const loader = document.querySelector('.loader');
-    const count = loader.querySelector('b');
-    let progress = 0;
-    const timer = setInterval(() => {
-      progress += Math.ceil(Math.random() * 18);
-      if (progress >= 100) {
-        progress = 100;
-        clearInterval(timer);
-        setTimeout(() => {
-          loader.classList.add('done');
-          document.body.classList.add('ready');
-        }, 250);
-      }
-      count.textContent = progress;
-    }, 70);
+    loader.classList.add('done');
+    document.body.classList.add('ready');
 
     const observer = new IntersectionObserver(entries => entries.forEach(entry => {
       if (entry.isIntersecting) entry.target.classList.add('visible');
