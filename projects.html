@@ -68,10 +68,19 @@
     }
     nav.scrolled { border-color: var(--line); }
     .brand { font: 700 18px Manrope, sans-serif; letter-spacing: -.05em; text-decoration: none; }
-    .nav-links { display: flex; gap: 26px; }
+    .nav-links { display: flex; align-items: center; gap: 26px; }
     .nav-links a { text-decoration: none; }
     .nav-links a::after { content: ""; display: block; width: 0; height: 1px; background: currentColor; transition: width .25s; }
     .nav-links a:hover::after { width: 100%; }
+    .nav-journey { position: relative; }
+    .nav-journey summary { list-style: none; cursor: pointer; white-space: nowrap; }
+    .nav-journey summary::-webkit-details-marker { display: none; }
+    .nav-journey summary::after { content: " +"; }
+    .nav-journey[open] summary::after { content: " −"; }
+    .journey-menu { position: absolute; top: calc(100% + 18px); left: 50%; min-width: 210px; padding: 10px; border: 1px solid var(--ink); border-radius: 14px; background: var(--paper); box-shadow: 0 18px 40px rgba(23,23,20,.14); transform: translateX(-50%); }
+    .journey-menu a { display: block; padding: 10px 11px; border-radius: 8px; white-space: nowrap; }
+    .journey-menu a::after { display: none; }
+    .journey-menu a:hover { color: var(--paper); background: var(--ink); }
     .availability { justify-self: end; display: flex; align-items: center; gap: 8px; }
     .availability::before { content: ""; width: 7px; height: 7px; background: #58c366; border-radius: 50%; animation: pulse 1.8s infinite; }
 
@@ -281,6 +290,7 @@
       nav { grid-template-columns: 1fr auto; }
       .nav-links { display: flex; gap: 13px; max-width: 66vw; overflow-x: auto; scrollbar-width: none; }
       .nav-links::-webkit-scrollbar { display: none; }
+      .journey-menu { position: fixed; top: 70px; right: 16px; left: auto; transform: none; }
       .availability { display: none; }
       .hero { min-height: auto; padding-top: 105px; gap: 44px; }
       .hero-title { font-size: clamp(52px, 17.5vw, 92px); line-height: .82; padding-top: 75px; }
@@ -324,7 +334,7 @@
 
   <nav>
     <a class="brand" href="index.html">VIVION®</a>
-    <div class="nav-links"><a href="index.html">Home</a><a href="index.html#about">About</a><a href="experience.html">Experience</a><a href="#work">Projects</a><a href="#contact">Contact</a></div>
+    <div class="nav-links"><a href="index.html">Home</a><a href="index.html#about">About</a><a href="experience.html">Experience</a><a href="#work">Projects</a><details class="nav-journey"><summary>My Journey</summary><div class="journey-menu"><a href="experience.html#leadership">CCA &amp; Leadership</a><a href="experience.html#volunteer">Volunteer Work</a></div></details><a href="#contact">Contact</a></div>
     <div class="availability">Available for projects & work</div>
   </nav>
 
