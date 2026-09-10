@@ -120,7 +120,9 @@
     .camera-dot { width: 8px; height: 8px; border-radius: 50%; background: #d96855; }
     .camera-screen { display: flex; gap: 7px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; border-radius: 14px; }
     .camera-screen::-webkit-scrollbar { display: none; }
-    .camera-screen img { flex: 0 0 100%; width: 100%; aspect-ratio: 4/3; object-fit: cover; object-position: top center; scroll-snap-align: start; background: white; }
+    .camera-frame { flex: 0 0 100%; min-width: 0; margin: 0; scroll-snap-align: start; }
+    .camera-screen .camera-frame img { display: block; width: 100%; aspect-ratio: 4/3; object-fit: contain; object-position: center; background: #171714; }
+    .camera-frame figcaption { padding: 10px 3px 0; font: 10px DM Mono, monospace; line-height: 1.5; color: var(--paper); }
     .camera-bottom { display: flex; justify-content: space-between; align-items: center; padding: 12px 3px 2px; font: 9px DM Mono, monospace; text-transform: uppercase; }
     .camera-controls { display: flex; gap: 5px; }
     .camera-controls button { width: 24px; height: 24px; border: 1px solid rgba(255,255,255,.5); border-radius: 50%; color: white; background: transparent; font-size: 11px; }
@@ -386,12 +388,13 @@
         <span class="line"><span>Welcome to</span></span>
         <span class="line"><span><i class="accent">Vivion's</i> world.</span></span>
       </h1>
-      <div class="hero-camera" aria-label="Scrollable project preview camera">
-        <div class="camera-top"><span>Vivion / Selected frames</span><i class="camera-dot"></i></div>
+      <div class="hero-camera" aria-label="Personal photo carousel">
+        <div class="camera-top"><span>Vivion / Beyond the screen</span><i class="camera-dot"></i></div>
         <div class="camera-screen">
-          <img src="assets/echosync-gallery/screen-01.png" alt="EchoSync dashboard preview">
-          <img src="assets/legacy-garden.png" alt="Legacy Garden preview">
-          <img src="assets/echosync-gallery/screen-06.png" alt="EchoSync mobile responder preview">
+          <figure class="camera-frame"><img src="assets/personal-photos/photo_1_2026-09-10_23-58-36.jpg" alt="Group photo beside the EchoSync prototype and display poster" decoding="async"><figcaption>EchoSync showcase</figcaption></figure>
+          <figure class="camera-frame"><img src="assets/personal-photos/photo_2_2026-09-10_23-58-36.jpg" alt="EchoSync team receiving finalist certificates on stage" decoding="async"><figcaption>SCDF &times; Dell finalist moment</figcaption></figure>
+          <figure class="camera-frame"><img src="assets/personal-photos/photo_3_2026-09-10_23-58-36.jpg" alt="Painted canvas with colourful hearts and a character" decoding="async"><figcaption>A little creativity</figcaption></figure>
+          <figure class="camera-frame"><img src="assets/personal-photos/photo_4_2026-09-10_23-58-36.jpg" alt="NYP students holding Information Technology signs" decoding="async"><figcaption>Behind the scenes at NYP</figcaption></figure>
         </div>
         <div class="camera-bottom"><span>Swipe / scroll</span><div class="camera-controls"><button type="button" data-camera="-1" aria-label="Previous image">←</button><button type="button" data-camera="1" aria-label="Next image">→</button></div></div>
       </div>
@@ -622,7 +625,7 @@
 
     const cameraScreen = document.querySelector('.camera-screen');
     document.querySelectorAll('[data-camera]').forEach(button => button.addEventListener('click', () => {
-      cameraScreen.scrollBy({ left: cameraScreen.clientWidth * Number(button.dataset.camera), behavior: 'smooth' });
+      cameraScreen.scrollBy({ left: (cameraScreen.clientWidth + 7) * Number(button.dataset.camera), behavior: 'smooth' });
     }));
 
     const projectCarousel = document.querySelector('.project-scroll');
